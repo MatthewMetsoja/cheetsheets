@@ -1,41 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>HTML / CSS / SCSS cheatsheet</title>
+    <title>HTML / CSS / SCSS Cheat sheet</title>
 
     <style>
-
-         body{
-             padding: 0;
-             margin: 0;
-             box-sizing: border-box;
-             font-family: 'Courier New', Courier, monospace;
-         }   
-
-         h1,h3{
-             text-align: center;
-             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-             text-decoration: underline;         
+        body {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            /* font-family:Verdana, Geneva, Tahoma, sans-serif */
         }
 
-        table{
+        h1,
+        h3 {
+            text-align: center;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-decoration: underline;
+        }
+
+        table {
             border-collapse: collapse;
             width: 100%;
         }
 
-       
-
-        
-        table.section{
-            border: 2px solid black;
-            background-color: rgb(249, 250, 176);    
-            font-size: 14px;   
+        table.container {
+            width: 98%;
+            margin: 0 auto;
         }
 
-        .section thead{
+        span {
+            background-color: yellow;
+        }
+
+
+
+
+        table.section {
+            border: 2px solid black;
+            background-color: rgb(249, 250, 176);
+            font-size: 15px;
+        }
+
+        .section thead {
             color: black;
             background-color: rgb(253, 170, 215);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -45,221 +56,682 @@
             border: 2px solid black;
         }
 
-        .section thead td{
+        .section thead td {
             border: 2px solid black;
         }
 
-        .section tbody td{
+        .section tbody td {
             border-right: 2px solid black;
-            border-bottom:1px solid black;
-            padding: 2px 7px;
+            border-bottom: 1px solid black;
+            padding: 7px;
         }
 
-        .section tbody td:nth-child(2){
+        .section tbody td:nth-child(2) {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* font-size: large; */
         }
-
     </style>
-    
 
-   
+
+
 </head>
+
 <body>
     <h1>HTML, CSS, SCSS Cheatsheets & Snippits</h1>
 
-        <table class="container">
-            <tr>
-                <td>       
-                    <table class="section">
-                        <caption> <h3>HTML / Base / Set up</h3> </caption>      
-                        <thead>
-                            <tr>
-                                <td>Code</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-          
-            <tr>
-                <td>       
-                    <table class="section">
-                        <caption> <h3>CSS</h3> </caption>      
-                        <thead>
-                            <tr>
-                                <td>Code</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+    <table class="container">
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>HTML</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
 
-            <tr>
-                <td>       
-                    <table class="section">
-                        <caption> <h3>Animations</h3> </caption>      
-                        <thead>
-                            <tr>
-                                <td>Code</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>CSS</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>*, <br>
+                                *::before, <br>
+                                *::after { <br>
+                                &emsp; margin: 0; <br>
+                                &emsp; padding: 0;<br>
+                                &emsp; box-sizing: inherit;<br>
+                                }<br><br>
 
-            <tr>
-                <td>       
-                    <table class="section">
-                        <caption> <h3>GRID</h3> </caption>      
-                        <thead>
-                            <tr>
-                                <td>Code</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+                                html{ <br>
+                                &emsp; font-size: 62.5%; <span>//this defines what 1rem is! - 1 rem now = 10px,
+                                    10px/16px = 62.5% </span>
+                                <br> } <br> <br>
 
-            <tr>
-                <td>       
-                    <table class="section">
-                        <caption> <h3>FLEXBOX</h3> </caption>      
-                        <thead>
-                            <tr>
-                                <td>Code</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
+                                body { <br>
+                                &emsp; box-sizing: border-box; <br>
+                                &emsp; padding: 0; <br>
+                                &emsp; margin: 0;<br>
+                                &emsp; font: 400 fontsize/line-height font-family; <br>
+                                }
 
-            <tr>
-                <td>       
-                    <table class="section">
-                        <caption> <h3>SCSS</h3> </caption>      
-                        <thead>
-                            <tr>
-                                <td>Code</td>
-                                <td>Description</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                            <tr>
-                                <td> i AM THE CODE SNIPPIT</td>
-                                <td>This is what I do</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </td>
-            </tr>
-        </table>
+                            </td>
+                            <td>Initial page reset/set up</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> box-shadow: x y blur color; &emsp; - <span>gives shadow to the box</span><br> <br>
+                                filter:drop-shadow(x y blur color); &emsp; -<span> gives shadow to transparent images /
+                                    SVGS</span> <br> <br>
+                                text-shadow: 0 0 1rem $color-white, -<span> gives a shadow to text</span><br>
+                                0 0 20px $color-blue, <br>
+                                0 0 30px $color-blue, <br>
+                                0 0 40px $color-blue; &emsp; <br> <br>
+
+                            </td>
+                            <td>Adding different shadow/shadows. Don't forget you can use it like you have in the text
+                                shadow everywhere else eg, drop-shadow, box-shadow</td>
+                        </tr>
+                        <tr>
+                            <td> clip-path: polygon(50% 0%, 0% 100%, 100% 100%); // triangle</td>
+                            <td> clip path we define a polygon in which the image will still be visible, <br> Its starts
+                                on the top left corner and moves round clock wise,</td>
+                        </tr>
+                        <tr>
+                            <td> background-image: linear-gradient(to right bottom,rgba(126, 213, 111, 0.8),rgba(40,
+                                180, 131, 0.8)), url(../img/hero.jpg);</td>
+                            <td>always use <span>background-image for a gradient </span> , first we must and the
+                                gradient before the image and then lower the opacity</td>
+                        </tr>
+                        <tr>
+                            <td> <br><br> <b>font:</b> :
+
+                                font-style |
+                                font-variant |
+                                font-weight |
+                                font-size/line-height |
+                                font-family <br></td>
+                            <td>font-shorthand <br> The font-size and font-family values are required. If one of the
+                                other values is missing, their default value are used.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Animations</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>transform: translate( x , y) </td>
+                            <td> is not in relation to the parent element but in relation to the actual element itself
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> backface-visibility:hidden</td>
+                            <td>determines whether we see the backface of an object when we transform rotate, in this
+                                case we are not doing anything like that but it is a hack to fix the shaky problem</td>
+                        </tr>
+                        <tr>
+                            <td> animation-name: <br>
+                                animation-duration: <br>
+                                animation-timing-function: <br>
+                                //animation-delay: <br>
+                                //animation-iteration-count: <br> <br>
+
+                                these can all be defined with the animation short hand property</td>
+                            <td>The most important animation functions</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                animation: name | duration | timing-function | delay | iteration-count | direction |
+                                fill-mode | play-state; <br> <br>
+
+                            </td>
+                            <td>animation shorthand property</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                animation-name &emsp;<span>
+                                    <i>Specifies the name of the keyframe you want to bind to the selector</i>
+                                </span> <br><br>
+                                animation-duration &emsp;<span>
+                                    <i>Specifies how many seconds or milliseconds an animation takes to complete </i>
+                                </span> <br><br>
+                                animation-timing-function &emsp; <span>
+                                    <span>
+                                        <i>Specifies the speed curve of the animation </i>
+                                    </span>
+                                </span> <br><br>
+                                animation-delay &emsp;<span>
+                                    <i>Specifies a delay before the animation will start</i>
+                                </span> <br><br>
+                                animation-iteration-count &emsp;<span>
+                                    <i>Specifies how many times an animation should be played </i>
+                                </span> <br><br>
+                                animation-direction&emsp; <span>
+                                    <i>Specifies whether or not the animation should play in reverse on alternate cycles
+                                    </i>
+                                </span><br><br>
+                                animation-fill-mode&emsp;<span>
+                                    <i>Specifies what values are applied by the animation outside the time it is
+                                        executing</i> </span>applies the settings of anaimation of the 0% before the
+                                animation starts
+
+                                vice versa with forwards
+                                <br><br>
+                                animation-play-state &emsp;<span>
+                                    <i>Specifies whether the animation is running or paused</i>
+                                </span>
+                            </td>
+                            <td>animation properties</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>GRID</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>FLEXBOX</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Animations</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>transform: translate( x , y) </td>
+                            <td> is not in relation to the parent element but in relation to the actual element itself
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> backface-visibility:hidden</td>
+                            <td>determines whether we see the backface of an object when we transform rotate, in this
+                                case we are not doing anything like that but it is a hack to fix the shaky problem</td>
+                        </tr>
+                        <tr>
+                            <td> animation-name: <br>
+                                animation-duration: <br>
+                                animation-timing-function: <br>
+                                //animation-delay: <br>
+                                //animation-iteration-count: <br> <br>
+
+                                these can all be defined with the animation short hand property</td>
+                            <td>The most important animation functions</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                animation: name | duration | timing-function | delay | iteration-count | direction |
+                                fill-mode | play-state; <br> <br>
+
+                            </td>
+                            <td>animation shorthand property</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                animation-name &emsp;<span>
+                                    <i>Specifies the name of the keyframe you want to bind to the selector</i>
+                                </span> <br><br>
+                                animation-duration &emsp;<span>
+                                    <i>Specifies how many seconds or milliseconds an animation takes to complete </i>
+                                </span> <br><br>
+                                animation-timing-function &emsp; <span>
+                                    <span>
+                                        <i>Specifies the speed curve of the animation </i>
+                                    </span>
+                                </span> <br><br>
+                                animation-delay &emsp;<span>
+                                    <i>Specifies a delay before the animation will start</i>
+                                </span> <br><br>
+                                animation-iteration-count &emsp;<span>
+                                    <i>Specifies how many times an animation should be played </i>
+                                </span> <br><br>
+                                animation-direction&emsp; <span>
+                                    <i>Specifies whether or not the animation should play in reverse on alternate cycles
+                                    </i>
+                                </span><br><br>
+                                animation-fill-mode&emsp;<span>
+                                    <i>Specifies what values are applied by the animation outside the time it is
+                                        executing</i> </span>applies the settings of anaimation of the 0% before the
+                                animation starts
+
+                                vice versa with forwards
+                                <br><br>
+                                animation-play-state &emsp;<span>
+                                    <i>Specifies whether the animation is running or paused</i>
+                                </span>
+                            </td>
+                            <td>animation propertys</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Handy tips and caveats </h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> <b>Properties related to text are inherited</b> , font-family, font-size, color, etc;
+                                <br><br>
+
+                                <b>Properties related to length are usually not </b> eg padding, margin <br><br>
+
+                                the computed value of a property is what gets inherited, not the declared value.
+                                Inheritance of a property only works if no one declares a value for that property, <br>
+                                <br>
+                                the <span> inherit</span> keyword forces inheritance on a certain property. <br> <br>
+                                the <span>initial</span> keyword resets a property to its initial value
+
+
+                            </td>
+                            <td>Inheritance</td>
+                        </tr>
+                        <tr>
+                            <td> Z-index will not work on a if we have not changed the positioning from the default
+                                "static";</td>
+                            <td>Z-index</td>
+                        </tr>
+                        <tr>
+                            <td> <u><b>1 .Normal flow </b> </u> <br>
+
+                                Default positioning scheme, Not floated, Not absolutely positioned, Elements laid out
+                                according to their source order
+
+                                <br>
+                                default -> position: static/relative;
+
+                                <br><br>
+
+                                <u><b>2. Floats </b> </u> <br>
+
+                                Element is removed from the normal flow, Text and inline elements will be wrapped around
+                                the floated element <br>
+
+                                The container will not adjust its height to the element so we must use clear fix hack!
+                                and set overflow:auto;
+
+                                <br><br>
+
+                                <u><b> 3. Absolute positioning </b> </u> <br>
+
+                                Element is removed from the normal flow,
+
+                                No impact on surrounding content or elements,
+
+                                We use top,right,bottom, left to offset the element from its relatively placed
+                                container. <br>
+
+                                position:fixed,
+                                position:absolute; </td>
+                            <td>Positioning schemes</td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                There is a distinction in using percentages for with fonts and with length or distance
+                                measures <br>
+
+                                <b> Font:</b> <br>
+
+                                When using percentages with font the <b> reference is always the parent elements font
+                                    size
+                                </b>
+
+                                <br><br>
+                                <b>Length: </b> (padding, width, height, margin) <br>
+
+                                When using percentages with length elements the <b>reference is always the parent
+                                    elements width </b>
+
+                            </td>
+                            <td>Percentages / How are units converted from relative to absolute?</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                The cascade happens first and goes in the following order,
+
+                                Importance->Specificity->Source order <br><br>
+
+                                <b><u>Importance
+                                    </u></b>
+                                <ol>
+                                    <li> User !important declarations</li>
+                                    <li>Author !important declarations</li>
+                                    <li> Author declarations</li>
+                                    <li> User declarations</li>
+                                    <li>Default browser declarations</li>
+                                </ol>
+
+                                <br>
+
+                                <b><u>Specificity
+                                    </u></b>
+                                <ol>
+                                    <li> Inline styles</li>
+                                    <li> IDs</li>
+                                    <li> Classes, Pseudo classes and attributes</li>
+                                    <li> Elements and Pseudo elements</li>
+                                </ol>
+
+                                Specificity is worked out the following way each time there is and occurrence then one
+                                gets added to the tally and whichever element has the highest specificity wins <br>
+
+                                <br>
+                                A selector that contains 1 ID is more specific that one with 1000 classes <br>
+
+                                A selector that contains 1 class is more specific that one with 1000 elements <br>
+
+                                <span> The universal selector * has no specificity value (0,0,0,0);</span>
+
+                                (inline, IDs, classes, Elements) -> (0,0,0,0)
+                            </td>
+                            <td> How CSS is Parsed, The Cascade and Specificity</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>SCSS</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
 
 </body>
+
 </html>
