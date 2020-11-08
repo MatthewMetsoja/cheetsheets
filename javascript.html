@@ -76,7 +76,7 @@
 
 </head>
 <!-- 
-    &larr;
+   &lt;
      &emsp;
     
 
@@ -105,15 +105,24 @@
                         <tr>
                             <td> window.pageYOffset | window.pageYOffset <span>How far top of the window is / how far we have scrolled from the top</span> <br><br>
                                 element.offsetTop, <span> How far the element is from the top</span> <br><br>
-                                let find_All_dimensions = <b> element.getBoundingClientRect(); </b> <span>find out all dimensions</span>
+                                let find_All_dimensions = <b> element.getBoundingClientRect(); </b> <span>find out all dimensions</span> <br> <br>
+
+
+                                let width = window.innerWidth; <br> <br>
+                                let height = window.innerHeight;
+
                             
                             </td>
-                            <td> Find out the how far we are from the Top of the page and how far the element is from the top of the page</td>
+                            <td> Find out dimensions in relation to window and elements / top of page</td>
                         </tr>
                         <tr>
                             <td>window.addEventListener('scroll', navScroll); &emsp; It is just scroll for the event listener. <br> <br>  
-                                &larr; div onscroll="myFunction()">&larr;/div> <br> <br>
+                               &lt; div onscroll="myFunction()">&lt;/div> <br> <br>
                                 object.onscroll = function(){myScript}; <br> <br>
+
+                               <b> resize works the same </b> <br>
+                                window.addEventListener('resize', navresize); &emsp; It is just resize for the event listener. <br> <br>  
+                              
                             
                             </td>
                             <td> Get some thing to happen on Scroll,  Scroll events </td>
@@ -123,8 +132,8 @@
                             <td>Create and array from all of an elements child items</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td> The simplest method to trigger CSS animations is by adding or removing a class -</td>
+                            <td>Starting an animation in Javascript</td>
                         </tr>
                     </tbody>
                 </table>

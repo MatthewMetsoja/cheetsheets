@@ -155,8 +155,28 @@
 
 
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td> ul li a:first-child:nth-last-child(2):hover ~ ul { <br> 
+                                display:block; <br>
+
+                                }. <br><br>   <span>this is how we select items that have nested menus, starting with the main ul</span> <br><br>
+                                  <br><br>
+                                  <span>Here is the original state, be sure to add position absolute and display none</span> <br> ul.sub-menu{ <br>
+                                    &emsp;    display:none; <br> 
+                                    &emsp; position: absolute; <br>
+                                    &emsp; width: 100%; <br>
+                                    &emsp; z-index: 1; <br> }
+
+                                    <br><br>
+                                    Here is where we get it to show on hover
+                                    <br>
+                                    ul li a:first-child:nth-last-child(2):hover ~ ul,<span>here we get it to show when we hover the link </span>     <br>   
+                                    ul.submenu:hover <span>Here we keep it open when we leave the link and hover the item</span>  <br>
+                                    { <br>
+                                        &emsp;    display: block; <br>
+                                    } 
+
+                           </td>
+                            <td>Sub menu-ed Items <br>  works like when we are looking for something with 2 classes eg a.something.somethingelse but with the a:this:that psudeo selectors concatenated</td>
                         </tr>
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
