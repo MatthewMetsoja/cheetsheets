@@ -107,10 +107,8 @@
                                 element.offsetTop, <span> How far the element is from the top</span> <br><br>
                                 let find_All_dimensions = <b> element.getBoundingClientRect(); </b> <span>find out all dimensions</span> <br> <br>
 
-
                                 let width = window.innerWidth; <br> <br>
                                 let height = window.innerHeight;
-
                             
                             </td>
                             <td> Find out dimensions in relation to window and elements / top of page</td>
@@ -137,7 +135,7 @@
                         </tr>
 
                         <tr>
-                            <td> li.getAttribute('href'); &emsp; //  returns the value of the href <br>
+                            <td>li.getAttribute('href'); &emsp; //  returns the value of the href <br>
                                 li.setAttribute('href', &emsp; 'https://google.com'); // sets the href (adds attributes) <br>
                                 li.hasAttribute('name')  &emsp;//  returns boolean <br>
                                 li.removeAttribute('src'); <br>
@@ -145,11 +143,16 @@
                             <td>Get,set, remove attributes</td>
                         </tr>
                         <tr>
+                            <td>Select the Parent Element.
+                                Use one of the firstChild, childNodes.length, children.length property to find whether element has child or not. <br>
+                                hasChildNodes() method can also be used to find the child of the parent node.</td>
+                            <td>How to check if an element has any children in JavaScript ?</td>
+                        </tr>
+                        <tr>
                             <td>
 
-
-                                <span><u>    returns only elements as HTMLCollection, and is easier for selecting elements </u></span> <br>
-                                      element.children  <br>
+                                <br>
+                                      element.children  &emsp;  <span><u> returns only elements as HTMLCollection, and is easier for selecting elements, you will need to convert to array to run forEach and higher order array function </u></span>  <br>
                                       element.previousElementSibling <br>
                                       element.nextElementSibling<br>
                                       element.firstElementChild; <br>
@@ -160,16 +163,97 @@
                                       element.firstChild;  <br>
                                       element.lastChild;  <br>
 
-                                
+                                      <br> <br>
+
+                                      <span>z-index will always be higher on a parent element, you will have to make it a sibling for z-index to take effect, this is crucial when making a mobile submenu!</span>
+               
                             </td>
                             <td>Sibling Selection</td>
+                        </tr>
+                        <tr>
+                            <td>const mobileListItems = Array.from(mobile_ul.children);</td>
+                            <td>Convert HTMLCollection to an Array</td>
+                        </tr>
+                       
+                        <tr>
+                            <td>
+     
+                                var elt = document.getElementById('foo'); <br>
+                                console.log(elt.nodeName); <br>   Note that nodeName returns the element name capitalized and without the angle brackets, <br><br> which means that if you want to check if an element is an     &lt;div> element you could do it as follows: <br>
+
+                                  <span>elt.nodeName == "DIV" </span>  
+       
+                            </td>
+                            <td> How can I determine the type of an HTML element in JavaScript? <br>  <strong>  nodeName</strong>  is the attribute you are looking for. check example on left <br>  </td>
+                        </tr>
+
+                        <tr>
+                            <td>The <span>mouseover / mouseout </span>  event triggers when the mouse pointer enters the parent element, and its child elements. <br><br>
+
+                                The <span>mouseenter / mouseleave </span> event is only triggered when the mouse pointer enters the parent element. <br>
+                                     
+                                Every time you enter a child its classified as you going "mouseout" when you come out of the child element you are back "mouseover"</td>
+                            <td>Difference between mouseenter/mouseleave & mouseover/mouseout .</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                                auxclick  &emsp;| &emsp;
+                                blur   &emsp;| &emsp;
+                                click  &emsp;| &emsp;
+                                dblclick  &emsp;| &emsp;
+                                compositionend  &emsp;| &emsp;
+                                compositionstart  &emsp;| &emsp; 
+                                compositionupdate  <br> <br>
+                                contextmenu  &emsp;| &emsp;
+                                copy  &emsp;| &emsp;
+                                cut  &emsp;| &emsp;
+                                paste  &emsp;| &emsp;
+                                <br> <br>
+                                error &emsp; |  &emsp;
+                                focus  &emsp;| &emsp;
+                                focusin  &emsp;| &emsp;
+                                focusout  &emsp;| &emsp; <br> <br>
+                                fullscreenchange  &emsp;| &emsp;
+                                fullscreenerror  &emsp;| &emsp;
+                                keydown  &emsp;| &emsp;
+                                keypress  &emsp;| &emsp;
+                                keyup  &emsp;| &emsp; <br> <br>
+                                mousedown  &emsp;| &emsp;
+                                mouseenter  &emsp;| &emsp;
+                                mouseleave  &emsp;| &emsp;
+                                mousemove |<br> <br>
+                                mouseout  &emsp;| &emsp;
+                                mouseover  &emsp;| &emsp;
+                                mouseup  &emsp;| &emsp; <br> <br>
+                                overflow  &emsp;| &emsp;           
+                                scroll  &emsp;| &emsp;
+                                select  &emsp;| &emsp; <br> <br>
+                                touchcancel  &emsp;| &emsp;
+                                touchend  &emsp;| &emsp;
+                                touchmove  &emsp;| &emsp;
+                                touchstart  &emsp;| &emsp;
+                                wheel</td>
+                            <td>Events</td>
+                           
+                        </tr>
+
+                        <tr>
+                            <td> <span> We call them like this in JavaScript</span> Try webpack as this is one long ass line <br>
+                                icon.style.fill = window.getComputedStyle(document.documentElement).getPropertyValue('--colorBlue'); <br>
+            
+                                
+                                    <span> here is how we reset them</span>
+                                document.documentElement.style.setProperty('--color-font-general', '#000'); 
+                                <br> <br>
+                                Note that the value returned has the leading space, so you would get " #336699" instead of "#336699". <br>  This matters if you are trying to check the value (it may not match because of that leading space, so consider trimming it before checking).  
+                            </td>
+                            <td> <strong>Calling Custom CSS variables</strong>  </td></td>
                         </tr>
                     </tbody>
                 </table>
             </td>
         </tr>
-
-
 
         <tr>
             <td>
