@@ -75,6 +75,10 @@
 
 
 </head>
+<!-- the-ref
+    &lt;
+     &emsp;
+-->
 
 <body>
     <h1>HTML, CSS, SCSS Cheatsheet & Snippits</h1>
@@ -93,7 +97,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                       
+
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
                             <td>This is what I do</td>
@@ -149,72 +153,140 @@
                             <td>Initial page reset/set up</td>
                         </tr>
                         <tr>
-                            <td>  
+                            <td>
                                 <span> We define them like this</span> <br>
                                 :root{ <br>
-                                &emsp; --color-primary:#eb2f64;   <br>
-                                &emsp; --color-primary-light:#FF3366;  <br>
-                                &emsp; --color-primary-dark:#BA265D;  <br>
-                            }
-                            
-                            <br> <br>
+                                &emsp; --color-primary:#eb2f64; <br>
+                                &emsp; --color-primary-light:#FF3366; <br>
+                                &emsp; --color-primary-dark:#BA265D; <br>
+                                }
 
-                            <span> We call them like this in CSS</span> <br>
-                            background-image: linear-gradient(to right bottom, var(--color-primary-light), var(--color-primary-dark) );
-
-                            <br><br>
-                            <span> We call them like this in JavaScript</span> <br>
-                                let test = window.getComputedStyle(document.documentElement); <br>
-            
-                                document.documentElement.style.setProperty('--color-font-general', '#000'); 
                                 <br> <br>
-                                Note that the value returned has the leading space, so you would get " #336699" instead of "#336699". <br>  This matters if you are trying to check the value (it may not match because of that leading space, so consider trimming it before checking).  
+
+                                <span> We call them like this in CSS</span> <br>
+                                background-image: linear-gradient(to right bottom, var(--color-primary-light),
+                                var(--color-primary-dark) );
+
+                                <br><br>
+                                <span> We call them like this in JavaScript</span> <br>
+                                let test = window.getComputedStyle(document.documentElement); <br>
+
+                                document.documentElement.style.setProperty('--color-font-general', '#000');
+                                <br> <br>
+                                Note that the value returned has the leading space, so you would get " #336699" instead
+                                of "#336699". <br> This matters if you are trying to check the value (it may not match
+                                because of that leading space, so consider trimming it before checking).
                             </td>
-                            <td> <strong>Custom CSS variables</strong>  </td>
+                            <td> <strong>Custom CSS variables</strong> </td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>input{ <br>
+                                &emsp; font-family: inherit; <br>
+                                &emsp; font-size: inherit; <br>
+                                }</td>
+                            <td> <strong> input elements inheritance </strong><br> input elements do not inherit the
+                                font of the global document so we have to set it our self</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td> ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+                                color: red;
+                                opacity: 1; /* Firefox */
+                                }</td>
+                            <td>Change placeholder text</td>
                         </tr>
 
 
                         <tr>
-                            <td> ul li a:first-child:nth-last-child(2):hover ~ ul { <br> 
+                            <td> ul li a:first-child:nth-last-child(2):hover ~ ul { <br>
                                 display:block; <br>
 
-                                }. <br><br>   <span>this is how we select items that have nested menus, starting with the main ul</span> <br><br>
-                                  <br><br>
-                                  <span>Here is the original state, be sure to add position absolute and display none</span> <br> ul.sub-menu{ <br>
-                                    &emsp;    display:none; <br> 
-                                    &emsp; position: absolute; <br>
-                                    &emsp; width: 100%; <br>
-                                    &emsp; z-index: 1; <br> }
+                                }. <br><br> <span>this is how we select items that have nested menus, starting with the
+                                    main ul</span> <br><br>
+                                <br><br>
+                                <span>Here is the original state, be sure to add position absolute and display
+                                    none</span> <br> ul.sub-menu{ <br>
+                                &emsp; display:none; <br>
+                                &emsp; position: absolute; <br>
+                                &emsp; width: 100%; <br>
+                                &emsp; z-index: 1; <br> }
 
-                                    <br><br>
-                                    Here is where we get it to show on hover
-                                    <br>
-                                    ul li a:first-child:nth-last-child(2):hover ~ ul,<span>here we get it to show when we hover the link </span>     <br>   
-                                    ul.submenu:hover <span>Here we keep it open when we leave the link and hover the item</span>  <br>
-                                    { <br>
-                                        &emsp;    display: block; <br>
-                                    } 
+                                <br><br>
+                                Here is where we get it to show on hover
+                                <br>
+                                ul li a:first-child:nth-last-child(2):hover ~ ul,<span>here we get it to show when we
+                                    hover the link </span> <br>
+                                ul.submenu:hover <span>Here we keep it open when we leave the link and hover the
+                                    item</span> <br>
+                                { <br>
+                                &emsp; display: block; <br>
+                                }
 
-                           </td>
-                            <td>Sub menu-ed Items <br>  works like when we are looking for something with 2 classes eg a.something.somethingelse but with the a:this:that psudeo selectors concatenated</td>
+                            </td>
+                            <td>Sub menu-ed Items <br> works like when we are looking for something with 2 classes eg
+                                a.something.somethingelse but with the a:this:that psudeo selectors concatenated</td>
                         </tr>
-                      
-                       
+
+
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>
+                                :active <br>
+                                :checked  <br>
+                                :default <br>
+                                :defined <br>
+                                :disabled <br>
+                                :empty <br>
+                                :enabled <br>
+                                :first <br>
+                                :first-child <br>
+                                :first-of-type <br>
+                                :fullscreen <br>
+                                :focus <br>
+                                :focus-within <br>
+                                :host() <br>
+                                :hover <br>
+                                :indeterminate <br>
+                                :in-range <br>
+                                :invalid <br>
+                                :lang() <br>
+                                :last-child <br>
+                                :last-of-type <br>
+                                :left <br>
+                                :link <br>
+                                :not() <br>
+                                :nth-child() <br>
+                                :nth-last-child() <br>
+                                :nth-last-of-type() <br>
+                                :nth-of-type() <br>
+                                :only-child <br>
+                                :only-of-type <br>
+                                :optional <br>
+                                :out-of-range <br>
+                                :placeholder-shown <br>
+                                :read-only <br>
+                                :read-write <br>
+                                :required <br>
+                                :right <br>
+                                :root <br>
+                                :scope <br>
+                                :target <br>
+                                :valid <br>
+                                :visited 
+                                </td>
+                            <td>Pseudo-classes</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>::after (:after) <br>
+                                ::backdrop  <br>
+                                ::before (:before)  <br>
+                                ::cue  <br>
+                                ::cue-region  <br>
+                                ::first-letter (:first-letter)  <br>
+                                ::first-line (:first-line)  <br>
+                                ::placeholder  <br>
+                                ::selection  <br>
+                                ::slotted() 
+                               </td>
+                            <td>Pseudo-elements</td>
                         </tr>
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
@@ -404,20 +476,200 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>
+                                1. grid-template-rows, grid-template-columns, grid-template-areas: <br><br>
+                                <u><b> <span> grid-template-rows:</span></b> </u> <br>
+
+                                Naming track lines <br>
+                                grid-template-rows: [row1-start] 25% [row1-end row2-start] 25% [row2-end];
+                                Naming track lines with repeat <br>
+                                <br>
+                                If multiple lines share the same name, they can be referenced by their line name and
+                                count.
+                                grid-column-start: col-start 2; <br> <br>
+
+                                <u><b> <span> grid-template-columns:</span></b> </u> <br>
+                                grid-template-columns: repeat(3, 20px [col-start]); <br> <br>
+
+
+                                <u><b> <span>grid-template-areas: </span></b> </u> <br>
+
+                                // set it like this <br>
+                                grid-template-areas: "head head head head" <br>
+                                "box box . side" // we can leave empty spaces by using a ."dot" <br>
+                                "main main main side" <br>
+                                "foot foot foot foot"; <br> <br>
+
+                                // call it like this <br>
+                                .header{ <br>
+                                grid-area: head; <br>
+                                } <br>
+
+                                if any grid squares are missed when naming the grid-template-areas: then this technique
+                                will not work! <br> <br>
+
+
+                                2 <b><u> <span> column-gap, row-gap, grid-column-gap, grid-row-gap</span> </u></b>
+                                <br><br>
+
+                                3. <b><u> <span> justify-items.</span> </u></b> <br>Aligns grid items along the inline
+                                (row) axis (as opposed to align-items which aligns along the block (column) axis). This
+                                value applies to all grid items inside the container. <br>
+                                <br> <u> Values: </u> <br>
+
+                                start – aligns items to be flush with the start edge of their cell <br>
+                                end – aligns items to be flush with the end edge of their cell <br>
+                                center – aligns items in the center of their cell <br>
+                                stretch – fills the whole width of the cell (this is the default) <br><br>
+
+                                <b><u> <span> 4.align-items</span> </u></b>
+                                <br>
+                                Aligns grid items along the block (column) axis (as opposed to justify-items which
+                                aligns along the inline (row) axis). This value applies to all grid items inside the
+                                container. <br>
+                                <br> <u>Values: </u> <br>
+
+                                start – aligns items to be flush with the start edge of their cell <br>
+                                end – aligns items to be flush with the end edge of their cell <br>
+                                center – aligns items in the center of their cell <br>
+                                stretch – fills the whole height of the cell (this is the default) <br>
+                                <br>
+                                <b><u> <span> 5.place-items </span> </u></b>
+                                <br>
+                                Sets both the align-items and justify-items properties in a single declaration. <br>
+                                <br>
+                                Values:
+
+                                &lt;align-items> / &lt;justify-items> <br> – The first value sets align-items, the
+                                second value justify-items. If the second value is omitted, the first value is assigned
+                                to both properties.
+                                <br> All major browsers except Edge support the place-items shorthand property. <br>
+                                <br>
+
+                                <b><u> <span> 6.justify-content </span> </u></b>
+                                <br>
+                                This property aligns the grid along the inline (row) axis (as opposed to align-content
+                                which aligns the grid along the block (column) axis). <br><br>
+                                <u>Values: </u> <br>
+
+                                start – aligns the grid to be flush with the start edge of the grid container <br>
+                                end – aligns the grid to be flush with the end edge of the grid container <br>
+                                center – aligns the grid in the center of the grid container <br>
+                                stretch – resizes the grid items to allow the grid to fill the full width of the grid
+                                container <br>
+                                space-around – places an even amount of space between each grid item, with half-sized
+                                spaces on the far ends <br>
+                                space-between – places an even amount of space between each grid item, with no space at
+                                the far ends <br>
+                                space-evenly – places an even amount of space between each grid item, including the far
+                                ends <br> <br>
+
+                                <b><u> <span> 7.align-content</span> </u></b> <br>
+                                This property aligns the grid along the block (column) axis (as opposed to
+                                justify-content which aligns the grid along the inline (row) axis). <br> <br>
+
+                                <b><u> <span> 8.place-content</span> </u></b> <br>
+
+                                place-content sets both the align-content and justify-content properties in a single
+                                declaration. <br>
+                                Values:
+
+                                &lt;align-content> / &lt;justify-content> – The first value sets align-content, the
+                                second value justify-content. <br> If the second value is omitted, the first value is
+                                assigned to both properties. <br>
+                                <br> <b><u>Values: </u></b> <br>
+
+                                start – aligns the grid to be flush with the start edge of the grid container <br>
+                                end – aligns the grid to be flush with the end edge of the grid container <br>
+                                center – aligns the grid in the center of the grid container <br>
+                                stretch – resizes the grid items to allow the grid to fill the full height of the grid
+                                container <br>
+                                space-around – places an even amount of space between each grid item, with half-sized
+                                spaces on the far ends <br>
+                                space-between – places an even amount of space between each grid item, with no space at
+                                the far ends <br>
+                                space-evenly – places an even amount of space between each grid item, including the far
+                                ends
+
+                                <br><br>
+                                <b><u> <span> 9.grid-auto-columns | grid-auto-rows </span> </u></b>
+                                <br>
+                                Specifies the size of any auto-generated grid tracks (aka implicit grid tracks).
+                                <br><br>
+
+                                <b><u> <span> 10. grid-auto-flow </span> </u></b>
+                                <br>This property controls how the auto-placement algorithm works. <br><br>
+                                <b> <u> Values</u></b> <br>
+                                row – tells the auto-placement algorithm to fill in each row in turn, adding new rows as
+                                necessary (default)<br>
+                                column – tells the auto-placement algorithm to fill in each column in turn, adding new
+                                columns as necessary<br>
+                                dense – tells the auto-placement algorithm to attempt to fill in holes earlier in the
+                                grid if smaller items come up later
+                            </td>
+                            <td>Grid Container properties</td>
+                        </tr>
+                        <tr>
+                            <td> .container { <br>
+                                grid-template-columns: 1fr 1fr 1fr; <br>
+                                } <br>
+
+                                The free space is calculated after any non-flexible items. In this example the total
+                                amount of free space available to the fr units doesn’t include the 50px:
+                            </td>
+                            <td>The fr unit allows you to set the size of a track as a fraction of the free space of the
+                                grid container. For example, this will set each item to one third the width of the grid
+                                container:</td>
                         </tr>
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
                             <td>This is what I do</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>min-content, max-content, auto,1fr,repeat(auto-fill, minmax(200px, 1fr)); <br>
+                                <br> responsive layout with no media queries! <br> grid-template-columns:
+                                repeat(auto-fit, minmax(25rem, 1fr));</td>
+                            <td> Special Functions and Keywords, Handy Tips</td>
+
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>The difference between auto-fill and auto-fit for sizing columns is only noticeable when
+                                the row is wide enough to fit more columns in it. <br>
+
+                                <b>auto-fit: </b> &emsp; the content will stretch to fill the entire row width. <br>
+                                <b>auto-fill: </b> &emsp; the browser will allow empty columns to occupy space in the
+                                row like their non-empty neighbors</td>
+                            <td>
+                                auto-fit vs auto-fill - CSS GRID
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &__img{ <br>
+                                &emsp; width: 100%; <br>
+                                &emsp; height: 100%; <br>
+                                &emsp; display: block; <br>
+                                &emsp; object-fit: cover; <br>
+                                }
+                                <br> <br>
+                                &lt;figure class="gallery__item gallery__item--1"> <br>
+                                &emsp; &lt;img src="img/gal-1.jpeg" alt="Gallery image 1" class="gallery__img"> <br>
+                                &lt;/figure
+                            </td>
+                            <td>How to line up images inside of the grid <br> <br>
+                                to get them to fill the whole area we need to place them inside of a parent element and
+                                then use the object-fit: cover <br>
+
+                                you will have to also set height, width and display block on the child image</td>
+                        </tr>
+                        <tr>
+                            <td> <br>
+                                grid-gap&emsp;| grid-row-gap&emsp;| grid-column-gap as length&emsp;| percentage&emsp;|
+                                or calc.
+                                grid-template-columns&emsp;| grid-template-rows </td>
+                            <td>Animatable Grid Properties <br>
+                                According to the CSS Grid Layout Module Level 1 specification, there are 5 animatable
+                                grid properties: </td>
                         </tr>
                     </tbody>
                 </table>
@@ -438,12 +690,51 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>display: flex; <br>
+                                display: inline-flex; <br><br>
+                                flex-flow: row nowrap; <br>(flex-direction flex-wrap) <br><br>
+                                flex-direction: row; <br>
+                                flex-direction: row-reverse; <br>
+                                flex-direction: column; <br>
+                                flex-direction: column-reverse; <br><br>
+                                flex-wrap: nowrap; <br>
+                                flex-wrap: wrap; <br>
+                                flex-wrap: wrap-reverse; <br><br>
+                                justify-content: flex-start; <br>
+                                justify-content: center; <br>
+                                justify-content: flex-end; <br>
+                                justify-content: space-between; <br>
+                                justify-content: space-around; <br><br>
+                                align-items: stretch; <br>
+                                align-items: flex-start; <br>
+                                align-items: center; <br>
+                                align-items: flex-end; <br>
+                                align-items: baseline; <br><br>
+                                align-content: stretch; <br>
+                                align-content: flex-start; <br>
+                                align-content: center; <br>
+                                align-content: flex-end; <br>
+                                align-content: space-between; <br>
+                                align-content: space-around;
+
+                            </td>
+                            <td>Flex Container Properties</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td> order: 0; <br><br>
+                                flex: 0 1 auto; (flex-grow flex-shrink flex-basis) <br><br>
+                                flex-grow: 0; <br>
+                                flex-grow: 1; <br><br>
+                                flex-shrink: 0; <br>
+                                flex-shrink: 1; <br><br>
+                                flex-basis: auto; <br><br>
+                                align-self: auto; <br>
+                                align-self: flex-start; <br>
+                                align-self: center; <br>
+                                align-self: flex-end; <br>
+                                align-self: baseline; <br>
+                                align-self: stretch;</td>
+                            <td>Flex Item Properties</td>
                         </tr>
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
@@ -588,7 +879,9 @@
                             <td> How CSS is Parsed, The Cascade and Specificity</td>
                         </tr>
                         <tr>
-                            <td>Although sub-menus can be done with CSS, its probably best to do them with JavaScript as mobile phones do not have on hover, so toggle them on click, check if item has children </td>
+                            <td>Although sub-menus can be done with CSS, its probably best to do them with JavaScript as
+                                mobile phones do not have on hover, so toggle them on click, check if item has children
+                            </td>
                             <td>Navigation sub menu items</td>
                         </tr>
                         <tr>
@@ -615,23 +908,30 @@
                     <tbody>
                         <tr>
                             <td>
-                            <ol>
-                                <li> <u><strong>Varibables</strong></u>: for reusable values such as colors, fonts, spacing etc</li> <br>
-                                <li> <u> <strong>Nesting</strong></u>: To nest selectors inside of one another, allowing us to write less code</li> <br>
-                                <li> <u><strong>Operators</strong></u>: for mathematical operations, right inside of CSS </li><br>
-                                <li> <u><strong>Partials and imports</strong></u>: to write CSS in different files and importing them all into one single file</li><br>
-                                <li> <u><strong>Mixins</strong></u>: To write reusable pieces of CSS code</li><br>
-                                <li> <u><strong>Functions</strong></u>: Similar to mixins, with the difference that they produce a value that can then be used</li><br>
-                                <li><u><strong>Extends</strong></u>: to make different selectors inherit declarations that are common to all of them</li><br>
-                                <li> <u><strong>Control directives</strong></u>: for writing complex code using conditionals and loops (not covered in this course)</li><br>
-                            </ol>  
+                                <ol>
+                                    <li> <u><strong>Varibables</strong></u>: for reusable values such as colors, fonts,
+                                        spacing etc</li> <br>
+                                    <li> <u> <strong>Nesting</strong></u>: To nest selectors inside of one another,
+                                        allowing us to write less code</li> <br>
+                                    <li> <u><strong>Operators</strong></u>: for mathematical operations, right inside of
+                                        CSS </li><br>
+                                    <li> <u><strong>Partials and imports</strong></u>: to write CSS in different files
+                                        and importing them all into one single file</li><br>
+                                    <li> <u><strong>Mixins</strong></u>: To write reusable pieces of CSS code</li><br>
+                                    <li> <u><strong>Functions</strong></u>: Similar to mixins, with the difference that
+                                        they produce a value that can then be used</li><br>
+                                    <li><u><strong>Extends</strong></u>: to make different selectors inherit
+                                        declarations that are common to all of them</li><br>
+                                    <li> <u><strong>Control directives</strong></u>: for writing complex code using
+                                        conditionals and loops (not covered in this course)</li><br>
+                                </ol>
 
                             </td>
-                        <td>Why use SASS?</td>
+                            <td>Why use SASS?</td>
                         </tr>
                         <tr>
-                            <td>    
-                                background-color:lighten($color-tertiary, 15%);<br> 
+                            <td>
+                                background-color:lighten($color-tertiary, 15%);<br>
                                 background-color:darken($color-secondary, 15%);</td>
                             <td>Lighten and darken, built into SCSS then choose percentage</td>
                         </tr>
@@ -639,62 +939,64 @@
                             <td> %btn-placeholder { <span>// we define it here </span> <br>
                                 &emsp; padding:10px; <br>
                                 &emsp; display:inline-block;<br>
-                                &emsp;  width:$width-button;<br>
+                                &emsp; width:$width-button;<br>
                                 &emsp; @include style-link-text($color-text-light);<br>
                                 } <br><br>
 
                                 .btn-main{ <br>
-                                  &emsp;  &link{  <br>
-                                  &emsp; &emsp; @extend %btn-placeholder; <span> //we call it here </span>  <br>
-                                  &emsp; &emsp; background-color:$color-secondary; <br>
-                                  &emsp; } <br>
+                                &emsp; &link{ <br>
+                                &emsp; &emsp; @extend %btn-placeholder; <span> //we call it here </span> <br>
+                                &emsp; &emsp; background-color:$color-secondary; <br>
+                                &emsp; } <br>
                                 }</td>
-                            <td><strong><u>Extends</u> </strong> <br>  
-                                Extends is how we can extend a variable, <br> it looks similar to a mixin but under the hood works a little different, as it just adds a comma , after when we check the uncompiled CSS instead of adding the code inside the block.</td>
+                            <td><strong><u>Extends</u> </strong> <br>
+                                Extends is how we can extend a variable, <br> it looks similar to a mixin but under the
+                                hood works a little different, as it just adds a comma , after when we check the
+                                uncompiled CSS instead of adding the code inside the block.</td>
                         </tr>
                         <tr>
                             <td> @mixin respond($breakpoint){ <br><br>
-    
-                               &emsp;&emsp; @if($breakpoint == phone-400){ <br>
-                                 &emsp;&emsp;  &emsp; @media screen and (min-width:25em){@content};  // 400px <br>
-                               &emsp;&emsp; };<br><br>
-                            
-                               &emsp;&emsp; @if($breakpoint == phone-500){<br>
-                                  &emsp;&emsp; &emsp; @media screen and (min-width:31.25em){@content};  // 500px <br>
-                                  &emsp;&emsp; };<br><br>
-                            
-                               &emsp; @if($breakpoint == tab-port){<br>
-                                  &emsp; &emsp; &emsp;  @media screen and (min-width:37.5em){@content};  // 600px<br>
-                                  &emsp; &emsp;   };<br><br>
-                            
+
+                                &emsp;&emsp; @if($breakpoint == phone-400){ <br>
+                                &emsp;&emsp; &emsp; @media screen and (min-width:25em){@content}; // 400px <br>
+                                &emsp;&emsp; };<br><br>
+
+                                &emsp;&emsp; @if($breakpoint == phone-500){<br>
+                                &emsp;&emsp; &emsp; @media screen and (min-width:31.25em){@content}; // 500px <br>
+                                &emsp;&emsp; };<br><br>
+
+                                &emsp; @if($breakpoint == tab-port){<br>
+                                &emsp; &emsp; &emsp; @media screen and (min-width:37.5em){@content}; // 600px<br>
+                                &emsp; &emsp; };<br><br>
+
                                 &emsp;@if($breakpoint == tab-650){ <br>
-                                  &emsp; &emsp; &emsp; @media screen and (min-width:40.625em){@content};  // 650px <br>
-                                  &emsp;&emsp; };<br><br>
-                            
-                                &emsp;@if($breakpoint == tab-700){   <br>
-                                 &emsp; &emsp;  &emsp; @media screen and (min-width:43.75em){@content};  // 750px  <br>
-                                 &emsp;&emsp; }; <br><br>
-                            
+                                &emsp; &emsp; &emsp; @media screen and (min-width:40.625em){@content}; // 650px <br>
+                                &emsp;&emsp; };<br><br>
+
+                                &emsp;@if($breakpoint == tab-700){ <br>
+                                &emsp; &emsp; &emsp; @media screen and (min-width:43.75em){@content}; // 750px <br>
+                                &emsp;&emsp; }; <br><br>
+
                                 &emsp;@if($breakpoint == tab-800){ <br>
-                                   &emsp; &emsp; &emsp;@media screen and (min-width:50em){@content};  // 800px  <br>
-                                   &emsp;&emsp; }; <br><br>
-                            
-                               &emsp; @if($breakpoint == tab-land){ <br>
-                                &emsp;  &emsp;  &emsp; @media screen and (min-width:56.25em){@content}; // 900px <br>
-                                 &emsp;&emsp; }; <br><br>
-                            
-                               &emsp; @if($breakpoint == desk){  <br>
-                                 &emsp;  &emsp;  &emsp;@media screen and (min-width:75em){@content};  // 1200px <br>
-                                  &emsp;&emsp; }; <br><br>
-                            
-                               &emsp; @if($breakpoint == desk-wide){  <br>
-                                 &emsp;  &emsp;  &emsp;@media screen and (min-width:112.5em){@content}; // 1800px <br>
-                                  &emsp;&emsp; }; <br><br>
-                                
-                            }</td>
+                                &emsp; &emsp; &emsp;@media screen and (min-width:50em){@content}; // 800px <br>
+                                &emsp;&emsp; }; <br><br>
+
+                                &emsp; @if($breakpoint == tab-land){ <br>
+                                &emsp; &emsp; &emsp; @media screen and (min-width:56.25em){@content}; // 900px <br>
+                                &emsp;&emsp; }; <br><br>
+
+                                &emsp; @if($breakpoint == desk){ <br>
+                                &emsp; &emsp; &emsp;@media screen and (min-width:75em){@content}; // 1200px <br>
+                                &emsp;&emsp; }; <br><br>
+
+                                &emsp; @if($breakpoint == desk-wide){ <br>
+                                &emsp; &emsp; &emsp;@media screen and (min-width:112.5em){@content}; // 1800px <br>
+                                &emsp;&emsp; }; <br><br>
+
+                                }</td>
                             <td>Responsive breakpoint mixins </td>
                         </tr>
-                        
+
                     </tbody>
                 </table>
             </td>

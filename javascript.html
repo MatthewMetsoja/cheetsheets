@@ -135,6 +135,25 @@
                         </tr>
 
                         <tr>
+                            <td>    
+                                <u><strong> classList </strong></u> <br><br>
+                               Use add() and remove() to add CSS classes to and remove CSS classes from the class list of an element. <br>  <br> 
+                               div.classList.remove('block','red'); <br> <br> 
+                                div.classList.add('info','visible','block'); <br> <br> 
+                                div.classList.replace('info','warning');  <br> <br> 
+                                div.classList.toggle('on'); 
+                            <td> 
+                              How to add or remove classes <br> <br>
+
+                                Using <strong>"classList" </strong> , you can add or remove a class without affecting any others the element may have. <br> 
+                                But if you assign "className", it will wipe out any existing classes while adding the new one (or if you assign an empty string it will wipe out all of them). <br>  <br>
+
+                                Assigning "className" can be a convenience for cases where you are certain no other classes will be used on the element, <br> 
+                                I would normally <strong> use the "classList" methods exclusively. </strong>
+                            </td>
+                        </tr>
+
+                        <tr>
                             <td>li.getAttribute('href'); &emsp; //  returns the value of the href <br>
                                 li.setAttribute('href', &emsp; 'https://google.com'); // sets the href (adds attributes) <br>
                                 li.hasAttribute('name')  &emsp;//  returns boolean <br>
@@ -171,7 +190,9 @@
                             <td>Sibling Selection</td>
                         </tr>
                         <tr>
-                            <td>const mobileListItems = Array.from(mobile_ul.children);</td>
+                            <td>const mobileListItems = Array.from(mobile_ul.children); <br> <br> 
+                                const allSlides = [...document.querySelectorAll('carousel__item')];  <span>// using the spread operator; </span>
+                            </td>
                             <td>Convert HTMLCollection to an Array</td>
                         </tr>
                        
@@ -263,14 +284,31 @@
                     </caption>
                     <thead>
                         <tr>
-                            <td>Code</td>
-                            <td>Description</td>
+                            <td>
+                                A single vibration <br>
+                                window.navigator.vibrate(200); <br><br>
+                            
+                                Vibration patterns <br>
+                                An array of values describes alternating periods in which the device is vibrating and not vibrating. <br>
+                                window.navigator.vibrate([200, 100, 200]);
+                                <br>
+
+                            </td>
+                            <td>Vibration API</td>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                           
+                            <td>In your example: 5 divided by 7 gives 0 but it remains 5 (5 % 7 == 5).
+
+                                Calculation
+                                
+                                The modulo operation can be calculated using this equation:
+                                
+                                a % b = a - floor(a / b) * b
+                                </td>
+                                <td> The modulus</td>
                         </tr>
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
