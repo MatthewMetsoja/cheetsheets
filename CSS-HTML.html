@@ -29,7 +29,7 @@
         }
 
         table.container {
-            width: 98%;
+            width: 90%;
             margin: 0 auto;
         }
 
@@ -43,7 +43,7 @@
         table.section {
             border: 2px solid black;
             background-color: rgb(249, 250, 176);
-            font-size: 15px;
+            font-size: 13px;
         }
 
         .section thead {
@@ -188,9 +188,10 @@
                                 font of the global document so we have to set it our self</td>
                         </tr>
                         <tr>
-                            <td> ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-                                color: red;
-                                opacity: 1; /* Firefox */
+                            <td> ::placeholder {   <br> <br>
+                              &emsp;   /* Chrome, Firefox, Opera, Safari 10.1+ */  <br>
+                              &emsp;   color: red; <br>  <br>
+                              &emsp;   opacity: 1; /* Firefox */ <br>
                                 }</td>
                             <td>Change placeholder text</td>
                         </tr>
@@ -363,9 +364,27 @@
                                 shadow everywhere else eg, drop-shadow, box-shadow</td>
                         </tr>
                         <tr>
-                            <td> clip-path: polygon(50% 0%, 0% 100%, 100% 100%); // triangle</td>
-                            <td> clip path we define a polygon in which the image will still be visible, <br> Its starts
-                                on the top left corner and moves round clock wise,</td>
+                            <td> clip-path: polygon(50% 0%, 0% 100%, 100% 100%); // triangle 
+                                <br>
+                                shape-outside: polygon(50% 0%, 100% 100%, 0% 100%); // wraps text around the shape <br> <br>
+                                
+                                .element { <br>
+                                   &emsp;  float: left;   <br>
+                                   &emsp;  width: 150px;  <br>
+                                   &emsp;  height: 150px;  <br>
+                                   &emsp;  shape-outside: polygon(50% 0%, 100% 100%, 0% 100%);  <br>
+                                    &emsp; clip-path: polygon(50% 0%, 100% 100%, 0% 100%);  <br>
+                                }
+                            </td>
+                            <td>
+                                Using <b> shape-outside </b> with <b> clip path </b> <br> <br>
+  
+                                In order for the shape-outside property to work, these two conditions must be met: <br>  <br>
+                           
+                               1). The element must be floated. The element whose float area you’re changing must be a float. <br> 
+                               Future levels of CSS Shapes may allow us to define shapes on non-floated elements, but that is not yet possible. <br><br>
+                                
+                               2). The element must have intrinsic dimensions. The height and width set on an element will be used to establish a coordinate system on that element.</td>
                         </tr>
                         <tr>
                             <td> background-image: linear-gradient(to right bottom,rgba(126, 213, 111, 0.8),rgba(40,
@@ -467,12 +486,54 @@
                             <td>animation properties</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td> h1 {<br>
+                               &emsp; background: radial-gradient(circle, #F48FB1 0%,  #CE93D8 20%, #B2EBF2 40%, #A5D6A7 60%, #B39DDB 100%);<br>
+                               &emsp; font-size: 100px;<br>
+                               &emsp; -webkit-background-clip: text;<br>
+                               &emsp; color: transparent;<br>
+                                &emsp;background-size: 400%;<br>
+                                &emsp;animation: gradient 10s linear infinite alternate;<br>
+                                &emsp;font-family: Open Sans, sans-serif;<br>
+                                &emsp;font-weight: 100;<br>
+                              }<br>
+                              <br>
+                              @keyframes gradient { <br>
+                              &emsp;  0% {<br>
+                              &emsp;   &emsp; background-position: 0%;<br>
+                              &emsp;  }<br>
+                              &emsp;  100% {<br>
+                              &emsp;  &emsp;  background-position: 100%;<br>
+                              &emsp;  }<br>
+                              }</td>
+                            <td>Animated text gradient</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>body { <br>
+                                &emsp;   background: linear-gradient(-45deg, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%); <br>
+                                &emsp;   background-size:  400% 400%;<br>
+                                &emsp;   animation: gradient 20s ease infinite;<br>
+                                &emsp;   height: 100vh;<br>
+                                &emsp;   display: flex;<br>
+                                &emsp;   justify-content: center;<br>
+                                &emsp;   align-items: center;<br>
+                              }<br><br>
+                              
+                              @keyframes gradient {<br>
+                                &emsp;   0% {<br>
+                                &emsp;     &emsp;   background-position: 0%;<br>
+                               &emsp;    }<br>
+                                &emsp;   50% {<br>
+                               &emsp;     &emsp;    background-position: 100%;<br>
+                               &emsp;    }<br>
+                              &emsp;     100% {<br>
+                               &emsp;     &emsp;    background-position: 0%;<br>
+                                &emsp;   }<br>
+                              }
+                              <br><br>
+                           
+                              
+                              </td>
+                            <td>Animated background gradient</td>
                         </tr>
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
@@ -942,8 +1003,13 @@
                             <td>Navigation sub menu items</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td> Adding padding/margin to a element that has been floated</td>
+                            <td>the best way to add a space/margin/padding here is with a transform:translate! as the element has been floated!</td>
+                        </tr>
+                        <tr>
+                            <td> transform: translateX(-3rem) skewX(12deg);</td>
+                            <td>You can only use 1 transform on each element! <br>
+                                But... you can use more than one in one declaration like show in the example to the left</td>
                         </tr>
                     </tbody>
                 </table>
