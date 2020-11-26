@@ -75,7 +75,7 @@
 
 
 </head>
-<!-- the-ref
+<!-- reference
     &lt;
      &emsp;
 -->
@@ -194,7 +194,36 @@
                                 }</td>
                             <td>Change placeholder text</td>
                         </tr>
+                        <tr>
+                            <td>
+                                 [attribute$="value"]  <br><br>
 
+                               
+                                
+                                [class$="file"] { 
+                                    &emsp;  color: red;
+                                } <br> <br>
+                                 
+                                  &lt;div class="foobar-file">This will be red  &lt;/div>
+                            
+                             
+                            <td> Selects elements with the given attribute and value where the <b>given attribute ends with the given value.</b>  <br>  </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                              
+                                
+                                [attribute^="value"] <br><br>
+                                 
+                            
+                                
+                                [class^="foo-"] { 
+                                    &emsp; color: red;
+                                }  <br> <br>
+                              &lt;div class="foo-123">This will be red &lt;/div></td>
+                            <td> Selects elements with the given attribute and value where the <b>  given attribute begins with the given value. </b> <br>  </td>
+                        </tr>
 
                         <tr>
                             <td> ul li a:first-child:nth-last-child(2):hover ~ ul { <br>
@@ -289,8 +318,36 @@
                             <td>Pseudo-elements</td>
                         </tr>
                         <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
+                            <td>
+                               <b> /* true: */ </b> <br> 
+                                
+                                  &lt;checkbox>:checked ~ [sibling of checkbox & parent of target]   &lt;target> <br><br>
+                                
+                               <b>  /* false: */ </b> <br>
+                                
+                                  &lt;checkbox>:not(:checked) ~ [sibling of checkbox & parent of target]   &lt;target> <br><br>
+
+
+                                </td>
+                            <td>
+                               <b> <u> Checkbox hack </u> </b> <br><br>
+                               Add the hidden input after the body for easy selection. <br>  <br>
+                               check with javascript if its not firing, <br>
+
+            
+                                   button.checked ? console.log(true) : console.log(false);
+                                
+         
+                                </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                .clearfix::after{ <br>
+                               &emsp;  content:"";  <br>
+                                &emsp; clear:both; <br>
+                                &emsp; display: table; <br>
+                              } </td>
+                            <td><b>  The clearfix hack </b> for elements that have been collapsed by float</td>
                         </tr>
                         <tr>
                             <td> box-shadow: x y blur color; &emsp; - <span>gives shadow to the box</span><br> <br>
@@ -352,7 +409,7 @@
                         </tr>
                         <tr>
                             <td> backface-visibility:hidden</td>
-                            <td>determines whether we see the backface of an object when we transform rotate, in this
+                            <td>determines whether we see the backface of an object when we transform rotate, <br> in this
                                 case we are not doing anything like that but it is a hack to fix the shaky problem</td>
                         </tr>
                         <tr>
