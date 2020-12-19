@@ -280,6 +280,309 @@
             <td>
                 <table class="section">
                     <caption>
+                        <h3>JS Browser BOM</h3> 
+                        Allows us to use the browser’s own field validation algorithms in our scripts instead of writing our own.
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>
+                                <b> 1 Way</b> <br> <br>
+                                function setCookie(name, value, days) {
+                                    var expires = "";
+                                    if (days) {
+                                      var date = new Date();
+                                      date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                      expires = "; expires=" + date.toUTCString();
+                                    }
+                                    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+                                  }
+                                  
+                                  function getCookie(name) {
+                                    var nameEQ = name + "=";
+                                    var ca = document.cookie.split(';');
+                                    for (var i = 0; i < ca.length; i++) {
+                                      var c = ca[i];
+                                      while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                                      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                                    }
+                                    return null;
+                                  }
+                            
+                                  <span>Instead of the while loop you can try use document.cookie.split(';').map(c => c.trimLeft()); </span>  
+                            
+                                
+                            
+                            </td>
+                            <td>Get and set cookies</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       <tr>
+                            <td>
+                                <b> 
+                                    <u> The returned object contains the following properties: </u>
+                                </b>   <br><br>
+
+                                valid – Is true when the field passes validation. <br> <br>
+                                valueMissing – Is true when the field is empty but required. <br><br>
+                                typeMismatch – Is true when the field type is email or url but the entered value is not the correct type. <br><br>
+                                tooShort – Is true when the field contains a minLength attribute and the entered value is shorter than that length. <br><br>
+                                tooLong – Is true when the field contains a maxLength attribute and the entered value is longer than that length. <br><br>
+                                patternMismatch – Is true when the field contains a pattern attribute and the entered value does not match the pattern. <br><br>
+                                badInput – Is true when the input type is number and the entered value is not a number. <br><br>
+                                stepMismatch – Is true when the field has a step attribute and the entered value does not adhere to the step values. <br><br>
+                                rangeOverflow – Is true when the field has a max attribute and the entered number value is greater than the max. <br><br>
+                                rangeUnderflow – Is true when the field has a min attribute and the entered number value is lower than the min. <br> 
+
+                                
+                            </td>
+                            <td> 
+                                <br> <u> <b> Validity State</b> </u> <br> 
+                                 The validity property provides a set of information about a form field, in the form of boolean (true/false) values.<br> 
+                                We can use it to customize our form validation behavior.      
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> <b><u> Step 1</u></b> <br>
+                                <b>Disable native form validation </b> (Only on selcected classes as we may not want this on search forms) <br><br>
+                                <span>  // Add the novalidate attribute when the JS loads </span> <br>
+                                var forms = document.querySelectorAll('.validate'); <br> <br>
+                                for (var i = 0; i < forms.length; i++) { <br>
+                                    &emsp;  forms[i].setAttribute('novalidate', true); <br>
+                                } <br> <br> <br>
+
+                                <b><u> Step 2 & 3 </u></b> <br>
+                                <b>Check validity when the user leaves the field</b> <br>
+
+                                <span>  Listen to all blur events </span>
+                                // Validate the field
+                                var hasError = function (field) {
+                                
+                                    // Don't validate submits, buttons, file and reset inputs, and disabled fields
+                                    if (field.disabled || field.type === 'file' || field.type === 'reset' || field.type === 'submit' || field.type === 'button') return;
+                                
+                                    // Get validity
+                                    var validity = field.validity;
+                                
+                                    // If valid, return null
+                                    if (validity.valid) return;
+                                
+                                    // If field is required and empty
+                                    if (validity.valueMissing) return 'Please fill out this field.';
+                                
+                                    // If not the right type
+                                    if (validity.typeMismatch) {
+                                
+                                        // Email
+                                        if (field.type === 'email') return 'Please enter an email address.';
+                                
+                                        // URL
+                                        if (field.type === 'url') return 'Please enter a URL.';
+                                
+                                    }
+                                
+                                    // If too short
+                                    if (validity.tooShort) return 'Please lengthen this text to ' + field.getAttribute('minLength') + ' characters or more. You are currently using ' + field.value.length + ' characters.';
+                                
+                                    // If too long
+                                    if (validity.tooLong) return 'Please shorten this text to no more than ' + field.getAttribute('maxLength') + ' characters. You are currently using ' + field.value.length + ' characters.';
+                                
+                                    // If number input isn't a number
+                                    if (validity.badInput) return 'Please enter a number.';
+                                
+                                    // If a number value doesn't match the step interval
+                                    if (validity.stepMismatch) return 'Please select a valid value.';
+                                
+                                    // If a number field is over the max
+                                    if (validity.rangeOverflow) return 'Please select a value that is no more than ' + field.getAttribute('max') + '.';
+                                
+                                    // If a number field is below the min
+                                    if (validity.rangeUnderflow) return 'Please select a value that is no less than ' + field.getAttribute('min') + '.';
+                                  
+                                      // If pattern doesn't match
+                                    if (validity.patternMismatch) {
+                                
+                                        // If pattern info is included, return custom error
+                                        if (field.hasAttribute('title')) return field.getAttribute('title');
+                                
+                                        // Otherwise, generic error
+                                        return 'Please match the requested format.';
+                                
+                                    }
+                                
+                                    // If all else fails, return a generic catchall error
+                                    return 'The value you entered for this field is invalid.';
+                                
+                                };
+                                
+                                
+                                // Listen to all blur events
+                                document.addEventListener('blur', function (event) {
+                                
+                                    // Only run if the field is in a form to be validated
+                                    if (!event.target.form.classList.contains('validate')) return;
+                                
+                                    // Validate the field
+                                    var error = hasError(event.target);
+                                    console.log(error);
+                                
+                                }, true);
+
+                                <b><u> Step 4 </u></b> <br>
+                                <b>  Create Error message. and add style in CSS </b> <br>
+                                var showError = function (field, error) {
+
+                                    // Add error class to field
+                                    field.classList.add('error');
+                                
+                                    // Get field id or name
+                                    var id = field.id || field.name;
+                                    if (!id) return;
+                                
+                                    // Check if error message field already exists
+                                    // If not, create one
+                                    var message = field.form.querySelector('.error-message#error-for-' + id );
+                                    if (!message) {
+                                        message = document.createElement('div');
+                                        message.className = 'error-message';
+                                        message.id = 'error-for-' + id;
+                                
+                                        // If the field is a radio button or checkbox, insert error after the label
+                                        var label;
+                                        if (field.type === 'radio' || field.type ==='checkbox') {
+                                            label = field.form.querySelector('label[for="' + id + '"]') || field.parentNode;
+                                            if (label) {
+                                                label.parentNode.insertBefore( message, label.nextSibling );
+                                            }
+                                        }
+                                
+                                        // Otherwise, insert it after the field
+                                        if (!label) {
+                                            field.parentNode.insertBefore( message, field.nextSibling );
+                                        }
+                                    }
+                                
+                                    // Add ARIA role to the field for screen readers
+                                    field.setAttribute('aria-describedby', 'error-for-' + id);
+                                
+                                    // Update error message
+                                    message.innerHTML = error;
+                                
+                                    // Show error message
+                                    message.style.display = 'block';
+                                    message.style.visibility = 'visible';
+                                
+                                };
+
+
+                                <b><u> Step 5 Remove error </u></b> <br>
+                                // Remove the error message
+                                    var removeError = function (field) {
+
+                                        // Remove error class to field
+                                        field.classList.remove('error');
+
+                                        // If the field is a radio button and part of a group, remove error from all and get the last item in the group
+                                        if (field.type === 'radio' && field.name) {
+                                            var group = document.getElementsByName(field.name);
+                                            if (group.length > 0) {
+                                                for (var i = 0; i < group.length; i++) {
+                                                    // Only check fields in current form
+                                                    if (group[i].form !== field.form) continue;
+                                                    group[i].classList.remove('error');
+                                                }
+                                                field = group[group.length - 1];
+                                            }
+                                        }
+
+                                        // Remove ARIA role from the field
+                                        field.removeAttribute('aria-describedby');
+
+                                        // Get field id or name
+                                        var id = field.id || field.name;
+                                        if (!id) return;
+
+                                        // Check if an error message is in the DOM
+                                        var message = field.form.querySelector('.error-message#error-for-' + id + '');
+                                        if (!message) return;
+
+                                        // If so, hide it
+                                        message.innerHTML = '';
+                                        message.style.display = 'none';
+                                        message.style.visibility = 'hidden';
+
+                                    };
+
+                                    <b><u> Step 6 Checking all fields on submit </u></b> <br>
+
+
+                                </td>
+                            <td>Custom Validation</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Handy stuff</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                           
+                            <td>In your example: 5 divided by 7 gives 0 but it remains 5 (5 % 7 == 5).
+
+                                Calculation
+                                
+                                The modulo operation can be calculated using this equation:
+                                
+                                a % b = a - floor(a / b) * b
+                                </td>
+                                <td> The modulus</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                A single vibration <br>
+                                window.navigator.vibrate(200); <br><br>
+                            
+                                Vibration patterns <br>
+                                An array of values describes alternating periods in which the device is vibrating and not vibrating. <br>
+                                window.navigator.vibrate([200, 100, 200]);
+                                <br>
+
+                            </td>
+                            <td>Vibration API</td>
+                        </tr>
+                
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                        <tr>
+                            <td> i AM THE CODE SNIPPIT</td>
+                            <td>This is what I do</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
                         <h3>Not DOM stuff</h3>
                     </caption>
                     <thead>
@@ -314,10 +617,7 @@
                             </td>
                             <td>Vibration API</td>
                         </tr>
-                        <tr>
-                            <td> i AM THE CODE SNIPPIT</td>
-                            <td>This is what I do</td>
-                        </tr>
+                
                         <tr>
                             <td> i AM THE CODE SNIPPIT</td>
                             <td>This is what I do</td>
