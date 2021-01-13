@@ -200,6 +200,29 @@
                             <td>Sibling Selection</td>
                         </tr>
                         <tr>
+                            <td>targetElement.insertAdjacentElement(position, element); <br> <br>
+                                position
+                                A DOMString representing the position relative to the targetElement; must match (case-insensitively) one of the following strings: <br>
+                                'beforebegin': Before the targetElement itself. <br>
+                                'afterbegin': Just inside the targetElement, before its first child. <br>
+                                'beforeend': Just inside the targetElement, after its last child. <br>
+                                'afterend': After the targetElement itself. <br> <br>
+                                
+                                element <br>
+                                The element to be inserted into the tree. <br> <br>
+
+                               <span> beforebegin</span><br>
+                               &lt;p> <br> <br>
+                                    <span> afterbegin </span> <br>
+                                    foo <br>
+                                    <span> beforeend </span> <br><br>
+                                    &lt;/p> <br>
+                                <span> afterend </span> <br> <br>
+                              <b>  Note: The beforebegin and afterend positions work only if the node is in a tree and has an element parent. </b>
+                            </td>
+                            <td>The insertAdjacentElement() method of the Element interface inserts a given element node at a given position relative to the element it is invoked upon.</td>
+                        </tr>
+                        <tr>
                             <td>const mobileListItems = Array.from(mobile_ul.children); <br> <br>
                                 const allSlides = [...document.querySelectorAll('carousel__item')]; <span>// using the
                                     spread operator; </span>
