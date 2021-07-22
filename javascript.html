@@ -207,18 +207,18 @@
                                 'afterbegin': Just inside the targetElement, before its first child. <br>
                                 'beforeend': Just inside the targetElement, after its last child. <br>
                                 'afterend': After the targetElement itself. <br> <br>
-                                
+
                                 element <br>
                                 The element to be inserted into the tree. <br> <br>
 
-                               <span> beforebegin</span><br>
-                               &lt;p> <br> <br>
-                                    <span> afterbegin </span> <br>
-                                    foo <br>
-                                    <span> beforeend </span> <br><br>
-                                    &lt;/p> <br>
+                                <span> beforebegin</span><br>
+                                &lt;p> <br> <br>
+                                <span> afterbegin </span> <br>
+                                foo <br>
+                                <span> beforeend </span> <br><br>
+                                &lt;/p> <br>
                                 <span> afterend </span> <br> <br>
-                              <b>  Note: The beforebegin and afterend positions work only if the node is in a tree and has an element parent. </b>
+                                <b> Note: The beforebegin and afterend positions work only if the node is in a tree and has an element parent. </b>
                             </td>
                             <td>The insertAdjacentElement() method of the Element interface inserts a given element node at a given position relative to the element it is invoked upon.</td>
                         </tr>
@@ -797,15 +797,13 @@
                     <tr>
                         <td> <b><u> ITERATOR EXAMPLE </u> </b> <br><br>
                             function nameIterator (names){<br>
-                                &emsp;   let nextIndex = 0;<br>
+                            &emsp; let nextIndex = 0;<br>
                             <br>
-                            &emsp;     return {<br>
-                                &emsp;  &emsp;  &emsp;  &emsp;     next: function(){
-                            <br>  &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;  &emsp;   return nextIndex < names.length ? {value: names[nextIndex++], done:false 
-                                   } : {done:
-                                true};<br> 
-                                &emsp;  &emsp;  &emsp;  &emsp;  &emsp;  &emsp; &emsp;  &emsp;  &emsp;   }<br>
-                                &emsp;     }<br>
+                            &emsp; return {<br>
+                            &emsp; &emsp; &emsp; &emsp; next: function(){
+                            <br> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; return nextIndex < names.length ? {value: names[nextIndex++], done:false } : {done: true};<br>
+                                &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; }<br>
+                                &emsp; }<br>
                                 }<br>
                                 <br>
                                 <span> Create an array of names </span><br>
@@ -828,76 +826,76 @@
 
 
                                 <span> <b>
-                                    <u>Profile Iterator (good for carousel) </span></u>
+                                        <u>Profile Iterator (good for carousel) </span></u>
                                 </b> <br>
                                 function profileIterator(profiles){ <br> <br>
-                                  &emsp;   let nextIndex = 0; <br> <br>
-                                
-                                  &emsp;   return{ <br>
-                                        
-                                  &emsp;   &emsp;    &emsp;   &emsp;    next:function(){ <br>
-                                    &emsp;   &emsp;   &emsp;    &emsp;   &emsp; &emsp;   &emsp;    &emsp;  &emsp;  &emsp;  return nextIndex < profiles.length <br>
-                                    &emsp;   &emsp;   &emsp;    &emsp;   &emsp; &emsp;   &emsp;    &emsp;  &emsp;  &emsp; ? <br> 
-                                    &emsp;   &emsp;   &emsp;    &emsp;   &emsp; &emsp;   &emsp;    &emsp;  &emsp;  &emsp;  {value: profiles[nextIndex++], done: false } <br> 
-                                    &emsp;   &emsp;   &emsp;    &emsp;   &emsp; &emsp;   &emsp;    &emsp;  &emsp;  &emsp;: <br>
-                                    &emsp;   &emsp;   &emsp;    &emsp;   &emsp; &emsp;   &emsp;    &emsp;  &emsp;  &emsp; {value: profiles[(nextIndex++) % profiles.length], done: false}    <br>  
-                                    <br>   &emsp;   &emsp;   &emsp;    &emsp;   &emsp; &emsp;   &emsp;    &emsp;  &emsp;  &emsp;; <br>
-                                      &emsp;  &emsp;   &emsp;   &emsp;    &emsp;   &emsp; &emsp;   &emsp;    &emsp;    } <br>
-                                         <br>
-                                         &emsp;        } <br>
+                                &emsp; let nextIndex = 0; <br> <br>
 
-                                } <br> <br>
+                                &emsp; return{ <br>
 
-                              <u>  Call it like This </u> <br>
+                                &emsp; &emsp; &emsp; &emsp; next:function(){ <br>
+                                &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; return nextIndex < profiles.length <br>
+                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; ? <br>
+                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {value: profiles[nextIndex++], done: false } <br>
+                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;: <br>
+                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {value: profiles[(nextIndex++) % profiles.length], done: false} <br>
+                                    <br> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;; <br>
+                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; } <br>
+                                    <br>
+                                    &emsp; } <br>
 
-                                const profiles = profileIterator(data); // data was an array of objects <br>
-                         function nextProfile(){ <br>
+                                    } <br> <br>
 
-                            &emsp;      //  has to be done this way else each item will be one click ahead. eg "${profiles.next().value.image}"> <br>
-                            &emsp;    const currentProfile = profiles.next().value; <br>
-                         } <br> <br>
- <br>
-                                <br> <b><u> GENERATOR EXAMPLE</u> </b> <br>
-                                <span> need to put the Star after the function here
-                                for this to work!  <br>
-                                 (Works the same as iterator but is just layed out in a different style)<br> </span>
-                                function* sayNames(){<br>
-                                &emsp;  yield 'Sam';<br>
-                                &emsp;  yield 'Bill';<br>
-                                &emsp; yield 'Fred';<br>
-                                } <br>
-                                <br>
-                                const testGenerator = sayNames();<br>
-                                <br>
-                                // returns Sam<br>
-                                console.log(testGenerator.next().value);<br>
-                                <br> // returns Bill<br>
-                                console.log(testGenerator.next().value);<br>
-                                <br> // returns Fred<br>
-                                console.log(testGenerator.next().value);<br>
-                                <br> // returns Undefined<br>
-                                console.log(testGenerator.next().value);<br> <br>
+                                    <u> Call it like This </u> <br>
+
+                                    const profiles = profileIterator(data); // data was an array of objects <br>
+                                    function nextProfile(){ <br>
+
+                                    &emsp; // has to be done this way else each item will be one click ahead. eg "${profiles.next().value.image}"> <br>
+                                    &emsp; const currentProfile = profiles.next().value; <br>
+                                    } <br> <br>
+                                    <br>
+                                    <br> <b><u> GENERATOR EXAMPLE</u> </b> <br>
+                                    <span> need to put the Star after the function here
+                                        for this to work! <br>
+                                        (Works the same as iterator but is just layed out in a different style)<br> </span>
+                                    function* sayNames(){<br>
+                                    &emsp; yield 'Sam';<br>
+                                    &emsp; yield 'Bill';<br>
+                                    &emsp; yield 'Fred';<br>
+                                    } <br>
+                                    <br>
+                                    const testGenerator = sayNames();<br>
+                                    <br>
+                                    // returns Sam<br>
+                                    console.log(testGenerator.next().value);<br>
+                                    <br> // returns Bill<br>
+                                    console.log(testGenerator.next().value);<br>
+                                    <br> // returns Fred<br>
+                                    console.log(testGenerator.next().value);<br>
+                                    <br> // returns Undefined<br>
+                                    console.log(testGenerator.next().value);<br> <br>
 
 
 
-                                <br> // ID Creator<br>
-                                function* CreateIds(){<br>
-                                    &emsp;    let index = 0;<br>
-                                    &emsp;   <br>
-                                    &emsp;   while(true){<br>
-                                        &emsp;  &emsp;   yield index++; <br>
-                                        &emsp;    }<br>
-                                 }<br> <br>
+                                    <br> // ID Creator<br>
+                                    function* CreateIds(){<br>
+                                    &emsp; let index = 0;<br>
+                                    &emsp; <br>
+                                    &emsp; while(true){<br>
+                                    &emsp; &emsp; yield index++; <br>
+                                    &emsp; }<br>
+                                    }<br> <br>
 
-                                // Will keep adding 1;<br>
-                                const gen = CreateIds(); <br>
+                                    // Will keep adding 1;<br>
+                                    const gen = CreateIds(); <br>
 
-                                // 0<br> <br>
-                                console.log(gen.next().value); 
-                                <br> // 1<br> <br>
-                                console.log(gen.next().value);
-                                <br> // 2<br> <br>
-                             
+                                    // 0<br> <br>
+                                    console.log(gen.next().value);
+                                    <br> // 1<br> <br>
+                                    console.log(gen.next().value);
+                                    <br> // 2<br> <br>
+
 
 
 
@@ -905,150 +903,150 @@
                         <td>Iterators and Generators</td>
                     </tr>
                     <tr>
-                        <td>    
-                            <span>Create a Set</span><br> 
+                        <td>
+                            <span>Create a Set</span><br>
                             const set1 = new Set();<br> <br>
-                    
-                    
+
+
                             <span> Add values to Set<br> </span>
                             set1.add(100);<br>
                             set1.add('A string');<br>
                             set1.add({name: 'Jon'});<br>
                             set1.add(true);<br>
-                    <br>
+                            <br>
                             set1.add(100); // this will not be added as there is already one in the set, each set value must be unique<br>
-                    <br>
-                         <br>   <br> <span> a different way to add values to Set </span><br>
+                            <br>
+                            <br> <br> <span> a different way to add values to Set </span><br>
                             const set2 = new Set([1, true, 'String']);<br> <br>
-                    
+
                             console.log(set2);<br>
-                    
-                    <br>
-                    <br>        <span>Get count </span><br>
-                       set1.size;<br>
-                    
-                        <br>   <span> check for values </span><br>
+
+                            <br>
+                            <br> <span>Get count </span><br>
+                            set1.size;<br>
+
+                            <br> <span> check for values </span><br>
                             set1.has(100); // true<br>
                             set1.has(50 + 50); // true<br>
-                    <br>
-                         <br>  <span> Delete from set </span><br>
-                           set1.delete(100);<br>
-                    
-                       <br>  <b> <u>  ITERATING THROUGH SETS</u></b><br>
-                             
+                            <br>
+                            <br> <span> Delete from set </span><br>
+                            set1.delete(100);<br>
+
+                            <br> <b> <u> ITERATING THROUGH SETS</u></b><br>
+
                             <span>for of loop </span> <br>
                             for (const item of set1) {
-                                    <br>   &emsp;   console.log(item); <br>
+                            <br> &emsp; console.log(item); <br>
                             }<br>
-                    <br>
-                   <span> forEach </span> <br>
-                      set1.forEach((key) => {<br>
-                            &emsp;       console.log(key);<br>
-                        });<br>
-                    <br>
-                    <br>
-                      <span>Convert SET TO ARRAY </span><br>
-                        const setArr = Array.from(set1);<br>
-                   
-                        <td>  <u><b> SETS </b></u> <br> Store unique values of any type, sets are not key value pairs they are just single value</td>
+                            <br>
+                            <span> forEach </span> <br>
+                            set1.forEach((key) => {<br>
+                            &emsp; console.log(key);<br>
+                            });<br>
+                            <br>
+                            <br>
+                            <span>Convert SET TO ARRAY </span><br>
+                            const setArr = Array.from(set1);<br>
+
+                        <td> <u><b> SETS </b></u> <br> Store unique values of any type, sets are not key value pairs they are just single value</td>
                     </tr>
                     <tr>
-                        <td>   
+                        <td>
                             <span> Create Map </span> <br>
                             const map1 = new Map(); <br>
- <br>
+                            <br>
                             <span> Set keys </span> <br>
                             const key1 = 'some string', <br>
-                                  key2 = {}, <br>
-                                  key3 = function(){}; <br>
-                        
-                             <br>
-                           <span> Set map values by key </span> <br>
-                           map1.set(key1, 'Value of key1');  // 'some string' is now the key  <br> 
-                           map1.set(key2, 'Value of key2'); // {} empty object, is now the key <br>
-                           map1.set(key3, 'Value of key3'); // empty function is now the key <br>
-                         <br>
+                            key2 = {}, <br>
+                            key3 = function(){}; <br>
+
+                            <br>
+                            <span> Set map values by key </span> <br>
+                            map1.set(key1, 'Value of key1'); // 'some string' is now the key <br>
+                            map1.set(key2, 'Value of key2'); // {} empty object, is now the key <br>
+                            map1.set(key3, 'Value of key3'); // empty function is now the key <br>
+                            <br>
                             <span> Get Values by key </span> <br>
-                            console.log(map1.get(key1), map1.get(key2), map1.get(key3));  <br>
-                         <br>
+                            console.log(map1.get(key1), map1.get(key2), map1.get(key3)); <br>
+                            <br>
                             <br> <span>Count Values </span>
                             console.log(map1.size); // returns 3 <br>
-                         <br>
-                           <br>  <b><u> ITERATING MAPS</u> </b> <br>
-                        
-                            <span> Loop using for...of to get keys and values  </span><br>
+                            <br>
+                            <br> <b><u> ITERATING MAPS</u> </b> <br>
+
+                            <span> Loop using for...of to get keys and values </span><br>
                             for(let [key, value] of map1){ <br>
-                               <br>  &emsp; console.log(`${key} = ${value}`); <br>
+                            <br> &emsp; console.log(`${key} = ${value}`); <br>
                             } <br>
-                         <br>
-                          <br> <span>  Iterate keys only </span> <br>
+                            <br>
+                            <br> <span> Iterate keys only </span> <br>
                             for(let key of map1.keys()){ <br>
-                            <br>      &emsp; console.log(key);
-                         <br>    }
-                        
-                            <br>   <span> Iterate value only </span> 
-                             <br>  for(let value of map1.values()){
-                                <br> &emsp; console.log(value);
-                         <br>    }
-                         <br>
-                        
-                          <br>   <span> Loop with a forEach </span> <br>
+                            <br> &emsp; console.log(key);
+                            <br> }
+
+                            <br> <span> Iterate value only </span>
+                            <br> for(let value of map1.values()){
+                            <br> &emsp; console.log(value);
+                            <br> }
+                            <br>
+
+                            <br> <span> Loop with a forEach </span> <br>
                             <br> map1.forEach((value,key) =>{ <br>
-                             <br>   &emsp;  console.log(`${key} = ${value} `); <br>
-                          <br>   });
-                         <br>
-                      
+                            <br> &emsp; console.log(`${key} = ${value} `); <br>
+                            <br> });
+                            <br>
+
                             <span> CONVERT an array of the key value pairs </span> <br>
                             const keyValArr = Array.from(map1); <br>
                             console.log(keyValArr); <br>
-                  
-                          <br>   <span> CONVERT an array of the keys </span> <br>
+
+                            <br> <span> CONVERT an array of the keys </span> <br>
                             const keyArr = Array.from(map1.keys()); <br>
                             console.log(keyArr); <br>
-                         <br>
-                           const valueArr = Array.from(map1.values()); <br>
+                            <br>
+                            const valueArr = Array.from(map1.values()); <br>
                             console.log(valueArr); <br> </td>
-                        <td><b> <u>  MAPS </u></b>  <br> key:value pairs, we can use ANY type as a key or a value.</td>
+                        <td><b> <u> MAPS </u></b> <br> key:value pairs, we can use ANY type as a key or a value.</td>
                     </tr>
                     <tr>
-                        <td>   
+                        <td>
                             <span> Create symbol </span> <br>
-                            const sym1 = Symbol();<br> 
-                            const sym2 = Symbol('sym2');<br> 
-                    
-                            // console.log(typeof(sym2));<br> 
-                    
-                            <span> Returns false as no two symbols can be the same </span><br> 
-                            // console.log(Symbol('123') === Symbol('123'));<br> 
-                            
-                            <br> 
-                            <span> Unique Object Keys </span><br> 
-                            const KEY1 = Symbol();<br> 
-                            const KEY2 = Symbol('sym2');<br> 
-                    <br> 
-                            const myObj = {};<br> 
-                    <br> 
-                            <span> this will not work as a symbol must use square brackets </span><br> 
-                            // myObj.KEY1 = 'Prop1';<br> 
-                    <br> 
-                            // you will have to use square brackets like this<br> 
-                            myObj[KEY1] = 'Prop1';<br> 
-                            myObj[KEY2] = 'Prop2';<br> 
-                            myObj.key3 = 'Prop3';<br> 
-                            myObj.key4 = 'Prop4';<br> 
-                    <br> 
-                          <br>   // console.log(myObj[KEY1]);<br> 
-                          <br>   // console.log(myObj[KEY2]);<br> 
-                    <br> 
-                           <br>  // symbols are not enumerable in for....in (they wont show up in the loop!)
-                           <br>  // for(let i in myObj){
-                           <br>  //    &emsp;  console.log(`${i}: ${myObj[i]}`);
-                           <br>  // } 
-                    <br> 
-                    <br> 
-                           <br>  // Symbols are ignored by JSON.stringify<br> 
-                            console.log(JSON.stringify({key: 'prop'}));<br> 
-                            console.log(JSON.stringify({[Symbol('test')]: 'prop'}));  // just shows as an empty object.<br> </td>
+                            const sym1 = Symbol();<br>
+                            const sym2 = Symbol('sym2');<br>
+
+                            // console.log(typeof(sym2));<br>
+
+                            <span> Returns false as no two symbols can be the same </span><br>
+                            // console.log(Symbol('123') === Symbol('123'));<br>
+
+                            <br>
+                            <span> Unique Object Keys </span><br>
+                            const KEY1 = Symbol();<br>
+                            const KEY2 = Symbol('sym2');<br>
+                            <br>
+                            const myObj = {};<br>
+                            <br>
+                            <span> this will not work as a symbol must use square brackets </span><br>
+                            // myObj.KEY1 = 'Prop1';<br>
+                            <br>
+                            // you will have to use square brackets like this<br>
+                            myObj[KEY1] = 'Prop1';<br>
+                            myObj[KEY2] = 'Prop2';<br>
+                            myObj.key3 = 'Prop3';<br>
+                            myObj.key4 = 'Prop4';<br>
+                            <br>
+                            <br> // console.log(myObj[KEY1]);<br>
+                            <br> // console.log(myObj[KEY2]);<br>
+                            <br>
+                            <br> // symbols are not enumerable in for....in (they wont show up in the loop!)
+                            <br> // for(let i in myObj){
+                            <br> // &emsp; console.log(`${i}: ${myObj[i]}`);
+                            <br> // }
+                            <br>
+                            <br>
+                            <br> // Symbols are ignored by JSON.stringify<br>
+                            console.log(JSON.stringify({key: 'prop'}));<br>
+                            console.log(JSON.stringify({[Symbol('test')]: 'prop'})); // just shows as an empty object.<br> </td>
                         <td>Symbol() <br> For Unique Object Keys</td>
                     </tr>
                 </tbody>
