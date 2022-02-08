@@ -104,17 +104,17 @@
                         <tr>
                             <td>50
 
-                                Its because your php tag is on a newline. It is reading in the whitespace from where  &lt;textarea> ends until php tag opens. Put this all on one line to fix. <br><br>
-                                    Or for those still finding this question: use the CSS white-space: normal or (or any of the other collapsing rules)</td>
+                                Its because your php tag is on a newline. It is reading in the whitespace from where &lt;textarea> ends until php tag opens. Put this all on one line to fix. <br><br>
+                                Or for those still finding this question: use the CSS white-space: normal or (or any of the other collapsing rules)</td>
                             <td>How to remove extra space inside textarea</td>
                         </tr>
                         <tr>
-                            <td>  &lt;button aria-label="Close Modal Box"> & times ; &lt;/button>
+                            <td> &lt;button aria-label="Close Modal Box"> & times ; &lt;/button>
                             </td>
                             <td>use × HTML entity for close buttons rather than the letter X for a perfectly angled ×</td>
                         </tr>
                         <tr>
-                         
+
                         </tr>
                     </tbody>
                 </table>
@@ -354,20 +354,20 @@
                                 &lt;a href="#home-section" class="popup__close">X&lt;/a> <br><br>
 
 
-                                modal-normal{  <br>
-                                   &emsp; opacity: 0; <br>
-                                  &emsp;  visility:hidden; <br>
+                                modal-normal{ <br>
+                                &emsp; opacity: 0; <br>
+                                &emsp; visility:hidden; <br>
                                 }
- 
+
                                 <br><br>
 
-                                  modal:target content{ <br>
-                                    &emsp; opacity: 1; <br>
-                                    &emsp; transform:translate(-50%, -50%) scale(1); <br>
+                                modal:target content{ <br>
+                                &emsp; opacity: 1; <br>
+                                &emsp; transform:translate(-50%, -50%) scale(1); <br>
                                 }
 
                             </td>
-                            <td> <b> <u> Easy modal Hack! </u> </b>  - not good for menu (use checkbox hack then!)  <br><br>
+                            <td> <b> <u> Easy modal Hack! </u> </b> - not good for menu (use checkbox hack then!) <br><br>
 
                                 We can get modals popin with the :target pseudo class and #targeting them with an id in
                                 the HTML <br>
@@ -1096,44 +1096,44 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>NPM - 
+                            <td>NPM -
 
                                 start with NPM init, to create the json package file <br><br>
-                                                                
+
                                 <span>install scss</span> <br>
                                 npm install node-sass --save-dev <br> <br>
-                                
-                                
+
+
                                 <span>Here is how to uninstall stuff </span> <br>
-                                npm uninstall jquery --save <br> 
-                                    
+                                npm uninstall jquery --save <br>
+
                                 the save bit adds to the dependencies!
-                                 <br><br>
+                                <br><br>
 
                                 you need to add a script in the json.package file
                                 <br>
                                 far fight left hand side is the scss code and then a space and the css file we are compiling to.
                                 <br>
                                 "scripts": {
-                                    &emsp;    "compile:sass": "node-sass sass/main.scss css/style.css -w"
-                                  },
-                                 <br>
+                                &emsp; "compile:sass": "node-sass sass/main.scss css/style.css -w"
+                                },
+                                <br>
 
                                 don't forget the -w (for watch so that we do not have to keep updating!)
-                                 
+
                                 <br> <br>
-                                
+
                                 you will also need to escape the middle quotes with a backslash if using windows <br>
                                 Q2: Autoprefixer isn't working on Windows <br>
                                 "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" css/style.concat.css -o css/style.prefix.css" <br><br>
 
                                 AFTER THAT WE NEED TO RUN <br>
-                                
-                                 npm run compile:sass <br>
-                                 
+
+                                npm run compile:sass <br>
+
                                 eg-> npm run %nameof:ourscript% <br>
-                                
-                                npm install live-server -g   // with the -g it installs globally so we can use it all over our pc in any programme we use
+
+                                npm install live-server -g // with the -g it installs globally so we can use it all over our pc in any programme we use
                             </td>
                             <td>NPM set up</td>
                         </tr>
@@ -1223,8 +1223,55 @@
                                 &emsp; @if($breakpoint == desk-wide){ <br>
                                 &emsp; &emsp; &emsp;@media screen and (min-width:112.5em){@content}; // 1800px <br>
                                 &emsp;&emsp; }; <br><br>
+                                }
+                                <br><br>
 
-                                }</td>
+                                &emsp; @mixin clearfix{<br>
+                                &emsp; &emsp; &emsp; &::after{<br>
+                                &emsp; &emsp; content: "";<br>
+                                &emsp; &emsp; display: table;<br>
+                                &emsp; &emsp; clear: both;<br>
+                                &emsp; &emsp; }<br>
+                                }<br><br>
+
+                                @mixin absCenter {
+                                position: absolute;
+                                top:50%;
+                                left:50%;
+                                transform: translate(-50%, -50%);
+                                }
+
+                                // for burger menu line;
+                                @mixin burgerline {
+                                position: absolute;
+                                height: 1px;
+                                width: 3rem;
+                                background-color: $color-main;
+                                z-index: 100;
+                                border-radius: 3px;
+                                display: inline-block;
+                                }
+
+
+
+                                @mixin submenu-hover($color){
+                                content: '';
+                                height: 1px;
+                                width: 100%;
+                                color: $color-grey-dark;
+                                background-color: $color;
+                                position: absolute;
+                                top: 90%;
+                                left: 0;
+                                transform: scaleX(0);
+                                }
+                                <br><br><br><br>
+
+                                <u>We call them like this</u> <br>
+                                @include name(var){ <br>
+                                &emsp;&emsp; margin-bottom: 0; <br>
+                                }
+                            </td>
                             <td>Responsive breakpoint mixins </td>
                         </tr>
 

@@ -76,20 +76,19 @@
 
 </head>
 <!-- 
-   &lt;
-     &emsp;
+   &lt;  === <
+     &emsp;  === big space
 
 -->
 
 <body>
     <h1>Javascript Cheat sheet & Snippits</h1>
-
     <table class="container">
         <tr>
             <td>
                 <table class="section">
                     <caption>
-                        <h3>DOM API and manipulation</h3>
+                        <h3>DOM API and event fundamentals</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -317,1005 +316,1143 @@
                                 because of that leading space, so consider trimming it before checking).
                             </td>
                             <td> <strong>Calling Custom CSS variables</strong> </td>
+                        </tr>
+                    </tbody>
+                </table>
             </td>
         </tr>
-        </tbody>
-    </table>
-    </td>
-    </tr>
 
-    <tr>
-        <td>
-            <table class="section">
-                <caption>
-                    <h3>JS Browser BOM</h3>
 
-                </caption>
-                <thead>
-                    <tr>
-                        <td>Code</td>
-                        <td>Description</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
+        <!-- Data Structures -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Data Structures</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>while</span> loop should be used when we do not know the amount of times we need to loop, <br><br>
 
-                            function setCookie(name, value, days) { <br>
-                            &emsp; var expires = ""; <br> <br>
-                            &emsp; if (days) { <br>
-                            &emsp; &emsp; var date = new Date(); <br>
-                            &emsp; &emsp; date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); <br>
-                            &emsp; &emsp; expires = "; expires=" + date.toUTCString(); <br>
-                            &emsp; } <br> <br>
-                            &emsp; document.cookie = name + "=" + (value || "") + expires + "; path=/"; <br>
-                            } <br><br>
+                                <span>for</span> loop we use when we know how many times we need to loop. <br><br>
 
-                            function getCookie(name) { <br>
-                            &emsp; var nameEQ = name + "="; <br><br>
-                            &emsp; var ca = document.cookie.split(';'); <br><br>
-                            &emsp; for (var i = 0; i < ca.length; i++) { <br>
-                                &emsp; &emsp; var c = ca[i]; <br>
-                                &emsp; &emsp; while (c.charAt(0) == ' ') c = c.substring(1, c.length); <br>
-                                &emsp; &emsp; if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-                                <br>
-                                &emsp; } <br> <br>
-                                &emsp; return null; <br>
+                                <span>forEach</span> is the new version of the <span>for (const var of v) loop</span> <br>
+                                <small> But the big difference is that you can NOT break out of a forEach loop! or continue.</small><br> <br>
+
+                                for (const m of movements) { <br>
+                                &emsp;   if (m > 0) { <br>
+                                &emsp; &emsp;    console.log(`You deposited ${m}`); <br>
+                                &emsp;   } <br> 
+                                &emsp;else { <br>
+                                    &emsp; &emsp; console.log(`You withdrew ${Math.abs(m)}`); <br>
+                                    &emsp;} <br>
                                 }
-
-                        </td>
-                        <td>Get and set cookies</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <b>
-                                <u> The returned object contains the following properties: </u>
-                            </b> <br><br>
-
-                            valid – Is true when the field passes validation. <br> <br>
-                            valueMissing – Is true when the field is empty but required. <br><br>
-                            typeMismatch – Is true when the field type is email or url but the entered value is not the
-                            correct type. <br><br>
-                            tooShort – Is true when the field contains a minLength attribute and the entered value is
-                            shorter than that length. <br><br>
-                            tooLong – Is true when the field contains a maxLength attribute and the entered value is
-                            longer than that length. <br><br>
-                            patternMismatch – Is true when the field contains a pattern attribute and the entered value
-                            does not match the pattern. <br><br>
-                            badInput – Is true when the input type is number and the entered value is not a number.
-                            <br><br>
-                            stepMismatch – Is true when the field has a step attribute and the entered value does not
-                            adhere to the step values. <br><br>
-                            rangeOverflow – Is true when the field has a max attribute and the entered number value is
-                            greater than the max. <br><br>
-                            rangeUnderflow – Is true when the field has a min attribute and the entered number value is
-                            lower than the min. <br>
-
-
-                        </td>
-                        <td>
-                            <br> <u> <b> Validity State</b> </u> <br>
-                            The validity property provides a set of information about a form field, in the form of
-                            boolean (true/false) values.<br>
-                            We can use it to customize our form validation behavior. <br>
-                            Allows us to use the browser’s own field validation algorithms in our scripts instead of
-                            writing our own.
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            let d = new Date(Date.parse("2020-12-26T17:13:10+01:00")); <br><br>
-                            document.getElementById("demo").innerHTML = d;
-                        </td>
-                        <td>Convert and format Time and Date</td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <table class="section">
-                <caption>
-                    <h3>Asynchronous JavaScript</h3>
-                </caption>
-                <thead>
-                    <tr>
-                        <td>Code</td>
-                        <td>Description</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            document.getElementById('button').addEventListener('click', loadData); <br> <br>
-
-                            function loadData(){ <br>
-                            &emsp; //Create XHR Object <br>
-                            &emsp; const xhr = new XMLHttpRequest(); <br> <br>
-
-                            &emsp; // OPEN <br>
-                            &emsp; //(Where we specify the type of request we want to make and the file name), the third
-                            parameter is boolean for if we want it to be asynchronous or not; <br>
-                            &emsp; xhr.open('GET','data.txt',true); <br>
-
-
-                            <br>
-                            &emsp; // new way readyState jumps straight to 4 <br>
-                            &emsp; xhr.onload = function(){ <br>
-                            &emsp; if(this.status === 200){ <br>
-                            &emsp; &emsp; document.getElementById('output').innerHTML =
-                            `&lt;h1>${this.responseText}&lt;/h1>` <br>
-                            &emsp; } <br>
-                            } <br>
-                            <br>
-                            &emsp; // Optional -- Used for spinners / loaders - returns readyState - 3; <br>
-                            &emsp; xhr.onprogress = function(){ <br>
-                            &emsp; <br>
-                            &emsp; } <br> <br>
-
-                            &emsp; // We may need to set up better error handling <br>
-                            &emsp; xhr.onerror = function(){ <br>
-                            &emsp; &emsp; console.log('there was a Request error'); <br>
-                            &emsp; } <br> <br>
-
-                            // send <br>
-                            xhr.send(); <br> <br>
-
-                            <br>
-                            // old way ready state runs through from 1-4. (not used anymore as we now have .onload but
-                            may be seen in legacy code) <br>
-                            xhr.onreadystatechange = function(){ <br>
-                            &emsp; // console.log('READYSTATE', xhr.readyState); here is the check <br>
-                            &emsp; if(this.status === 200 & this.readyState === 4){ <br>
-                            &emsp; &emsp; console.log(this.responseText); <br>
-                            &emsp; } <br>
-                            } <br> <br> <br>
-
-
-                        </td>
-                        <td>Ajax / XML HTTP Request</td>
-                    </tr>
-                    <tr>
-                        <td> function createPost(post, callback){ <br>
-                            &emsp; setTimeout(function(){ <br>
-                            &emsp; &emsp; posts.push(post); <br>
-                            &emsp; &emsp; callback(); <br>
-                            &emsp; },2000); <br>
-                            }
-                            <br> <br>
-
-                            function getPosts(){ <br>
-                            &emsp; setTimeout(function(){ <br>
-
-                            &emsp; &emsp; let output = ''; <br>
-
-                            &emsp; &emsp; posts.forEach(function(post){ <br>
-                            &emsp; &emsp; &emsp; output += `&lt;li>${post.title}&lt;/li>`; <br>
-
-                            &emsp; &emsp; &emsp; document.body.innerHTML = output; <br>
-                            &emsp; &emsp; }); <br>
-
-                            &emsp; },1000); <br>
-                            } <br> <br>
-
-                            createPost({title: 'Post Three', body: 'This is post 3'}, getPosts);</td>
-                        <td>Callback example</td>
-                    </tr>
-                    <tr>
-                        <td> // Get local text file data <br>
-                            // here is how to use fetch API, if we were dealing with JSON here we would use res.JSON
-                            rather than res.text <br>
-                            // you always need to use .then to get the return from the promise. <br>
-                            function getText(){ <br>
-                            &emsp; fetch('data.txt') <br>
-                            &emsp; .then(res => res.text()) <br>
-                            &emsp; .then(data => { <br>
-                            &emsp; &emsp; console.log(data); <br>
-                            &emsp; &emsp; document.getElementById('output').innerHTML = data; <br>
-                            &emsp; }) <br>
-                            &emsp; &emsp; // here is how we would catch the error if there was one <br>
-                            &emsp; .catch(err => console.log(err)); <br>
-                            } <br>
-                            <br>
-                            // Get local json data <br>
-                            function getJSON(){ <br>
-                            &emsp; fetch('posts.json') <br>
-                            &emsp; .then(res => res.json()) <br>
-                            &emsp; .then(data =>{ <br>
-                            &emsp; &emsp; let output = ''; <br>
-                            &emsp; &emsp; data.forEach(post => { <br>
-                            &emsp; &emsp; &emsp; output += `&lt;li>${post.title}&lt;/li>`; <br>
-                            &emsp; &emsp; }); <br>
-                            <br>
-                            &emsp; &emsp; document.getElementById('output').innerHTML = output; <br>
-                            &emsp; &emsp; console.log(data); <br>
-                            &emsp; }) <br>
-                            &emsp; // here is how we would catch the error if there was one <br>
-                            &emsp; .catch(err => console.log(err) ); <br>
-                            }</td>
-                        <td>Fetch API example</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            async function myFunc() { <br>
-                            &emsp; return 'Hello'; <br>
-                            } <br><br>
-
-                            myFunc() <br>
-                            .then(res => console.log(res));
-                        </td>
-                        <td>
-                            async example
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            async function myFunc3() { <br>
-
-                            &emsp; const example_promise = new Promise((resolve, reject) => { <br>
-                            &emsp; &emsp; setTimeout(() => resolve('Hello'), 1000); <br>
-                            &emsp; }); <br> <br>
-
-                            &emsp; const error = false; <br> <br>
-
-                            &emsp; if(!error){ <br>
-                            &emsp; &emsp; // wait until promise is resolved <br>
-                            &emsp; &emsp; const res = await example_promise; <br>
-
-                            &emsp; &emsp; return res; <br>
-                            &emsp; } <br>
-                            &emsp; else{ <br>
-                            &emsp; &emsp; await Promise.reject(new Error('Something went wrong')); <br>
-                            &emsp; } <br>
-
-                            }
-                        </td>
-                        <td>
-                            async await example
-                        </td>
-                    </tr>
-                    <tr>
-                        <td> async function getUsers(){ <br>
-
-                            &emsp; // await the response of the fetch call <br>
-                            &emsp; const response = await fetch('https://jsonplaceholder.typicode.com/users'); <br> <br>
-
-                            &emsp; // only process once its resolved <br>
-                            &emsp; const answer = await response.json(); <br> <br>
-
-                            &emsp; // only proceed once second promise is resolved. <br>
-                            &emsp; return answer; <br>
-                            } <br> <br>
-
-                            getUsers() <br>
-                            &emsp; .then(users => console.log(users)); <br> <br><br>
-
-
-                            <br>
-                            async function post(url, data) { <br>
-
-                            &emsp; const response = await fetch(url, { <br>
-                            &emsp; &emsp; method: 'POST', <br>
-                            &emsp; &emsp; headers: { <br>
-                            &emsp; &emsp; &emsp; 'Content-type': 'application/json' <br>
-                            &emsp; &emsp; }, <br>
-                            &emsp; &emsp; body: JSON.stringify(data) <br>
-                            &emsp; }); <br> <br>
-
-                            &emsp; const responseData = await response.json(); <br>
-
-                            &emsp; return responseData; <br>
-
-                            } <br>
-                            <br>
-                            // Create user <br>
-                            post('https://jsonplaceholder.typicode.com/users', data) <br>
-                            &emsp; .then(data => console.log(data)) <br>
-                            &emsp; .catch(err => console.log(err)); <br>
-
-                        </td>
-                        <td>Fetch with Async Await</td>
-                    </tr>
-                    <tr>
-                        <td> <u> HTTP Status Codes</u> <br>
-                            200 OK <br>
-                            400 Bad Request <br>
-                            401 Unauthorized <br>
-                            404 Not Found <br>
-                            500 Internal Server Error <br>
-
-                            <u> readyState Values </u><br>
-                            0: Request not initialized <br>
-                            1: server connection established <br>
-                            2: request received <br>
-                            3: processing request <br>
-                            4: request finished and response is ready <br></td>
-                        <td>HTTP Status Codes & readyState Values </td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <table class="section">
-                <caption>
-                    <h3>Handy stuff</h3>
-                </caption>
-                <thead>
-                    <tr>
-                        <td>Code</td>
-                        <td>Description</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            try{ <br>
-                            &emsp; // Produce a ReferenceError as function doesnt exist <br>
-                            &emsp; myFunction(); <br> <br>
-
-                            &emsp; // Produce a TypeError <br>
-                            &emsp; null.myFunction(); <br> <br>
-
-                            &emsp; // Will Produce a SynyaxError <br>
-                            &emsp; eval('Hello world'); <br> <br>
-
-                            &emsp; // Will Produce a URIError <br>
-                            &emsp; decodeURICompnent(%); <br> <br>
-
-                            // How to create our own errors with throw,
-                            if(!Something.Something){
-                            &emsp; // we can do it this way <br>
-                            &emsp; throw 'The Something is broken'; <br> <br>
-
-                            &emsp; //Or we can do it this way with specific error type<br>
-                            &emsp; throw new SyntaxError('Something does not exist');
-                            }
-
-
-                            } <br> <br>
-                            catch(e){ <br>
-                            &emsp; console.log(`User Error: `${e.message}); <br>
-                            &emsp; console.log(e.message); <br>
-                            &emsp; console.log(e.name); <br>
-                            &emsp; console.log(e instanceof TypeError); <br>
-                            } <br> <br>
-                            finally{ <br>
-                            &emsp; console.log('Finally runs regardless of the result. as is optional.')<br>
-                            }<br> <br>
-                            console.log('programme continues... rather than stop due to the error.');
-                        </td>
-                        <td>Error Handling with try / catch. </td>
-                    </tr>
-                    <tr>
-
-                        <td>In your example: 5 divided by 7 gives 0 but it remains 5 (5 % 7 == 5). <br>
-
-                            Calculation <br>
-
-                            The modulo operation can be calculated using this equation: <br>
-
-                            a % b = a - floor(a / b) * b <br>
-
-                            7 goes into 5 zero times so we still have 5 left as the remainder <br> <br>
-
-                            <b> <u> infinite Carousel / slider modulas formula, (variable will need to be added for
-                                    allslides and activeSlideIndex) </b> </u> <br>
-                            <br>
-                            // this gives us the next slide and rotates over the array for infinity (going forward) <br>
-                            allSlides[(activeSlideIndex + 1) % allSlides.length];<br> <br>
-
-                            // different one that worked. <br>
-                            profiles[(nextIndex++) % profiles.length] // ++ rather than + 1;
-
-
-                            // this gives us the index of the previous slide and rotates over the array for infinity
-                            (going backwards)<br>
-                            newActive = allSlides[(activeSlideIndex - 1 + allSlides.length) % allSlides.length];
-                        </td>
-                        <td> The modulus</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            A single vibration <br>
-                            window.navigator.vibrate(200); <br><br>
-
-                            Vibration patterns <br>
-                            An array of values describes alternating periods in which the device is vibrating and not
-                            vibrating. <br>
-                            window.navigator.vibrate([200, 100, 200]);
-                            <br>
-
-                        </td>
-                        <td>Vibration API</td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <b><u> Destructuring Assignment </u> </b><br>
-                            let a,b; <br>
-                            [a,b] = [100,200]; <br><br>
-
-                            <b><u> Rest Pattern </u> </b> <br>
-                            [a,b,c, ...test] = [100,200,300,400,500];<br><br> <br>
-
-                            <b><u> Rest Pattern </u> </b> <br>
-                            [a,b,c, ...test] = [100,200,300,400,500];<br><br><br>
-
-                            <span> using the rest pattern on objects</span> <br>
-                            ({a , b} = { a: 100, b: 200, c:300, d:400, e:500 }); <br>
-
-                            ({a , b, ...rest} = { a: 100, b: 200, c:300, d:400, e:500 }); <br> <br><br>
-
-                            <b><u> Array Destructuring </u> </b> <br>
-                            const people = ['Billy', 'Jo', 'Shane']; <br>
-                            const [person1, person2, person3] = people; <br>
-                            console.log(person1, person2, person3); <br> <br><br>
-
-                            <b><u> Parse array returned from function </u> </b> <br>
-                            function getPeople(){ <br>
-                            &emsp; return ['Jon', 'Sam', 'Ted']; <br>
-                            } <br> <br><br>
-
-                            let name1, name2, name3; <br> <br>
-
-                            [name1, name2, name3 ] = getPeople(); <br> <br>
-
-                            console.log(name1, name2, name3); <br> <br>
-
-
-                            <b><u> Object Destructuring </u> </b> <br>
-                            const person = { <br>
-                            &emsp; name:'Jon Doe', <br>
-                            &emsp; age: 44,<br>
-                            &emsp; city: 'London',<br>
-                            &emsp; gender: 'Male',<br>
-                            &emsp; sayHello: function(){<br>
-                            &emsp; &emsp; return 'Hello';<br>
-                            &emsp; }<br>
-                            }<br>
-
-                            <br> <span> old ES5 </span><br>
-                            const testName = person.name,<br>
-                            testAge = person.age,<br>
-                            testHello = person.sayHello();<br> <br>
-
-                            console.log(testName,testAge);<br>
-
-                            <br> <span> New ES6 Destructuring </span><br>
-                            const {name, age, city, sayHello} = person;<br>
-                            <br>
-                            console.log(name, age, city, sayHello());<br>
-
-
-                        </td>
-                        <td>Destructuring</td>
-                    </tr>
-                    <tr>
-                        <td> <b><u> ITERATOR EXAMPLE </u> </b> <br><br>
-                            function nameIterator (names){<br>
-                            &emsp; let nextIndex = 0;<br>
-                            <br>
-                            &emsp; return {<br>
-                            &emsp; &emsp; &emsp; &emsp; next: function(){
-                            <br> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; return nextIndex < names.length ? {value: names[nextIndex++], done:false } : {done: true};<br>
-                                &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; }<br>
+                                <br> <br>
+                                movements.forEach(function (m) { <br>
+                                &emsp;  if (m > 0) { <br>
+                                 &emsp;&emsp;  console.log(`You deposited ${m}`) <br>
+                                &emsp;  } else { <br>
+                                 &emsp;&emsp;   console.log(`You withdrew ${Math.abs(m)}`) <br>
+                                &emsp;  } <br>
+                                }); <br><br>
+
+                                <span> how to get index with the for of loop</span> <br>
+                                for (const [i, m] of movements.entries()) { <br>
+                                &emsp;  if (m > 0) { <br>
+                                &emsp;  &emsp;  console.log(`m ${i}: You deposited ${m}`); <br>
+                                &emsp;  } else { <br>
+                                &emsp;  &emsp;  console.log(`m ${i}: You withdrew ${Math.abs(m)}`); <br>
+                                &emsp;  } <br>
+                                }
+                                <br><br>
+                                <span> how to get index with the forEach loop</span> <br>
+                                movements.forEach(function (m, i) { <br>
+                                &emsp; if (m > 0) { <br>
+                                &emsp; &emsp; console.log(`m ${i}: You deposited ${m}`);<br>
+                                &emsp; } else { <br>
+                                &emsp; &emsp; console.log(`m ${i}: You withdrew ${Math.abs(m)}`) <br>
+                                &emsp; } <br>
+                                });
+                            </td>
+                            <td>which loop to use</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <b><u> Destructuring Assignment </u> </b><br>
+                                let a,b; <br>
+                                [a,b] = [100,200]; <br><br>
+
+                                <b><u> Rest Pattern </u> </b> <br>
+                                [a,b,c, ...test] = [100,200,300,400,500];<br><br> <br>
+
+                                <b><u> Rest Pattern </u> </b> <br>
+                                [a,b,c, ...test] = [100,200,300,400,500];<br><br><br>
+
+                                <span> using the rest pattern on objects</span> <br>
+                                ({a , b} = { a: 100, b: 200, c:300, d:400, e:500 }); <br>
+
+                                ({a , b, ...rest} = { a: 100, b: 200, c:300, d:400, e:500 }); <br> <br><br>
+
+                                <b><u> Array Destructuring </u> </b> <br>
+                                const people = ['Billy', 'Jo', 'Shane']; <br>
+                                const [person1, person2, person3] = people; <br>
+                                console.log(person1, person2, person3); <br> <br><br>
+
+                                <b><u> Parse array returned from function </u> </b> <br>
+                                function getPeople(){ <br>
+                                &emsp; return ['Jon', 'Sam', 'Ted']; <br>
+                                } <br> <br><br>
+
+                                let name1, name2, name3; <br> <br>
+
+                                [name1, name2, name3 ] = getPeople(); <br> <br>
+
+                                console.log(name1, name2, name3); <br> <br>
+
+
+                                <b><u> Object Destructuring </u> </b> <br>
+                                const person = { <br>
+                                &emsp; name:'Jon Doe', <br>
+                                &emsp; age: 44,<br>
+                                &emsp; city: 'London',<br>
+                                &emsp; gender: 'Male',<br>
+                                &emsp; sayHello: function(){<br>
+                                &emsp; &emsp; return 'Hello';<br>
                                 &emsp; }<br>
                                 }<br>
+
+                                <br> <span> old ES5 </span><br>
+                                const testName = person.name,<br>
+                                testAge = person.age,<br>
+                                testHello = person.sayHello();<br> <br>
+
+                                console.log(testName,testAge);<br>
+
+                                <br> <span> New ES6 Destructuring </span><br>
+                                const {name, age, city, sayHello} = person;<br>
                                 <br>
-                                <span> Create an array of names </span><br>
-                                const namesArr = ['Jack', 'Jill', 'Jon'];<br>
+                                console.log(name, age, city, sayHello());<br>
+
+
+                            </td>
+                            <td>Destructuring</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Create a Set</span><br>
+                                const set1 = new Set();<br> <br>
+
+                                <span> Add values to Set<br> </span>
+                                set1.add(100);<br>
+                                set1.add('A string');<br>
+                                set1.add({name: 'Jon'});<br>
+                                set1.add(true);<br>
                                 <br>
-                                <span>Init iterator and pass in the names array </span><br>
-                                const namesTest = nameIterator(namesArr);<br>
+                                set1.add(100); // this will not be added as there is already one in the set, each set value must be unique<br>
+                                <br>
+                                <br> <br> <span> a different way to add values to Set </span><br>
+                                const set2 = new Set([1, true, 'String']);<br> <br>
+
+                                console.log(set2);<br>
+
+                                <br>
+                                <br> <span>Get count </span><br>
+                                set1.size;<br>
+
+                                <br> <span> check for values </span><br>
+                                set1.has(100); // true<br>
+                                set1.has(50 + 50); // true<br>
+                                <br>
+                                <br> <span> Delete from set </span><br>
+                                set1.delete(100);<br>
+
+                                <br> <b> <u> ITERATING THROUGH SETS</u></b><br>
+
+                                <span>for of loop </span> <br>
+                                for (const item of set1) {
+                                <br> &emsp; console.log(item); <br>
+                                }<br>
+                                <br>
+                                <span> forEach </span> <br>
+                                set1.forEach((key) => {<br>
+                                &emsp; console.log(key);<br>
+                                });<br>
+                                <br>
+                                <br>
+                                <span>Convert SET TO ARRAY </span><br>
+                                const setArr = Array.from(set1);<br>
+                            </td>
+
+                            <td> <u><b> SETS </b></u> <br> Store unique values of any type, sets are not key value pairs they are just single value</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span> Create Map </span> <br>
+                                const map1 = new Map(); <br>
+                                <br>
+                                <span> Set keys </span> <br>
+                                const key1 = 'some string', <br>
+                                key2 = {}, <br>
+                                key3 = function(){}; <br>
+
+                                <br>
+                                <span> Set map values by key </span> <br>
+                                map1.set(key1, 'Value of key1'); // 'some string' is now the key <br>
+                                map1.set(key2, 'Value of key2'); // {} empty object, is now the key <br>
+                                map1.set(key3, 'Value of key3'); // empty function is now the key <br>
+                                <br>
+                                <span> Get Values by key </span> <br>
+                                console.log(map1.get(key1), map1.get(key2), map1.get(key3)); <br>
+                                <br>
+                                <br> <span>Count Values </span>
+                                console.log(map1.size); // returns 3 <br>
+                                <br>
+                                <br> <b><u> ITERATING MAPS</u> </b> <br>
+
+                                <span> Loop using for...of to get keys and values </span><br>
+                                for(let [key, value] of map1){ <br>
+                                <br> &emsp; console.log(`${key} = ${value}`); <br>
+                                } <br>
+                                <br>
+                                <br> <span> Iterate keys only </span> <br>
+                                for(let key of map1.keys()){ <br>
+                                <br> &emsp; console.log(key);
+                                <br> }
+
+                                <br> <span> Iterate value only </span>
+                                <br> for(let value of map1.values()){
+                                <br> &emsp; console.log(value);
+                                <br> }
                                 <br>
 
-                                // returns Jack<br>
-                                console.log(namesTest.next().value);<br>
-                                <br> // returns Jill<br>
-                                console.log(namesTest.next().value);<br>
-                                <br> // returns Jon<br>
-                                console.log(namesTest.next().value);<br>
-                                <br> // returns Undefined, done:true<br>
-                                console.log(namesTest.next().value);<br>
-                                <br>
+                                <br> <span> Loop with a forEach </span> <br>
+                                <br> map1.forEach((value,key) =>{ <br>
+                                <br> &emsp; console.log(`${key} = ${value} `); <br>
+                                <br> });
                                 <br>
 
+                                <span> CONVERT an array of the key value pairs </span> <br>
+                                const keyValArr = Array.from(map1); <br>
+                                console.log(keyValArr); <br>
 
-                                <span> <b>
-                                        <u>Profile Iterator (good for carousel) </span></u>
-                                </b> <br>
-                                function profileIterator(profiles){ <br> <br>
-                                &emsp; let nextIndex = 0; <br> <br>
+                                <br> <span> CONVERT an array of the keys </span> <br>
+                                const keyArr = Array.from(map1.keys()); <br>
+                                console.log(keyArr); <br>
+                                <br>
+                                const valueArr = Array.from(map1.values()); <br>
+                                console.log(valueArr); <br> </td>
+                            <td><b> <u> MAPS </u></b> <br> key:value pairs, we can use ANY type as a key or a value.</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span> Create symbol </span> <br>
+                                const sym1 = Symbol();<br>
+                                const sym2 = Symbol('sym2');<br>
 
-                                &emsp; return{ <br>
+                                // console.log(typeof(sym2));<br>
 
-                                &emsp; &emsp; &emsp; &emsp; next:function(){ <br>
-                                &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; return nextIndex < profiles.length <br>
-                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; ? <br>
-                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {value: profiles[nextIndex++], done: false } <br>
-                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;: <br>
-                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {value: profiles[(nextIndex++) % profiles.length], done: false} <br>
-                                    <br> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;; <br>
-                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; } <br>
-                                    <br>
-                                    &emsp; } <br>
+                                <span> Returns false as no two symbols can be the same </span><br>
+                                // console.log(Symbol('123') === Symbol('123'));<br>
 
-                                    } <br> <br>
+                                <br>
+                                <span> Unique Object Keys </span><br>
+                                const KEY1 = Symbol();<br>
+                                const KEY2 = Symbol('sym2');<br>
+                                <br>
+                                const myObj = {};<br>
+                                <br>
+                                <span> this will not work as a symbol must use square brackets </span><br>
+                                // myObj.KEY1 = 'Prop1';<br>
+                                <br>
+                                // you will have to use square brackets like this<br>
+                                myObj[KEY1] = 'Prop1';<br>
+                                myObj[KEY2] = 'Prop2';<br>
+                                myObj.key3 = 'Prop3';<br>
+                                myObj.key4 = 'Prop4';<br>
+                                <br>
+                                <br> // console.log(myObj[KEY1]);<br>
+                                <br> // console.log(myObj[KEY2]);<br>
+                                <br>
+                                <br> // symbols are not enumerable in for....in (they wont show up in the loop!)
+                                <br> // for(let i in myObj){
+                                <br> // &emsp; console.log(`${i}: ${myObj[i]}`);
+                                <br> // }
+                                <br>
+                                <br>
+                                <br> // Symbols are ignored by JSON.stringify<br>
+                                console.log(JSON.stringify({key: 'prop'}));<br>
+                                console.log(JSON.stringify({[Symbol('test')]: 'prop'})); // just shows as an empty object.<br> </td>
+                            <td>Symbol() <br> For Unique Object Keys</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
 
-                                    <u> Call it like This </u> <br>
+        <!-- Functions -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Functions</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> The difference between an expression and a statement is that an expression produces a value. <br><br>
 
-                                    const profiles = profileIterator(data); // data was an array of objects <br>
-                                    function nextProfile(){ <br>
+                                A statement does not produce a value, it just performs some value. They are like full sentences that describe what is going on. <br><br>
 
-                                    &emsp; // has to be done this way else each item will be one click ahead. eg "${profiles.next().value.image}"> <br>
-                                    &emsp; const currentProfile = profiles.next().value; <br>
-                                    } <br> <br>
-                                    <br>
-                                    <br> <b><u> GENERATOR EXAMPLE</u> </b> <br>
-                                    <span> need to put the Star after the function here
-                                        for this to work! <br>
-                                        (Works the same as iterator but is just layed out in a different style)<br> </span>
-                                    function* sayNames(){<br>
-                                    &emsp; yield 'Sam';<br>
-                                    &emsp; yield 'Bill';<br>
-                                    &emsp; yield 'Fred';<br>
-                                    } <br>
-                                    <br>
-                                    const testGenerator = sayNames();<br>
-                                    <br>
-                                    // returns Sam<br>
-                                    console.log(testGenerator.next().value);<br>
-                                    <br> // returns Bill<br>
-                                    console.log(testGenerator.next().value);<br>
-                                    <br> // returns Fred<br>
-                                    console.log(testGenerator.next().value);<br>
-                                    <br> // returns Undefined<br>
-                                    console.log(testGenerator.next().value);<br> <br>
+                                `template string literals` always expect an expression, so we can use a ternary operation, but we can not use an if statement. <br><br>
+
+                                Operator and expression always produce a value. <br><br>
+
+                            </td>
+                            <td>Statements and Expressions</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <span>function declaration</span> <br>
+
+                                function calcAge1(birthYear){ <br>
+                                &emsp; return 2021 - birthYear; <br>
+                                } <br>
+
+                                const age1 = calcAge1(1989); <br><br>
 
 
+                                <span>function expression</span> <br>
+                                const calcAge2 = function (birthYear){ <br>
+                                &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; return 2021 - birthYear; <br>
+                                &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp;&emsp;} <br>
 
-                                    <br> // ID Creator<br>
-                                    function* CreateIds(){<br>
-                                    &emsp; let index = 0;<br>
-                                    &emsp; <br>
-                                    &emsp; while(true){<br>
-                                    &emsp; &emsp; yield index++; <br>
+                                const age2 = calcAge2(1989); <br><br>
+
+                                <span>The arrow function is also a function expression.</span> <br>
+
+                                Const calcAge3 = birthYear => 2021 - birthYear; <br><br>
+
+
+                                The main difference is that function declarations can be called before they are defined in the code. <br><br>
+
+                                It comes down to personal preference on which style you choose to use.
+
+
+                            </td>
+                            <td>function declaration vs function expression</td>
+                        </tr>
+
+                        <tr>
+                            <td> <b><u> ITERATOR EXAMPLE </u> </b> <br><br>
+                                function nameIterator (names){<br>
+                                &emsp; let nextIndex = 0;<br>
+                                <br>
+                                &emsp; return {<br>
+                                &emsp; &emsp; &emsp; &emsp; next: function(){
+                                <br> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; return nextIndex < names.length ? {value: names[nextIndex++], done:false } : {done: true};<br>
+                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; }<br>
                                     &emsp; }<br>
-                                    }<br> <br>
+                                    }<br>
+                                    <br>
+                                    <span> Create an array of names </span><br>
+                                    const namesArr = ['Jack', 'Jill', 'Jon'];<br>
+                                    <br>
+                                    <span>Init iterator and pass in the names array </span><br>
+                                    const namesTest = nameIterator(namesArr);<br>
+                                    <br>
 
-                                    // Will keep adding 1;<br>
-                                    const gen = CreateIds(); <br>
-
-                                    // 0<br> <br>
-                                    console.log(gen.next().value);
-                                    <br> // 1<br> <br>
-                                    console.log(gen.next().value);
-                                    <br> // 2<br> <br>
-
-
-
-
-                        </td>
-                        <td>Iterators and Generators</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span>Create a Set</span><br>
-                            const set1 = new Set();<br> <br>
+                                    // returns Jack<br>
+                                    console.log(namesTest.next().value);<br>
+                                    <br> // returns Jill<br>
+                                    console.log(namesTest.next().value);<br>
+                                    <br> // returns Jon<br>
+                                    console.log(namesTest.next().value);<br>
+                                    <br> // returns Undefined, done:true<br>
+                                    console.log(namesTest.next().value);<br>
+                                    <br>
+                                    <br>
 
 
-                            <span> Add values to Set<br> </span>
-                            set1.add(100);<br>
-                            set1.add('A string');<br>
-                            set1.add({name: 'Jon'});<br>
-                            set1.add(true);<br>
-                            <br>
-                            set1.add(100); // this will not be added as there is already one in the set, each set value must be unique<br>
-                            <br>
-                            <br> <br> <span> a different way to add values to Set </span><br>
-                            const set2 = new Set([1, true, 'String']);<br> <br>
+                                    <span> <b>
+                                            <u>Profile Iterator (good for carousel) </span></u>
+                                    </b> <br>
+                                    function profileIterator(profiles){ <br> <br>
+                                    &emsp; let nextIndex = 0; <br> <br>
 
-                            console.log(set2);<br>
+                                    &emsp; return{ <br>
 
-                            <br>
-                            <br> <span>Get count </span><br>
-                            set1.size;<br>
+                                    &emsp; &emsp; &emsp; &emsp; next:function(){ <br>
+                                    &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; return nextIndex < profiles.length <br>
+                                        &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; ? <br>
+                                        &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {value: profiles[nextIndex++], done: false } <br>
+                                        &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;: <br>
+                                        &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; {value: profiles[(nextIndex++) % profiles.length], done: false} <br>
+                                        <br> &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp;; <br>
+                                        &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; &emsp; } <br>
+                                        <br>
+                                        &emsp; } <br>
 
-                            <br> <span> check for values </span><br>
-                            set1.has(100); // true<br>
-                            set1.has(50 + 50); // true<br>
-                            <br>
-                            <br> <span> Delete from set </span><br>
-                            set1.delete(100);<br>
+                                        } <br> <br>
 
-                            <br> <b> <u> ITERATING THROUGH SETS</u></b><br>
+                                        <u> Call it like This </u> <br>
 
-                            <span>for of loop </span> <br>
-                            for (const item of set1) {
-                            <br> &emsp; console.log(item); <br>
-                            }<br>
-                            <br>
-                            <span> forEach </span> <br>
-                            set1.forEach((key) => {<br>
-                            &emsp; console.log(key);<br>
-                            });<br>
-                            <br>
-                            <br>
-                            <span>Convert SET TO ARRAY </span><br>
-                            const setArr = Array.from(set1);<br>
+                                        const profiles = profileIterator(data); // data was an array of objects <br>
+                                        function nextProfile(){ <br>
 
-                        <td> <u><b> SETS </b></u> <br> Store unique values of any type, sets are not key value pairs they are just single value</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span> Create Map </span> <br>
-                            const map1 = new Map(); <br>
-                            <br>
-                            <span> Set keys </span> <br>
-                            const key1 = 'some string', <br>
-                            key2 = {}, <br>
-                            key3 = function(){}; <br>
-
-                            <br>
-                            <span> Set map values by key </span> <br>
-                            map1.set(key1, 'Value of key1'); // 'some string' is now the key <br>
-                            map1.set(key2, 'Value of key2'); // {} empty object, is now the key <br>
-                            map1.set(key3, 'Value of key3'); // empty function is now the key <br>
-                            <br>
-                            <span> Get Values by key </span> <br>
-                            console.log(map1.get(key1), map1.get(key2), map1.get(key3)); <br>
-                            <br>
-                            <br> <span>Count Values </span>
-                            console.log(map1.size); // returns 3 <br>
-                            <br>
-                            <br> <b><u> ITERATING MAPS</u> </b> <br>
-
-                            <span> Loop using for...of to get keys and values </span><br>
-                            for(let [key, value] of map1){ <br>
-                            <br> &emsp; console.log(`${key} = ${value}`); <br>
-                            } <br>
-                            <br>
-                            <br> <span> Iterate keys only </span> <br>
-                            for(let key of map1.keys()){ <br>
-                            <br> &emsp; console.log(key);
-                            <br> }
-
-                            <br> <span> Iterate value only </span>
-                            <br> for(let value of map1.values()){
-                            <br> &emsp; console.log(value);
-                            <br> }
-                            <br>
-
-                            <br> <span> Loop with a forEach </span> <br>
-                            <br> map1.forEach((value,key) =>{ <br>
-                            <br> &emsp; console.log(`${key} = ${value} `); <br>
-                            <br> });
-                            <br>
-
-                            <span> CONVERT an array of the key value pairs </span> <br>
-                            const keyValArr = Array.from(map1); <br>
-                            console.log(keyValArr); <br>
-
-                            <br> <span> CONVERT an array of the keys </span> <br>
-                            const keyArr = Array.from(map1.keys()); <br>
-                            console.log(keyArr); <br>
-                            <br>
-                            const valueArr = Array.from(map1.values()); <br>
-                            console.log(valueArr); <br> </td>
-                        <td><b> <u> MAPS </u></b> <br> key:value pairs, we can use ANY type as a key or a value.</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span> Create symbol </span> <br>
-                            const sym1 = Symbol();<br>
-                            const sym2 = Symbol('sym2');<br>
-
-                            // console.log(typeof(sym2));<br>
-
-                            <span> Returns false as no two symbols can be the same </span><br>
-                            // console.log(Symbol('123') === Symbol('123'));<br>
-
-                            <br>
-                            <span> Unique Object Keys </span><br>
-                            const KEY1 = Symbol();<br>
-                            const KEY2 = Symbol('sym2');<br>
-                            <br>
-                            const myObj = {};<br>
-                            <br>
-                            <span> this will not work as a symbol must use square brackets </span><br>
-                            // myObj.KEY1 = 'Prop1';<br>
-                            <br>
-                            // you will have to use square brackets like this<br>
-                            myObj[KEY1] = 'Prop1';<br>
-                            myObj[KEY2] = 'Prop2';<br>
-                            myObj.key3 = 'Prop3';<br>
-                            myObj.key4 = 'Prop4';<br>
-                            <br>
-                            <br> // console.log(myObj[KEY1]);<br>
-                            <br> // console.log(myObj[KEY2]);<br>
-                            <br>
-                            <br> // symbols are not enumerable in for....in (they wont show up in the loop!)
-                            <br> // for(let i in myObj){
-                            <br> // &emsp; console.log(`${i}: ${myObj[i]}`);
-                            <br> // }
-                            <br>
-                            <br>
-                            <br> // Symbols are ignored by JSON.stringify<br>
-                            console.log(JSON.stringify({key: 'prop'}));<br>
-                            console.log(JSON.stringify({[Symbol('test')]: 'prop'})); // just shows as an empty object.<br> </td>
-                        <td>Symbol() <br> For Unique Object Keys</td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <table class="section">
-                <caption>
-                    <h3>Regular Expressions</h3>
-                </caption>
-                <thead>
-                    <tr>
-                        <td>Code</td>
-                        <td>Description</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <b><u> for console</u> </b>
-                            // String to match <br>
-                            const str = 'Enter String in here!';<br>
-                            <br>
-                            // Log results<br>
-                            const result = re.exec(str);<br>
-                            console.log(result);<br>
-                            <br>
-
-                            function reTest(re, str){<br>
-                            &emsp; if(re.test(str)){<br>
-                            &emsp; &emsp; console.log(`${str} matches ${re.source}`);<br>
-                            &emsp; }<br>
-                            &emsp; else{<br>
-                            &emsp; &emsp; console.log(`${str} does not match ${re.source}`);<br>
-                            &emsp; }<br>
-                            }<br>
-
-                            console.log(reTest(re, str));
-
-                            <br><br>
-                            <b><u> for production, bootstrap error here,</u> </b> <br>
-                            function validateName(){ <br>
-                            &emsp; const name = document.getElementById('name'); <br> <br>
-                            &emsp; const re = /^[a-zA-Z]{2,10}$/; <br> <br>
-
-                            &emsp; if(!re.test(name.value)){ <br>
-                            &emsp; &emsp; name.classList.add('is-invalid'); <br>
-                            &emsp; } <br>
-                            &emsp; else{ <br>
-                            &emsp; &emsp; name.classList.remove('is-invalid'); <br>
-                            &emsp; } <br>
-                            }
-                            <br>
-                        </td>
-        </td>
-        <td>
-            RegEX - Testing function
-        </td>
-    </tr>
-    <tr>
-        <td>let re = /hello/; <br>
-            let re = /hello/i; - case insensitive <br>
-            let re = /hello/g; - global search that will not just stop at the first match.<br> <br>
+                                        &emsp; // has to be done this way else each item will be one click ahead. eg "${profiles.next().value.image}"> <br>
+                                        &emsp; const currentProfile = profiles.next().value; <br>
+                                        } <br> <br>
+                                        <br>
+                                        <br> <b><u> GENERATOR EXAMPLE</u> </b> <br>
+                                        <span> need to put the Star after the function here
+                                            for this to work! <br>
+                                            (Works the same as iterator but is just layed out in a different style)<br> </span>
+                                        function* sayNames(){<br>
+                                        &emsp; yield 'Sam';<br>
+                                        &emsp; yield 'Bill';<br>
+                                        &emsp; yield 'Fred';<br>
+                                        } <br>
+                                        <br>
+                                        const testGenerator = sayNames();<br>
+                                        <br>
+                                        // returns Sam<br>
+                                        console.log(testGenerator.next().value);<br>
+                                        <br> // returns Bill<br>
+                                        console.log(testGenerator.next().value);<br>
+                                        <br> // returns Fred<br>
+                                        console.log(testGenerator.next().value);<br>
+                                        <br> // returns Undefined<br>
+                                        console.log(testGenerator.next().value);<br> <br>
 
 
-            re.source = hello; <br> <br>
+                                        <br> // ID Creator<br>
+                                        function* CreateIds(){<br>
+                                        &emsp; let index = 0;<br>
+                                        &emsp; <br>
+                                        &emsp; while(true){<br>
+                                        &emsp; &emsp; yield index++; <br>
+                                        &emsp; }<br>
+                                        }<br> <br>
 
-            <b>exec()</b> &emsp; - Returns result in array or null; <br>
-            console.log( re.exec('hello world') ); <br> <br>
+                                        // Will keep adding 1;<br>
+                                        const gen = CreateIds(); <br>
 
-            <b>test()</b> &emsp; - Returns true or false <br>
-            console.log( re.test('Hello') ); <br><br>
+                                        // 0<br> <br>
+                                        console.log(gen.next().value);
+                                        <br> // 1<br> <br>
+                                        console.log(gen.next().value);
+                                        <br> // 2<br> <br>
+                            </td>
+                            <td>Iterators and Generators</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
 
-            <b>match()</b> &emsp;- Return result array or null <br>
-            const str = 'Hello there'; <br>
-            console.log( str.match(re) ); <br> <br>
-            Here is how it would return if the search was case insensitive. <br>
-            ["hello", index: 0, input: "hello there", groups: undefined] <br><br>
+        </tr>
 
-            <b>search()</b> &emsp; - Returns index of the first match, if not found it returns -1 <br>
-            const str = 'Matthew Hello there'; <br>
-            console.log( str.search(re) ); <br> <br>
+        <!-- OOP (Object Orientated Programming) -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Object Orientated Programming (OOP)</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
 
-            <b>replace()</b> &emsp; - Return new string with some or all matches of a pattern.<br>
-            const str = 'Hello There'; <br>
-            const newStr = str.replace('re','Hi'); <br>
-            console.log(newStr);
-        </td>
-        <td>RegEX - Evaluation Functions</td>
-    </tr>
-    <tr>
-        <td>
-            re = /^h/i; // ^ = Must start with <br> <br>
+        </tr>
 
-            re = /world$/i; // $ = Must end with <br> <br>
+        <!-- Asynchronous JavaScript -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Asynchronous JavaScript</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                document.getElementById('button').addEventListener('click', loadData); <br> <br>
 
-            re = /^world$/i; // Must begin and end with <br> <br>
+                                function loadData(){ <br>
+                                &emsp; //Create XHR Object <br>
+                                &emsp; const xhr = new XMLHttpRequest(); <br> <br>
 
-            re = /h.llo/i; // Matches any ONE Character, The dot is like a wildcard but for only one character, <br>
-            <br>
-
-            re = /h*llo/i; // Matches any Character, This is true wildcard very dangerous when used like this, <br> <br>
-
-            re = /gre?a?y/i; // Optional, character can be a,e or empty here <br> <br>
-
-            re = /gre?a?y\?/i; // Escape characters, we do this with the backslash. <br> <br>
-
-        <td>RegEx - Metacharacter Symbols</td>
-    </tr>
-
-    <tr>
-        <td>
-            <b><u> Brackets [] - Character sets </u> </b> <br>
-            re = /gr[ae]y/i; // Must be an 'a' or 'e' , better than the escape character above. <br>
-            <br>
-            re = /[GF]ray/; // Must be an 'G' or 'F' <br>
-            <br>
-            re = /[^GF]ray/; // Match anything apart from a 'G' or 'F', *** totally different to the start with as it is
-            inside the brackets. *** <br>
-            <br>
-            re = /[A-Z]ray/; // Match any uppercase letter <br>
-            <br>
-            re = /[A-Za-z]ray/; // Match any letter
-            <br>
-            re = /[0-9][0-9]ray/; // Match any number <br>
-            <br>
-            <br>
-            <b><u> Braces {} - Quantifiers </u> </b> <br>
-            re = /Hel{2}o/i; //Must occur exactly {m} amount of times, - Must be 2 'l' characters <br>
-            <br>
-            re = /[0-9]{3,5}ray/; // Must be 3-5 digits then ray, same as above but with range <br>
-            <br>
-            re = /[0-9]{3,}ray/; // Must occur {m,} 3, or more times <br>
-            <br> <br>
-            <b><u> Parenthesis () - Grouping </u> </b> <br>
-            re = /([0-9]x){3}/; // Must be number x number x number x 9x9x9x <br>
-        </td>
-        <td>
-            RegEx - Character Sets & Quantifiers
-        </td>
-
-    </tr>
-    <tr>
-        <td> <b><u> Shorthand Character Classes </u> </b> <br>
-            re = /\w/ // Word character, can be alphanumeric or '_' underscore. <br>
-            <br>
-            re = /\w+/ // + = 1 or more <br>
-            <br>
-            re = /\W/ // NON-Word character, match anything that is not alphanumeric (uppercase W)<br>
-            <br>
-            re = /\d/ // Match any digit<br>
-            <br>
-            re = /\d+/ // Match any digit 1 or more times<br>
-            <br>
-            re = /\D/ // Match any NON digit (uppercase D)<br>
-            <br>
-            re = /\s/ // Match whitespace character.<br>
-            <br>
-            re = /\S/ // Match NON whitespace character.<br>
-            <br>
-            re = /Hell\b/i // Word Boundary, Matches whole world instead of just everytime when it finds 'hell' eg
-            'Hello'.<br>
-            <br>
-            <b><u> Assertions </u> </b> <br>
-            re = /x(?=y)/; // Match x only if followed by y<br>
-            <br> re = /x(?!y)/; // Match x only if NOT followed by y
-        </td>
-        <td>Shorthand Character Classes & Assertions</td>
-    </tr>
-    <tr>
-
-        <td>
-            <span>Hard Password</span> <br>
-            &lt;input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required <br> title="Please
-            include at least 1 uppercase character, 1 lowercase character, and 1 number.">
-            <br> <br>
-            <span>Validating Numbers</span> <br>
-            &lt;input type="number" pattern="[-+]?[0-9]" step="any">
-            <br><br>
-
-            <span>email</span><br>
-            &lt;input type="email" title="The domain portion of the email address is invalid (the portion after the @)."
-            <br>
-            pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)<br>
-            (\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40<br>
-            ([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20<br>\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$">
-            <br><br>
-
-            <span>URL</span><br>
-            &lt;input type="url" title="The URL is a missing a TLD (for example, .com)."<br>
-            pattern="^(?:(?:https?|HTTPS?|ftp|FTP):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)<br>(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]<br>|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:<br>[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-<br>\uffff]{2,}))\.?)(?::\d{2,})?(?:[/?#]\S*)?$">
-            <br><br>
-
-            <span>Dates</span> <br>
-            &lt;input type="date"
-            pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
-            <br><br>
-
-            <span>Time</span> <br>
-            &lt;input type="time" pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])">
-            <br><br>
-
-            <span>Month</span> <br>
-            &lt;input type="month" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2]))">
-            <br><br>
-
-            <span>Fullname pattern take away slashes for HTML</span> <br>
-            /^[a-zA-Z]+( [a-zA-Z]+)+$/
-            <br><br>
-
-            <span>Postcode Pattern</span><br>
-            /(GIR
-            0AA)|((([ABCDEFGHIJKLMNOPRSTUWYZ][0-9][0-9]?)|(([ABCDEFGHIJKLMNOPRSTUWYZ][ABCDEFGHKLMNOPQRSTUVWXY][0-9][0-9]?)|(([ABCDEFGHIJKLMNOPRSTUWYZ][0-9][ABCDEFGHJKSTUW])|([ABCDEFGHIJKLMNOPRSTUWYZ][ABCDEFGHKLMNOPQRSTUVWXY][0-9][ABEHMNPRVWXY]))))
-            [0-9][ABDEFGHJLNPQRSTUWXYZ]{2})/
-
-        <td>Form Validation</td>
+                                &emsp; // OPEN <br>
+                                &emsp; //(Where we specify the type of request we want to make and the file name), the third
+                                parameter is boolean for if we want it to be asynchronous or not; <br>
+                                &emsp; xhr.open('GET','data.txt',true); <br>
 
 
-    </tr>
-    </tbody>
-    </table>
-    </td>
-    </tr>
+                                <br>
+                                &emsp; // new way readyState jumps straight to 4 <br>
+                                &emsp; xhr.onload = function(){ <br>
+                                &emsp; if(this.status === 200){ <br>
+                                &emsp; &emsp; document.getElementById('output').innerHTML =
+                                `&lt;h1>${this.responseText}&lt;/h1>` <br>
+                                &emsp; } <br>
+                                } <br>
+                                <br>
+                                &emsp; // Optional -- Used for spinners / loaders - returns readyState - 3; <br>
+                                &emsp; xhr.onprogress = function(){ <br>
+                                &emsp; <br>
+                                &emsp; } <br> <br>
 
-    <tr>
-        <td>
-            <table class="section">
-                <caption>
-                    <h3>Not DOM stuff</h3>
-                </caption>
-                <thead>
-                    <tr>
-                        <td>Code</td>
-                        <td>Description</td>
-                    </tr>
-                </thead>
-                <tbody>
+                                &emsp; // We may need to set up better error handling <br>
+                                &emsp; xhr.onerror = function(){ <br>
+                                &emsp; &emsp; console.log('there was a Request error'); <br>
+                                &emsp; } <br> <br>
 
-                    <tr>
-                        <td>
-                            A single vibration <br>
-                            window.navigator.vibrate(200); <br><br>
+                                // send <br>
+                                xhr.send(); <br> <br>
 
-                            Vibration patterns <br>
-                            An array of values describes alternating periods in which the device is vibrating and not
-                            vibrating. <br>
-                            window.navigator.vibrate([200, 100, 200]);
-                            <br>
+                                <br>
+                                // old way ready state runs through from 1-4. (not used anymore as we now have .onload but
+                                may be seen in legacy code) <br>
+                                xhr.onreadystatechange = function(){ <br>
+                                &emsp; // console.log('READYSTATE', xhr.readyState); here is the check <br>
+                                &emsp; if(this.status === 200 & this.readyState === 4){ <br>
+                                &emsp; &emsp; console.log(this.responseText); <br>
+                                &emsp; } <br>
+                                } <br> <br> <br>
 
-                        </td>
-                        <td>Vibration API</td>
-                    </tr>
 
-                    <tr>
-                        <td> i AM THE CODE SNIPPET</td>
-                        <td>This is what I do</td>
-                    </tr>
-                    <tr>
-                        <td> i AM THE CODE SNIPPET</td>
-                        <td>This is what I do</td>
-                    </tr>
-                </tbody>
-            </table>
-        </td>
-    </tr>
-    </table>
+                            </td>
+                            <td>Ajax / XML HTTP Request</td>
+                        </tr>
+                        <tr>
+                            <td> function createPost(post, callback){ <br>
+                                &emsp; setTimeout(function(){ <br>
+                                &emsp; &emsp; posts.push(post); <br>
+                                &emsp; &emsp; callback(); <br>
+                                &emsp; },2000); <br>
+                                }
+                                <br> <br>
+
+                                function getPosts(){ <br>
+                                &emsp; setTimeout(function(){ <br>
+
+                                &emsp; &emsp; let output = ''; <br>
+
+                                &emsp; &emsp; posts.forEach(function(post){ <br>
+                                &emsp; &emsp; &emsp; output += `&lt;li>${post.title}&lt;/li>`; <br>
+
+                                &emsp; &emsp; &emsp; document.body.innerHTML = output; <br>
+                                &emsp; &emsp; }); <br>
+
+                                &emsp; },1000); <br>
+                                } <br> <br>
+
+                                createPost({title: 'Post Three', body: 'This is post 3'}, getPosts);</td>
+                            <td>Callback example</td>
+                        </tr>
+                        <tr>
+                            <td> // Get local text file data <br>
+                                // here is how to use fetch API, if we were dealing with JSON here we would use res.JSON
+                                rather than res.text <br>
+                                // you always need to use .then to get the return from the promise. <br>
+                                function getText(){ <br>
+                                &emsp; fetch('data.txt') <br>
+                                &emsp; .then(res => res.text()) <br>
+                                &emsp; .then(data => { <br>
+                                &emsp; &emsp; console.log(data); <br>
+                                &emsp; &emsp; document.getElementById('output').innerHTML = data; <br>
+                                &emsp; }) <br>
+                                &emsp; &emsp; // here is how we would catch the error if there was one <br>
+                                &emsp; .catch(err => console.log(err)); <br>
+                                } <br>
+                                <br>
+                                // Get local json data <br>
+                                function getJSON(){ <br>
+                                &emsp; fetch('posts.json') <br>
+                                &emsp; .then(res => res.json()) <br>
+                                &emsp; .then(data =>{ <br>
+                                &emsp; &emsp; let output = ''; <br>
+                                &emsp; &emsp; data.forEach(post => { <br>
+                                &emsp; &emsp; &emsp; output += `&lt;li>${post.title}&lt;/li>`; <br>
+                                &emsp; &emsp; }); <br>
+                                <br>
+                                &emsp; &emsp; document.getElementById('output').innerHTML = output; <br>
+                                &emsp; &emsp; console.log(data); <br>
+                                &emsp; }) <br>
+                                &emsp; // here is how we would catch the error if there was one <br>
+                                &emsp; .catch(err => console.log(err) ); <br>
+                                }</td>
+                            <td>Fetch API example</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                async function myFunc() { <br>
+                                &emsp; return 'Hello'; <br>
+                                } <br><br>
+
+                                myFunc() <br>
+                                .then(res => console.log(res));
+                            </td>
+                            <td>
+                                async example
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                async function myFunc3() { <br>
+
+                                &emsp; const example_promise = new Promise((resolve, reject) => { <br>
+                                &emsp; &emsp; setTimeout(() => resolve('Hello'), 1000); <br>
+                                &emsp; }); <br> <br>
+
+                                &emsp; const error = false; <br> <br>
+
+                                &emsp; if(!error){ <br>
+                                &emsp; &emsp; // wait until promise is resolved <br>
+                                &emsp; &emsp; const res = await example_promise; <br>
+
+                                &emsp; &emsp; return res; <br>
+                                &emsp; } <br>
+                                &emsp; else{ <br>
+                                &emsp; &emsp; await Promise.reject(new Error('Something went wrong')); <br>
+                                &emsp; } <br>
+
+                                }
+                            </td>
+                            <td>
+                                async await example
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> async function getUsers(){ <br>
+
+                                &emsp; // await the response of the fetch call <br>
+                                &emsp; const response = await fetch('https://jsonplaceholder.typicode.com/users'); <br> <br>
+
+                                &emsp; // only process once its resolved <br>
+                                &emsp; const answer = await response.json(); <br> <br>
+
+                                &emsp; // only proceed once second promise is resolved. <br>
+                                &emsp; return answer; <br>
+                                } <br> <br>
+
+                                getUsers() <br>
+                                &emsp; .then(users => console.log(users)); <br> <br><br>
+
+
+                                <br>
+                                async function post(url, data) { <br>
+
+                                &emsp; const response = await fetch(url, { <br>
+                                &emsp; &emsp; method: 'POST', <br>
+                                &emsp; &emsp; headers: { <br>
+                                &emsp; &emsp; &emsp; 'Content-type': 'application/json' <br>
+                                &emsp; &emsp; }, <br>
+                                &emsp; &emsp; body: JSON.stringify(data) <br>
+                                &emsp; }); <br> <br>
+
+                                &emsp; const responseData = await response.json(); <br>
+
+                                &emsp; return responseData; <br>
+
+                                } <br>
+                                <br>
+                                // Create user <br>
+                                post('https://jsonplaceholder.typicode.com/users', data) <br>
+                                &emsp; .then(data => console.log(data)) <br>
+                                &emsp; .catch(err => console.log(err)); <br>
+
+                            </td>
+                            <td>Fetch with Async Await</td>
+                        </tr>
+                        <tr>
+                            <td> <u> HTTP Status Codes</u> <br>
+                                200 OK <br>
+                                400 Bad Request <br>
+                                401 Unauthorized <br>
+                                404 Not Found <br>
+                                500 Internal Server Error <br>
+
+                                <u> readyState Values </u><br>
+                                0: Request not initialized <br>
+                                1: server connection established <br>
+                                2: request received <br>
+                                3: processing request <br>
+                                4: request finished and response is ready <br></td>
+                            <td>HTTP Status Codes & readyState Values </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <!-- Modules and tooling -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Modules and tooling</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+
+        </tr>
+
+        <!-- JS Browser BOM -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>JS Browser BOM</h3>
+
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+
+                                function setCookie(name, value, days) { <br>
+                                &emsp; var expires = ""; <br> <br>
+                                &emsp; if (days) { <br>
+                                &emsp; &emsp; var date = new Date(); <br>
+                                &emsp; &emsp; date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); <br>
+                                &emsp; &emsp; expires = "; expires=" + date.toUTCString(); <br>
+                                &emsp; } <br> <br>
+                                &emsp; document.cookie = name + "=" + (value || "") + expires + "; path=/"; <br>
+                                } <br><br>
+
+                                function getCookie(name) { <br>
+                                &emsp; var nameEQ = name + "="; <br><br>
+                                &emsp; var ca = document.cookie.split(';'); <br><br>
+                                &emsp; for (var i = 0; i < ca.length; i++) { <br>
+                                    &emsp; &emsp; var c = ca[i]; <br>
+                                    &emsp; &emsp; while (c.charAt(0) == ' ') c = c.substring(1, c.length); <br>
+                                    &emsp; &emsp; if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+                                    <br>
+                                    &emsp; } <br> <br>
+                                    &emsp; return null; <br>
+                                    }
+
+                            </td>
+                            <td>Get and set cookies</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    <u> The returned object contains the following properties: </u>
+                                </b> <br><br>
+
+                                valid – Is true when the field passes validation. <br> <br>
+                                valueMissing – Is true when the field is empty but required. <br><br>
+                                typeMismatch – Is true when the field type is email or url but the entered value is not the
+                                correct type. <br><br>
+                                tooShort – Is true when the field contains a minLength attribute and the entered value is
+                                shorter than that length. <br><br>
+                                tooLong – Is true when the field contains a maxLength attribute and the entered value is
+                                longer than that length. <br><br>
+                                patternMismatch – Is true when the field contains a pattern attribute and the entered value
+                                does not match the pattern. <br><br>
+                                badInput – Is true when the input type is number and the entered value is not a number.
+                                <br><br>
+                                stepMismatch – Is true when the field has a step attribute and the entered value does not
+                                adhere to the step values. <br><br>
+                                rangeOverflow – Is true when the field has a max attribute and the entered number value is
+                                greater than the max. <br><br>
+                                rangeUnderflow – Is true when the field has a min attribute and the entered number value is
+                                lower than the min. <br>
+
+
+                            </td>
+                            <td>
+                                <br> <u> <b> Validity State</b> </u> <br>
+                                The validity property provides a set of information about a form field, in the form of
+                                boolean (true/false) values.<br>
+                                We can use it to customize our form validation behavior. <br>
+                                Allows us to use the browser’s own field validation algorithms in our scripts instead of
+                                writing our own.
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                let d = new Date(Date.parse("2020-12-26T17:13:10+01:00")); <br><br>
+                                document.getElementById("demo").innerHTML = d;
+                            </td>
+                            <td>Convert and format Time and Date</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <!-- Regular Expressions -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Regular Expressions</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b><u> for console</u> </b>
+                                // String to match <br>
+                                const str = 'Enter String in here!';<br>
+                                <br>
+                                // Log results<br>
+                                const result = re.exec(str);<br>
+                                console.log(result);<br>
+                                <br>
+
+                                function reTest(re, str){<br>
+                                &emsp; if(re.test(str)){<br>
+                                &emsp; &emsp; console.log(`${str} matches ${re.source}`);<br>
+                                &emsp; }<br>
+                                &emsp; else{<br>
+                                &emsp; &emsp; console.log(`${str} does not match ${re.source}`);<br>
+                                &emsp; }<br>
+                                }<br>
+
+                                console.log(reTest(re, str));
+
+                                <br><br>
+                                <b><u> for production, bootstrap error here,</u> </b> <br>
+                                function validateName(){ <br>
+                                &emsp; const name = document.getElementById('name'); <br> <br>
+                                &emsp; const re = /^[a-zA-Z]{2,10}$/; <br> <br>
+
+                                &emsp; if(!re.test(name.value)){ <br>
+                                &emsp; &emsp; name.classList.add('is-invalid'); <br>
+                                &emsp; } <br>
+                                &emsp; else{ <br>
+                                &emsp; &emsp; name.classList.remove('is-invalid'); <br>
+                                &emsp; } <br>
+                                }
+                                <br>
+                            </td>
+
+                            <td>
+                                RegEX - Testing function
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>let re = /hello/; <br>
+                                let re = /hello/i; - case insensitive <br>
+                                let re = /hello/g; - global search that will not just stop at the first match.<br> <br>
+
+
+                                re.source = hello; <br> <br>
+
+                                <b>exec()</b> &emsp; - Returns result in array or null; <br>
+                                console.log( re.exec('hello world') ); <br> <br>
+
+                                <b>test()</b> &emsp; - Returns true or false <br>
+                                console.log( re.test('Hello') ); <br><br>
+
+                                <b>match()</b> &emsp;- Return result array or null <br>
+                                const str = 'Hello there'; <br>
+                                console.log( str.match(re) ); <br> <br>
+                                Here is how it would return if the search was case insensitive. <br>
+                                ["hello", index: 0, input: "hello there", groups: undefined] <br><br>
+
+                                <b>search()</b> &emsp; - Returns index of the first match, if not found it returns -1 <br>
+                                const str = 'Matthew Hello there'; <br>
+                                console.log( str.search(re) ); <br> <br>
+
+                                <b>replace()</b> &emsp; - Return new string with some or all matches of a pattern.<br>
+                                const str = 'Hello There'; <br>
+                                const newStr = str.replace('re','Hi'); <br>
+                                console.log(newStr);
+                            </td>
+                            <td>RegEX - Evaluation Functions</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                re = /^h/i; // ^ = Must start with <br> <br>
+
+                                re = /world$/i; // $ = Must end with <br> <br>
+
+                                re = /^world$/i; // Must begin and end with <br> <br>
+
+                                re = /h.llo/i; // Matches any ONE Character, The dot is like a wildcard but for only one character, <br>
+                                <br>
+
+                                re = /h*llo/i; // Matches any Character, This is true wildcard very dangerous when used like this, <br> <br>
+
+                                re = /gre?a?y/i; // Optional, character can be a,e or empty here <br> <br>
+
+                                re = /gre?a?y\?/i; // Escape characters, we do this with the backslash. <br> <br>
+
+                            <td>RegEx - Metacharacter Symbols</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <b><u> Brackets [] - Character sets </u> </b> <br>
+                                re = /gr[ae]y/i; // Must be an 'a' or 'e' , better than the escape character above. <br>
+                                <br>
+                                re = /[GF]ray/; // Must be an 'G' or 'F' <br>
+                                <br>
+                                re = /[^GF]ray/; // Match anything apart from a 'G' or 'F', *** totally different to the start with as it is
+                                inside the brackets. *** <br>
+                                <br>
+                                re = /[A-Z]ray/; // Match any uppercase letter <br>
+                                <br>
+                                re = /[A-Za-z]ray/; // Match any letter
+                                <br>
+                                re = /[0-9][0-9]ray/; // Match any number <br>
+                                <br>
+                                <br>
+                                <b><u> Braces {} - Quantifiers </u> </b> <br>
+                                re = /Hel{2}o/i; //Must occur exactly {m} amount of times, - Must be 2 'l' characters <br>
+                                <br>
+                                re = /[0-9]{3,5}ray/; // Must be 3-5 digits then ray, same as above but with range <br>
+                                <br>
+                                re = /[0-9]{3,}ray/; // Must occur {m,} 3, or more times <br>
+                                <br> <br>
+                                <b><u> Parenthesis () - Grouping </u> </b> <br>
+                                re = /([0-9]x){3}/; // Must be number x number x number x 9x9x9x <br>
+                            </td>
+                            <td>
+                                RegEx - Character Sets & Quantifiers
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td> <b><u> Shorthand Character Classes </u> </b> <br>
+                                re = /\w/ // Word character, can be alphanumeric or '_' underscore. <br>
+                                <br>
+                                re = /\w+/ // + = 1 or more <br>
+                                <br>
+                                re = /\W/ // NON-Word character, match anything that is not alphanumeric (uppercase W)<br>
+                                <br>
+                                re = /\d/ // Match any digit<br>
+                                <br>
+                                re = /\d+/ // Match any digit 1 or more times<br>
+                                <br>
+                                re = /\D/ // Match any NON digit (uppercase D)<br>
+                                <br>
+                                re = /\s/ // Match whitespace character.<br>
+                                <br>
+                                re = /\S/ // Match NON whitespace character.<br>
+                                <br>
+                                re = /Hell\b/i // Word Boundary, Matches whole world instead of just everytime when it finds 'hell' eg
+                                'Hello'.<br>
+                                <br>
+                                <b><u> Assertions </u> </b> <br>
+                                re = /x(?=y)/; // Match x only if followed by y<br>
+                                <br> re = /x(?!y)/; // Match x only if NOT followed by y
+                            </td>
+                            <td>Shorthand Character Classes & Assertions</td>
+                        </tr>
+                        <tr>
+
+                            <td>
+                                <span>Hard Password</span> <br>
+                                &lt;input type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$" required <br> title="Please
+                                include at least 1 uppercase character, 1 lowercase character, and 1 number.">
+                                <br> <br>
+                                <span>Validating Numbers</span> <br>
+                                &lt;input type="number" pattern="[-+]?[0-9]" step="any">
+                                <br><br>
+
+                                <span>email</span><br>
+                                &lt;input type="email" title="The domain portion of the email address is invalid (the portion after the @)."
+                                <br>
+                                pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)<br>
+                                (\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40<br>
+                                ([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20<br>\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$">
+                                <br><br>
+
+                                <span>URL</span><br>
+                                &lt;input type="url" title="The URL is a missing a TLD (for example, .com)."<br>
+                                pattern="^(?:(?:https?|HTTPS?|ftp|FTP):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)<br>(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]<br>|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:<br>[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]-*)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-<br>\uffff]{2,}))\.?)(?::\d{2,})?(?:[/?#]\S*)?$">
+                                <br><br>
+
+                                <span>Dates</span> <br>
+                                &lt;input type="date"
+                                pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))">
+                                <br><br>
+
+                                <span>Time</span> <br>
+                                &lt;input type="time" pattern="(0[0-9]|1[0-9]|2[0-3])(:[0-5][0-9])">
+                                <br><br>
+
+                                <span>Month</span> <br>
+                                &lt;input type="month" pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2]))">
+                                <br><br>
+
+                                <span>Fullname pattern take away slashes for HTML</span> <br>
+                                /^[a-zA-Z]+( [a-zA-Z]+)+$/
+                                <br><br>
+
+                                <span>Postcode Pattern</span><br>
+                                /(GIR
+                                0AA)|((([ABCDEFGHIJKLMNOPRSTUWYZ][0-9][0-9]?)|(([ABCDEFGHIJKLMNOPRSTUWYZ][ABCDEFGHKLMNOPQRSTUVWXY][0-9][0-9]?)|(([ABCDEFGHIJKLMNOPRSTUWYZ][0-9][ABCDEFGHJKSTUW])|([ABCDEFGHIJKLMNOPRSTUWYZ][ABCDEFGHKLMNOPQRSTUVWXY][0-9][ABEHMNPRVWXY]))))
+                                [0-9][ABDEFGHJLNPQRSTUWXYZ]{2})/
+
+                            <td>Form Validation</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <!-- Error Handling -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Error Handling</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                try{ <br>
+                                &emsp; // Produce a ReferenceError as function doesnt exist <br>
+                                &emsp; myFunction(); <br> <br>
+
+                                &emsp; // Produce a TypeError <br>
+                                &emsp; null.myFunction(); <br> <br>
+
+                                &emsp; // Will Produce a SynyaxError <br>
+                                &emsp; eval('Hello world'); <br> <br>
+
+                                &emsp; // Will Produce a URIError <br>
+                                &emsp; decodeURICompnent(%); <br> <br>
+
+                                // How to create our own errors with throw,
+                                if(!Something.Something){
+                                &emsp; // we can do it this way <br>
+                                &emsp; throw 'The Something is broken'; <br> <br>
+
+                                &emsp; //Or we can do it this way with specific error type<br>
+                                &emsp; throw new SyntaxError('Something does not exist');
+                                }
+
+
+                                } <br> <br>
+                                catch(e){ <br>
+                                &emsp; console.log(`User Error: `${e.message}); <br>
+                                &emsp; console.log(e.message); <br>
+                                &emsp; console.log(e.name); <br>
+                                &emsp; console.log(e instanceof TypeError); <br>
+                                } <br> <br>
+                                finally{ <br>
+                                &emsp; console.log('Finally runs regardless of the result. as is optional.')<br>
+                                }<br> <br>
+                                console.log('programme continues... rather than stop due to the error.');
+                            </td>
+                            <td>Error Handling with try / catch. </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <!-- Handy / Other -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3>Handy / OTHER APIs </h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                A single vibration <br>
+                                window.navigator.vibrate(200); <br><br>
+
+                                Vibration patterns <br>
+                                An array of values describes alternating periods in which the device is vibrating and not
+                                vibrating. <br>
+                                window.navigator.vibrate([200, 100, 200]);
+                                <br>
+
+                            </td>
+                            <td>Vibration API</td>
+                        </tr>
+
+                        <tr>
+                            <td>the ! (NOT) operator has precedence over the && , ||</td>
+                            <td>Boolean logic</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
 </body>
 
 </html>
