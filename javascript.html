@@ -84,6 +84,8 @@
 <body>
     <h1>Javascript Cheat sheet & Snippits</h1>
     <table class="container">
+
+        <!-- DOM API and event fundamentals -->
         <tr>
             <td>
                 <table class="section">
@@ -97,6 +99,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>The DOM is not part of Javascript, It is part of the JavaScript Web APIs, web APIs are librarys we can access from our JavaScript code <br>
+                                JavaScript uses inline css, on the html page rather than manipulate the css document </td>
+                            <td>What's the DOM and DOM Manipulation</td>
+                        </tr>
                         <tr>
                             <td> window.pageYOffset | window.pageYOffset <span>How far top of the window is / how far we
                                     have scrolled from the top</span> <br><br>
@@ -153,6 +160,9 @@
                                 Assigning "className" can be a convenience for cases where you are certain no other
                                 classes will be used on the element, <br>
                                 I would normally <strong> use the "classList" methods exclusively. </strong>
+
+                                <br><br>
+                                When we need to change multiple styles on the page for one element, it is best to add a class then import the styles from this class and add/remove when its needed, Rather than writing lots of code.
                             </td>
                         </tr>
 
@@ -228,7 +238,6 @@
                             </td>
                             <td>Convert HTMLCollection to an Array</td>
                         </tr>
-
                         <tr>
                             <td>
 
@@ -298,14 +307,30 @@
                             <td>Events</td>
 
                         </tr>
-
                         <tr>
-                            <td> <span> We call them like this in JavaScript</span> Try webpack as this is one long ass
-                                line <br>
+                            <td>
+                                if (e.key === "Escape" && !overlay.classList.contains('hidden')) <br>
+                                &emsp; closeModal(); <br><br>
+
+                                // is the same as <br>
+
+                                if (e.key === "Escape") { <br>
+                                &emsp; if (!overlay.classList.contains('hidden')) closeModal(); <br>
+                                }
+
+                                <br><br>
+                                keyboard/press events are global and are added to document.addEventListener('keydown', function) <br><br>
+
+                                keypress, &emsp; - fires continuously when we press the button,  so we usually use either <span>keydown</span> or keyup but mostly keydown
+                            </td>
+                            <td>Handling an "Esc" Keypress Event <br>
+                                We should add an escape keydown to close a modal as well as a click</td>
+                        </tr>
+                        <tr>
+                            <td> <span> We call them like this in JavaScript</span><br>
                                 icon.style.fill =
                                 window.getComputedStyle(document.documentElement).getPropertyValue('--colorBlue');
                                 <br><br>
-
 
                                 <span> here is how we reset them</span> <br>
                                 document.documentElement.style.setProperty('--color-font-general', '#000');
@@ -322,8 +347,7 @@
             </td>
         </tr>
 
-
-        <!-- Data Structures -->
+        <!-- Data Structures, Modern Operators and Strings -->
         <tr>
             <td>
                 <table class="section">
@@ -1430,6 +1454,28 @@
                     <tbody>
                         <tr>
                             <td>
+                                <span>'use strict'</span>
+                                Use strict mode at the beginning of our script before all of the other code else it will not work. <br><br>
+
+                                We can also use it in each function, but is easier to just include it for the whole page. <br><br>
+
+                                Note: Sometimes you'll see the default, non-strict mode referred to as "sloppy mode". This isn't an official term, but be aware of it, just in case. <br><br>
+                                Strict mode makes several changes to normal JavaScript semantics:
+                                <ol>
+                                    <li>Eliminates some JavaScript silent errors by changing them to throw errors.</li>
+                                    <li>
+                                        Fixes mistakes that make it difficult for JavaScript engines to perform optimizations: strict mode code can sometimes be made to run faster than identical code that's not strict mode.</li>
+                                    <li>Prohibits some syntax likely to be defined in future versions of ECMAScript.</li>
+                                </ol>
+
+
+
+
+                            </td>
+                            <td>Activating Strict Mode </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 A single vibration <br>
                                 window.navigator.vibrate(200); <br><br>
 
@@ -1444,8 +1490,46 @@
                         </tr>
 
                         <tr>
+                            <td>
+                                typeof null === 'object <br>
+                                typeof undefined === 'undefined'
+                                <br><br>
+                                null !== undefined but null == undefined<br><br>
+
+                                <span>Also worth remembering</span>
+                                <br>
+                                var foo = 'bar;<br>
+                                ...<br>
+                                delete foo <br>
+                                console.log(typeof foo)<br>
+
+                                <span>will cause foo to become undefined, not null</span>
+                                <br><br>
+                                Consider <span>undefined</span> to represent a system level <span>unexpected absence of value</span> <br> <br>
+                                Consider <span>null</span> to represent a system level <span>normal expected absence of value</span> <br>
+                            </td>
+
+                            <td>The difference between null and undefined</td>
+                        </tr>
+
+                        <tr>
                             <td>the ! (NOT) operator has precedence over the && , ||</td>
                             <td>Boolean logic</td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <ol>
+                                    <li>Understand the problem</li>
+                                    <li>Then break into sub problems.</li>
+                                </ol>
+
+                                <br>
+                                <a target="_blank" href="https://diagrams.net">diagrams.net</a> for creating good flow charts when building apps
+                            </td>
+                            <td>
+                                Problem solving and project planning
+                            </td>
                         </tr>
 
                     </tbody>
