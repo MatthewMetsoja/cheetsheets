@@ -14,6 +14,7 @@
             box-sizing: border-box;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             /* font-family:Verdana, Geneva, Tahoma, sans-serif */
+            position: relative;
         }
 
         h1,
@@ -48,7 +49,7 @@
 
         .section thead {
             color: black;
-            background-color: rgb(170, 189, 253);
+            background-color: #aabdfd;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
             text-decoration: underline;
@@ -70,6 +71,39 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             /* font-size: large; */
         }
+
+        .nav-links {
+            /* display: flex; */
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .nav-links a:hover {
+            color: blueviolet;
+        }
+
+        a {
+            color: blueviolet;
+        }
+
+        .to-top {
+            position: fixed;
+            right: 0;
+            top: 10px;
+            font-size: smaller;
+            background: #aabdfd;
+            padding: 10px;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+            border: 1px solid #000;
+        }
     </style>
 
 
@@ -83,14 +117,28 @@
 
 <body>
     <h1>Javascript Cheat sheet & Snippits</h1>
+    <nav id="top">
+        <ul class="nav-links">
+            <li><a href="#DOM">DOM</a></li>
+            <li><a href="#DS">Data Structures</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="#OOP">Object Orientated Programming (OOP)</a></li>
+            <li><a href="#async">Asynchronous JavaScript</a></li>
+            <li><a href="#modules">Modules and tooling</a></li>
+            <li><a href="#BOM">BOM</a></li>
+            <li><a href="#regEX">regEX</a></li>
+            <li><a href="#error-handling">Error Handling</a></li>
+            <li><a href="#handy">Handy stuff / Other</a></li>
+        </ul>
+    </nav>
+    <a class="to-top" href="#top">Top &#8593;</a>
     <table class="container">
-
         <!-- DOM API and event fundamentals -->
         <tr>
             <td>
                 <table class="section">
                     <caption>
-                        <h3>DOM API and event fundamentals</h3>
+                        <h3 class="DOM">DOM API and event fundamentals</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -352,7 +400,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Data Structures</h3>
+                        <h3 id="DS">Data Structures</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -629,7 +677,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Functions</h3>
+                        <h3 id="functions">Functions</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -797,7 +845,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Object Orientated Programming (OOP)</h3>
+                        <h3 id="OOP">Object Orientated Programming (OOP)</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -820,7 +868,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Asynchronous JavaScript</h3>
+                        <h3 id="async">Asynchronous JavaScript</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -1046,7 +1094,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Modules and tooling</h3>
+                        <h3 id="modules">Modules and tooling</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -1069,7 +1117,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>JS Browser BOM</h3>
+                        <h3 id="BOM">JS Browser BOM</h3>
 
                     </caption>
                     <thead>
@@ -1161,7 +1209,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Regular Expressions</h3>
+                        <h3 id="regEX">Regular Expressions</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -1380,7 +1428,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Error Handling</h3>
+                        <h3 id="error-handling">Error Handling</h3>
                     </caption>
                     <thead>
                         <tr>
@@ -1443,7 +1491,7 @@
             <td>
                 <table class="section">
                     <caption>
-                        <h3>Handy / OTHER APIs </h3>
+                        <h3 id="handy">Handy / OTHER </h3>
                     </caption>
                     <thead>
                         <tr>
@@ -1452,6 +1500,38 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>
+                                Scope: the 4 types
+                                <ol>
+                                    <li>Global scope - > goes to the window (accessible everywhere).</li>
+                                    <li>Function scope (accessible only inside the function Not Outside)</li>
+                                    <li>Block scope. (only starts with es6 and only works with let and const variables, functions are also block scoped in strict mode).</li>
+                                    <li>Lexical - looks to the outer function.</li>
+                                </ol>
+                                <ul>
+                                    <li>One scope can only look up the scope chain, but can Never look down.</li>
+                                    <li>scope has access to variable from all outer scopes. </li>
+                                    <li>let and const are block scoped.</li>
+                                    <li>var is scoped to the surrounding function</li>
+                                </ul>
+                            </td>
+                            <td>Scope and The Scope Chain</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>The "this" keyword/variable. Points to the owner of the function. </li>
+                                    <li>This is NOT static. It depends on how the function is called and its value is only assigned when the function is actually called.</li>
+                                    <li>Methods - this = object that is calling the method.</li>
+                                    <li>Function - this = undefined. (Only in strict mode, Otherwise this = window)</li>
+                                    <li>Arrow functions = this = this of the surrounding function (lexical this) arrows have no this.</li>
+                                    <li>Event listener this = DOM element that the handler is attached to.</li>
+                                </ul>
+                                <h3>'this' does NOT point to the function itself or the variable environment.</h3>
+                            </td>
+                            <td>The this Keyword</td>
+                        </tr>
                         <tr>
                             <td>
                                 <span>'use strict'</span>
@@ -1525,7 +1605,7 @@
                                 </ol>
 
                                 <br>
-                                <a target="_blank" href="https://diagrams.net">diagrams.net</a> for creating good flow charts when building apps
+                                Use <a target="_blank" href="https://diagrams.net">diagrams.net</a> for creating good flow charts when building apps
                             </td>
                             <td>
                                 Problem solving and project planning
