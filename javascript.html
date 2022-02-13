@@ -90,6 +90,7 @@
         }
 
         .to-top {
+            color: black;
             position: fixed;
             right: 0;
             top: 10px;
@@ -104,19 +105,29 @@
             width: 40px;
             border: 1px solid #000;
         }
+
+        @media screen and (max-width:600px) {
+            h1 {
+                font-size: 20px;
+            }
+
+            .center-flex {
+                display: flex;
+                justify-content: center;
+            }
+        }
     </style>
-
-
 
 </head>
 <!-- 
    &lt;  === <
      &emsp;  === big space
-
 -->
 
 <body>
-    <h1>Javascript Cheat sheet & Snippits</h1>
+    <div class="center-flex">
+        <h1>Javascript Cheat sheet & Snippits</h1>
+    </div>
     <nav id="top">
         <ul class="nav-links">
             <li><a href="#DOM">DOM</a></li>
@@ -369,7 +380,7 @@
                                 <br><br>
                                 keyboard/press events are global and are added to document.addEventListener('keydown', function) <br><br>
 
-                                keypress, &emsp; - fires continuously when we press the button,  so we usually use either <span>keydown</span> or keyup but mostly keydown
+                                keypress, &emsp; - fires continuously when we press the button, so we usually use either <span>keydown</span> or keyup but mostly keydown
                             </td>
                             <td>Handling an "Esc" Keypress Event <br>
                                 We should add an escape keydown to close a modal as well as a click</td>
@@ -411,37 +422,98 @@
                     <tbody>
                         <tr>
                             <td>
+                                <b>Objects that can be used in for..of are called iterable.</b><br>
+
+                                <ul>
+                                    <li>Technically, iterables must implement the method named Symbol.iterator.
+                                        <ul>
+                                            <li>The result of obj[Symbol.iterator]() is called an iterator. It handles further iteration process.</li>
+                                            <li>An iterator must have the method named next() that returns an object {done: Boolean, value: any}, here done:true denotes the end of the iteration process, otherwise the value is the next value.
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li> The Symbol.iterator method is called automatically by for..of, but we also can do it directly.</li>
+                                    <li> Built-in iterables like strings or arrays, also implement Symbol.iterator.</li>
+                                    <li>String iterator knows about surrogate pairs.</li>
+                                </ul>
+
+                                <p>
+                                    Objects that have indexed properties and length are called array-like. Such objects may also have other properties and methods, but lack the built-in methods of arrays.
+
+                                </p>
+                                <p>
+                                    If we look inside the specification – we’ll see that most built-in methods assume that they work with iterables or array-likes instead of “real” arrays, because that’s more abstract.
+                                </p>
+                                <p>
+                                    Array.from(obj[, mapFn, thisArg]) makes a real Array from an iterable or array-like obj, and we can then use array methods on it. The optional arguments mapFn and thisArg allow us to apply a function to each item.
+                                </p>
+                                <br><br>
+
+                                <u><b>EXAMPLE</b></u> <br>
+                                <u>Create an array with random value (min, max) length</u> <br><br>
+
+                                let randint = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min; <br>
+
+                                <br>
+                                create_random = { <br>
+                                &emsp; min: -1, <br>
+                                &emsp; max: 90, <br>
+                                &emsp; length: 100, <br>
+                                }; <br> <br>
+
+                                create_random[Symbol.iterator] = function() { <br>
+                                &emsp; return { <br>
+                                &emsp; &emsp; start: 0, <br>
+                                &emsp; &emsp; min: this.min, <br>
+                                &emsp; &emsp; max: this.max, <br>
+                                &emsp; &emsp; length: this.length, <br> <br>
+
+                                &emsp; &emsp; next(){ <br>
+                                &emsp; &emsp; &emsp; this.start++; <br>
+                                &emsp; &emsp; &emsp; <span>return this.start < this.length ? {done:false, value:randint(this.min, this.max)} : {done:true}; </span> <br>
+                                        &emsp; &emsp; } <br>
+                                        &emsp; }; <br>
+                                        }; <br>
+                                        <br>
+                                        <span>let array=Array.from(create_random); console.log(array);</span>
+
+                            </td>
+                            <td>Iterables: What is iterable?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <span>while</span> loop should be used when we do not know the amount of times we need to loop, <br><br>
 
                                 <span>for</span> loop we use when we know how many times we need to loop. <br><br>
 
                                 <span>forEach</span> is the new version of the <span>for (const var of v) loop</span> <br>
-                                <small> But the big difference is that you can NOT break out of a forEach loop! or continue.</small><br> <br>
+                                <small> But the big difference is that you can NOT break out of a forEach loop! or continue.</small><br> <br>
 
-                                for (const m of movements) { <br>
-                                &emsp;   if (m > 0) { <br>
-                                &emsp; &emsp;    console.log(`You deposited ${m}`); <br>
-                                &emsp;   } <br> 
-                                &emsp;else { <br>
-                                    &emsp; &emsp; console.log(`You withdrew ${Math.abs(m)}`); <br>
-                                    &emsp;} <br>
+                                for (const m of movements) { <br>
+                                &emsp; if (m > 0) { <br>
+                                &emsp; &emsp; console.log(`You deposited ${m}`); <br>
+                                &emsp; } <br>
+                                &emsp;else { <br>
+                                &emsp; &emsp; console.log(`You withdrew ${Math.abs(m)}`); <br>
+                                &emsp;} <br>
                                 }
                                 <br> <br>
-                                movements.forEach(function (m) { <br>
-                                &emsp;  if (m > 0) { <br>
-                                 &emsp;&emsp;  console.log(`You deposited ${m}`) <br>
-                                &emsp;  } else { <br>
-                                 &emsp;&emsp;   console.log(`You withdrew ${Math.abs(m)}`) <br>
-                                &emsp;  } <br>
+                                movements.forEach(function (m) { <br>
+                                &emsp; if (m > 0) { <br>
+                                &emsp;&emsp; console.log(`You deposited ${m}`) <br>
+                                &emsp; } else { <br>
+                                &emsp;&emsp; console.log(`You withdrew ${Math.abs(m)}`) <br>
+                                &emsp; } <br>
                                 }); <br><br>
 
                                 <span> how to get index with the for of loop</span> <br>
                                 for (const [i, m] of movements.entries()) { <br>
-                                &emsp;  if (m > 0) { <br>
-                                &emsp;  &emsp;  console.log(`m ${i}: You deposited ${m}`); <br>
-                                &emsp;  } else { <br>
-                                &emsp;  &emsp;  console.log(`m ${i}: You withdrew ${Math.abs(m)}`); <br>
-                                &emsp;  } <br>
+                                &emsp; if (m > 0) { <br>
+                                &emsp; &emsp; console.log(`m ${i}: You deposited ${m}`); <br>
+                                &emsp; } else { <br>
+                                &emsp; &emsp; console.log(`m ${i}: You withdrew ${Math.abs(m)}`); <br>
+                                &emsp; } <br>
                                 }
                                 <br><br>
                                 <span> how to get index with the forEach loop</span> <br>
@@ -455,7 +527,6 @@
                             </td>
                             <td>which loop to use</td>
                         </tr>
-
                         <tr>
                             <td>
                                 <b><u> Destructuring Assignment </u> </b><br>
@@ -511,11 +582,96 @@
                                 <br> <span> New ES6 Destructuring </span><br>
                                 const {name, age, city, sayHello} = person;<br>
                                 <br>
-                                console.log(name, age, city, sayHello());<br>
+                                console.log(name, age, city, sayHello());<br><br><br>
 
+                                <br> <span> Destructuring nested objects </span><br>
+
+                                const openingHours = { <br>
+                                &emsp; sat: { <br>
+                                &emsp;&emsp; open: 0, <br>
+                                &emsp;&emsp; close: 24, <br>
+                                &emsp; },<br>
+                                };<br><br>
+
+                                const {<br>
+                                &emsp; sat: {open, close}<br>
+                                } = openingHours;<br>
+                                <br>
+                                console.log(open, close);
+                                <br>
+                                This is the syntax we would use /// only works with the same name
+
+                                <br><br>
+
+                                <br> <span> Destructuring the parameters in an object method call</span><br>
+
+                                const restaurant = {<br>
+                                &emsp; orderDelivery: function ({ starterIndex, mainIndex, time, address }) {<br>
+                                &emsp; &emsp; console.log(Order received! ${this.starterMenu[starterIndex]} and ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}.`);<br>
+                                &emsp; }<br>
+                                };
+
+                                <br><br>
+                                <b>The names MUST be the same but notice how it doesn't matter which order the parameter are call, JavaScript works it out for us and puts them in the correct order.</b>
+                                <br><br> <u>Call them like this</u><br>
+                                restaurant.orderDelivery({ <br>
+                                &emsp; time: '22:30',<br>
+                                &emsp; address: 'Villa da sol',<br>
+                                &emsp; mainIndex: 2,<br>
+                                &emsp; starterIndex: 2,<br>
+                                });
+
+                                <br><br><br>
+                                To mutate an object you will need to wrap it in () like this <br>
+                                ({ a ,b } = obj);<br>
+
+                                <u><b>nested array destructuring</b></u> <br>
+
+                                const nested = [2, 4, [5, 6] ]; <br>
+                                const [,i , [,j]] = nested; <br><br>
+
+                                <u><b>nested Object destructuring</b></u><br>
+
+                                only works when the name of the variable is exactly the same as the property names that we want to retrieve from the object. (Handy when getting data from API) <br>
+
+                                let recipe = data.data.recipe; // old way <br>
+                                let {recipe} = data.data; // new way with destructuring <br>
+
+                                <b>We do not need to specify empty spaces or order like we with arrays (by using the comma,) as the order does not matter with object destructuring.</b><br>
+
+                                <br><br>
+                                <u><b>How to destructure an object (but give the variables new names)</b></u><br>
+                                const {name : theNewName, openingHours: theNewOpeningHours, categories: typesOfFood} = restaurant; <br> <br>
+
+                                <u>the same but with adding default values just incase anything returns undefined.</u><br>
+
+                                const {
+                                menu = [], openingHours
+                                } = restaurant;
 
                             </td>
                             <td>Destructuring</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                The spread ... operator is similar to destructuring, as it also helps get elements out of arrays (literally). <br>
+                                The spread operator is used where we would other wise use values separated by a comma. <br>
+                                <br>
+                                The rest operator does the opposite of the spread operator. <br> The rest packs things up to a new array whilst the spread spreads them out. <br>
+                                The rest operator is used where we would otherwise use variable names separated by commas
+                                <br> <br>
+                                <u><b>This is how we know what's being used and when to use spread or rest.</b></u>
+                                <br>
+                                <span> SPREAD, because on RIGHT side of = </span> <br>
+                                const arr = [1, 2, ...[3, 4]];<br><br>
+
+                                <span>REST because on LEFT side of = </span><br>
+                                const [a, b, ...other] = [1, 2, 3, 4, 5];<br> <br>
+                                <b>The rest item must be the last element in the array else it will throw an error.</b> <br> <br>
+                                Use ...spread when we don't know how many parameters are being put into a function from an array.
+
+                            </td>
+                            <td>The difference between the rest and the spread operator</td>
                         </tr>
                         <tr>
                             <td>
@@ -560,10 +716,22 @@
                                 <br>
                                 <br>
                                 <span>Convert SET TO ARRAY </span><br>
-                                const setArr = Array.from(set1);<br>
+                                const setArr = Array.from(set1);<br><br> <br>
+                                <ul>
+                                    <li> Sets are like arrays, but there items must be unique and any non unique items will be removed from the array. There order is also irrelevant unlike the array.</li>
+                                    <li>Store unique values of any type, sets are not key value pairs they are just single value </li>
+                                    <li>we can never retrieve items out of a set! we should use an array if we want to do this, although sets are iterable.</li>
+                                    <li>Sets are just for storing data. We can only check if an item exists inside of the set with the .has method</li>
+                                    <li>We use .size rather than .length to find out how many items we have inside of the set. </li>
+                                    <li>it also uses a .has method which is similar to the .includes method that we use on arrays. </li>
+                                    <li>A set can be any iterable item, so we can also use them with strings.</li>
+                                    <li>The main use case for sets would be to remove duplicate items from an array. </li>
+                                </ul>
                             </td>
 
-                            <td> <u><b> SETS </b></u> <br> Store unique values of any type, sets are not key value pairs they are just single value</td>
+                            <td> <u><b>SETS</b></u> <br> <br><br>
+
+                            </td>
                         </tr>
                         <tr>
                             <td>
@@ -662,10 +830,15 @@
                                 <br> // Symbols are ignored by JSON.stringify<br>
                                 console.log(JSON.stringify({key: 'prop'}));<br>
                                 console.log(JSON.stringify({[Symbol('test')]: 'prop'})); // just shows as an empty object.<br> </td>
-                            <td>Symbol() <br> For Unique Object Keys</td>
+                            <td>Symbol() - Symbols<br> For Unique Object Keys</td>
                         </tr>
                         <tr>
-                            <td></td>
+                            <td>
+                                Use arrays most of the time over sets but use a set if you need to remove duplicates from arrays or if you need to work with unique values <br><br>
+                                Use objects when you need to include functions, (this can not be done with maps) or when working with JSON.
+                                <br><br>
+                                Use maps when you want to use keys that are NOT strings or when you simply need to map key to values. </td>
+                            <td>When to use arrays vs sets && maps vs objects</td>
                         </tr>
                     </tbody>
                 </table>
@@ -730,7 +903,40 @@
                             </td>
                             <td>function declaration vs function expression</td>
                         </tr>
+                        <tr>
+                            <td>You can create a function to return an array when you want to return more than one thing. <br><br>
 
+                                // ES6 method in an object. <br><br>
+                                order(starterIndex, mainIndex) {<br>
+                                &emsp; return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];<br>
+                                },
+                            </td>
+                            <td>Make a function return more than one thing by returning an array</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>// Before, using ES5...<br></span>
+                                function greetES5(message, to) { <br>
+                                &emsp; // Test parameter values in the function body, specifying a default <br>
+                                &emsp; to = to || 'DOM'; <br>
+                                &emsp; // OR if (typeof to === undefined) { to = 'DOM'; } <br>
+                                &emsp; // OR if (arguments.length === 1) { to = 'DOM'; } <br>
+                                &emsp; ChromeSamples.log(message + ', ' + to); <br>
+                                }<br>
+                                greetES5('Good morning'); <br>
+                                greetES5('Sup', 'CSS'); <br> <br>
+
+                                <span>// After using ES2015/ES6...</span> <br>
+                                // Define default parameter values in the function head <br>
+                                function greet(message, to = 'DOM') { <br>
+                                &emsp; ChromeSamples.log(message + ', ' + to); <br>
+                                } <br>
+
+                                greet('Good morning');<br>
+                                greet('Sup', 'CSS');
+
+                            <td>Default parameters in functions ES5 & ES6 way</td>
+                        </tr>
                         <tr>
                             <td> <b><u> ITERATOR EXAMPLE </u> </b> <br><br>
                                 function nameIterator (names){<br>
@@ -760,7 +966,6 @@
                                     console.log(namesTest.next().value);<br>
                                     <br>
                                     <br>
-
 
                                     <span> <b>
                                             <u>Profile Iterator (good for carousel) </span></u>
@@ -813,7 +1018,6 @@
                                         <br> // returns Undefined<br>
                                         console.log(testGenerator.next().value);<br> <br>
 
-
                                         <br> // ID Creator<br>
                                         function* CreateIds(){<br>
                                         &emsp; let index = 0;<br>
@@ -833,6 +1037,31 @@
                                         <br> // 2<br> <br>
                             </td>
                             <td>Iterators and Generators</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <u><b>.call</b></u> <br><br>
+
+                                .call invokes right away and lets us change where the this keyword points, <br>
+                                we need to enter the original function parameters into the call <br>
+                                it takes where we want it to point as the first argument, the other arguments are the default parameters that the object would normally take<br>
+                                <br> <u>Example 1</u> <br>
+                                <br><br>
+
+                                const book = lufthansa.book; <br><br>
+
+                            </td>
+                            <td>.call / .bind / .apply Methods</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>First class functions</span> is just a feature that a programming language either has or does not have. (There is no such thing in practice) <br>
+                                This concept is true for JavaScript as functions return a value and are objects. <br>
+                                They are treated as first class citizens. <br><br>
+
+                                <span>Higher Order functions</span> is an actual thing that there is in practice. <br>
+                                They are a function that either takes in another function (clickhandler, callback) or one that returns a function (recursive).</td>
+                            <td>First-Class function and Higher-Order Functions - What are they?</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1524,8 +1753,8 @@
                                     <li>The "this" keyword/variable. Points to the owner of the function. </li>
                                     <li>This is NOT static. It depends on how the function is called and its value is only assigned when the function is actually called.</li>
                                     <li>Methods - this = object that is calling the method.</li>
-                                    <li>Function - this = undefined. (Only in strict mode, Otherwise this = window)</li>
-                                    <li>Arrow functions = this = this of the surrounding function (lexical this) arrows have no this.</li>
+                                    <li>Function - this = undefined. (Only in strict mode, Otherwise this = window)</li>
+                                    <li>Arrow functions = this = this of the surrounding function (lexical this) arrows have no this.</li>
                                     <li>Event listener this = DOM element that the handler is attached to.</li>
                                 </ul>
                                 <h3>'this' does NOT point to the function itself or the variable environment.</h3>
@@ -1556,6 +1785,57 @@
                         </tr>
                         <tr>
                             <td>
+                                const rest1 = { <br>
+                                name: 'Capri', <br>
+                                numGuests: 0,<br>
+                                };
+                                <br> <br>
+                                const rest2 = {<br>
+                                name: 'La Plazza',<br>
+                                owner: 'Will Rossi'<br>,
+                                };<br><br>
+
+                                //// OR assignment operator. (does not work like this if comparing to 0 as 0 = falsy)<br>
+                                // rest1.numGuests = rest1.numGuests || 10;<br>
+                                // rest2.numGuests = rest2.numGuests || 10;<br>
+                                <br>
+                                <br> //// new logical assignment operator. ES2021 (does not work like this if comparing to 0 as 0 = falsy)<br>
+                                // rest1.numGuests ||= 10;<br>
+                                // rest2.numGuests ||= 10;<br> <br>
+
+                                <br> //// We should use the nullish assignment operator if we are comparing to 0. as it will not set 0 to falsy and will only set null or undefined to false)<br>
+                                rest1.numGuests ??= 10;<br>
+                                rest2.numGuests ??= 10;<br> <br>
+                                ?? works like the || but only short circuits with null or undefined, it will not short circuit with 0 or " " empty string
+
+                                <br><br>
+                                <span>use optional chaining and the nullish coalescing operators together.</span><br>
+
+                                console.log(restaurant.orderRissoto?.(0, 2) ?? 'Method does not exist.'); <br>
+
+                                console.log(users[0]?.name ?? 'User array empty');
+                            </td>
+                            <td>
+                                Nullish assignment operator and when to use for short circuiting
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Whenever we call a method on a string, JavaScript will behind the scenes convert the string primitive into a string object so that we can use methods on it. This is process called boxing. <br>
+                                As it takes our string and puts it into the box which is the object. it calls the new String('string'); function <br><br>
+                                strings can NOT be mutated as they are primitive! we must store the data into a new variable.
+
+                                <br> <br><br>
+                                We can not use splice on a string as it is destructive, we must use slice instead as it does not manipulate the original string.
+                                <br> <br><br>
+                            </td>
+                            <td>
+                                <ul>strings</ul> <br>
+                                What happens when we call a method on a string (boxing).
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 A single vibration <br>
                                 window.navigator.vibrate(200); <br><br>
 
@@ -1568,7 +1848,6 @@
                             </td>
                             <td>Vibration API</td>
                         </tr>
-
                         <tr>
                             <td>
                                 typeof null === 'object <br>
@@ -1591,12 +1870,10 @@
 
                             <td>The difference between null and undefined</td>
                         </tr>
-
                         <tr>
                             <td>the ! (NOT) operator has precedence over the && , ||</td>
                             <td>Boolean logic</td>
                         </tr>
-
                         <tr>
                             <td>
                                 <ol>
@@ -1611,7 +1888,6 @@
                                 Problem solving and project planning
                             </td>
                         </tr>
-
                     </tbody>
                 </table>
             </td>
