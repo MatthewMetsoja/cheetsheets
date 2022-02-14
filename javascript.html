@@ -1040,18 +1040,115 @@
                         </tr>
                         <tr>
                             <td>
-                                <u><b>.call</b></u> <br><br>
 
-                                .call invokes right away and lets us change where the this keyword points, <br>
-                                we need to enter the original function parameters into the call <br>
-                                it takes where we want it to point as the first argument, the other arguments are the default parameters that the object would normally take<br>
-                                <br> <u>Example 1</u> <br>
-                                <br><br>
+                                They all attach this into function (or object) and the difference is in the function invocation <br>
 
-                                const book = lufthansa.book; <br><br>
+                                <ul>
+                                    <li>Call invokes the function and allows you to pass in arguments one by one.</li>
+                                    <li>Apply invokes the function and allows you to pass in arguments as an array.</li>
+                                    <li>Bind returns a new function, allowing you to pass in a this array and any number of arguments.</li>
+                                </ul>
+
+                                Use .bind() when you want that function to later be called with a certain context, useful in events. <br> <br>
+
+                                Use .call() or .apply() when you want to invoke the function immediately, and modify the context. <br>
+                                Call/apply call the function immediately, whereas bind returns a function that, when later executed, will have the correct context set for calling the original function. <br>
+                                This way you can maintain context in async callbacks and events. <br><br><br>
+
+                                <u><b>Apply vs. Call vs. Bind Examples</b></u> <br>
+
+                                <span><b>Call</b></span><br><br>
+
+                                var person1 = { firstName: 'Jon', lastName: 'Kuperman'};<br>
+                                var person2 = {firstName: 'Kelly', lastName: 'King'};<br><br>
+
+                                function say(greeting) {<br>
+                                &emsp; console.log(greeting + ' ' + this.firstName + ' ' + this.lastName);<br>
+                                }<br><br>
+
+                                say.call(person1, 'Hello'); // Hello Jon Kuperman<br>
+                                say.call(person2, 'Hello'); // Hello Kelly King<br><br><br>
+
+
+                                <span><b>Apply</b></span><br><br>
+
+                                var person1 = {firstName: 'Jon', lastName: 'Kuperman'};<br>
+                                var person2 = {firstName: 'Kelly', lastName: 'King'};<br>
+
+                                function say(greeting) {<br>
+                                console.log(greeting + ' ' + this.firstName + ' ' + this.lastName);<br>
+                                }<br><br>
+
+                                say.apply(person1, ['Hello']); // Hello Jon Kuperman<br>
+                                say.apply(person2, ['Hello']); // Hello Kelly King<br><br><br>
+
+                                <span><b>Bind</b></span><br><br>
+                                <u> Example 1 </u><br>
+                                var person1 = {firstName: 'Jon', lastName: 'Kuperman'};<br>
+                                var person2 = {firstName: 'Kelly', lastName: 'King'};<br>
+
+                                function say() {<br>
+                                &emsp; console.log('Hello ' + this.firstName + ' ' + this.lastName);<br>
+                                }<br><br>
+
+                                var sayHelloJon = say.bind(person1);<br>
+                                var sayHelloKelly = say.bind(person2);<br><br>
+
+                                sayHelloJon(); // Hello Jon Kuperman<br>
+                                sayHelloKelly(); // Hello Kelly King<br><br><br>
+
+                                <u>Example 2</u><br>
+                                <br>
+                                var multiby2 = multiplication.bind(this,2); <br>
+
+                                Now multiby2(b) is equal to multiplication(2,b); <br>
+
+                                multiby2(3); //6 <br>
+                                multiby2(4); //8 <br> <br>
+
+                                What if I pass both the parameters in bind? <br>
+
+                                var getSixAlways = multiplication.bind(this,3,2); <br>
+                                Now getSixAlways() is equal to multiplication(3,2); <br> <br>
+
+                                getSixAlways();//6 <br>
+                                even passing parameter returns 6; getSixAlways(12); //6 <br> <br>
+
+                                var magicMultiplication = multiplication.bind(this); <br>
+                                This create a new multiplication function and assigns it to magicMultiplication. <br>
+
+                                Oh no, we are hiding the multiplication functionality into magicMultiplication. <br>
+
+                                calling magicMultiplication returns a blank function b() <br>
+
+                                on execution it works fine magicMultiplication(6,5); //30 <br> <br>
+
+                                <span>How about call and apply?</span> <br>
+
+                                magicMultiplication.call(this,3,2); //6 <br>
+
+                                magicMultiplication.apply(this,[5,2]); //10 <br><br><br>
+
+                                <span><b>When To Use Each?</b></span><br><br>
+
+                                Call and apply are pretty interchangeable. Just decide whether it’s easier to send in an array or a comma separated list of arguments. <br>
+
+                                Its good to remember which one is which by remembering that Call is for comma (separated list) and Apply is for Array. <br>
+
+                                Bind is a bit different. It returns a new function. <br>
+                                Call and Apply execute the current function immediately. <br>
+
+                                Bind is great for a lot of things. We can use it to curry functions like in the above example. <br> We can take a simple hello function and turn it into a helloJon or helloKelly. <br>
+                                We can also use it for events like onClick where we don’t know when they’ll be fired but we know what context we want them to have. <br> <br>
+                                // we need to bind else this will point to the element that is clicked (this.options.join) <br>
+                                document.querySelector('.btn').addEventListener('click', poll2.registerNewAnswer.bind(poll2));
+                                <br>
+                                <blockquote> Comparison between function objects, function calls, call/apply and bind</blockquote>
+                                <img height="450" width="450" src="./resources/apply-call-bind.jpg">
 
                             </td>
-                            <td>.call / .bind / .apply Methods</td>
+                            <td> .call() & .apply() vs .bind() <br> <br>
+                                <b>What do they do and which one should I use?</b></td>
                         </tr>
                         <tr>
                             <td>
