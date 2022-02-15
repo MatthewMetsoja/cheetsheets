@@ -299,7 +299,6 @@
                         </tr>
                         <tr>
                             <td>
-
                                 var elt = document.getElementById('foo'); <br>
                                 console.log(elt.nodeName); <br> Note that nodeName returns the element name capitalized
                                 and without the angle brackets, <br><br> which means that if you want to check if an
@@ -312,7 +311,22 @@
                                     nodeName</strong> is the attribute you are looking for. check example on left <br>
                             </td>
                         </tr>
-
+                        <tr>
+                            <td>
+                                textContent and innerHTML are similar, but
+                                <ul>
+                                    <li>
+                                        innerHTML will return everything HTML tags included, <br>
+                                    </li>
+                                    <li>
+                                        textContent will just return the text
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                textContent VS innerHTML
+                            </td>
+                        </tr>
                         <tr>
                             <td>The <span>mouseover / mouseout </span> event triggers when the mouse pointer enters the
                                 parent element, and its child elements. <br><br>
@@ -420,6 +434,107 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <tr>
+                            <td>
+                                slice -> slices a chunk from an array, but does NOT mutate the original. <br>
+
+                                splice -> is mainly used for deleting elements from an array as it mutate the original array when we use it.
+                            </td>
+                            <td>
+                                Slice vs Splice (Arrays)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                arr.at is a new es2022 method that makes it easier to get the last element of an array <br><br>
+
+                                arr[arr.length - 1]; // old way <br>
+                                arr.slice(-1)[0]; // 2nd old way <br>
+                                arr.at(-1); // new way! <br> <br>
+
+                                The new at method also works on strings!
+                            </td>
+                            <td>
+                                The new at Method(Arrays)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                The concat() method is used to merge two or more arrays. <br> This method does not change the existing arrays, but instead returns a new array. <br><br>
+                                const array1 = ['a', 'b', 'c']; <br>
+                                const array2 = ['d', 'e', 'f']; <br>
+                                const array3 = array1.concat(array2); <br> <br>
+
+                                console.log(array3); <br>
+                                // expected output: Array ["a", "b", "c", "d", "e", "f"]
+
+                            </td>
+                            <td>
+                                array.concat() (Arrays)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                map, filter, reduce, find -> array methods that work like the forEach method. <br>
+                                <ul>
+                                    <li>map - returns a new array containing the results of applying an operation on all original array elements. <br>
+                                        if we want a new array the same length as the original we use map</li>
+                                    <li>filter - returns a new array containing the array elements that passed a specified test condition.</li>
+                                    <li>reduce - boils ("reduces") all array elements down to one single value (eg. adding all elements together) uses acc + current
+                                    </li>
+                                    <li>find</li>
+                                </ul>
+                                <span><b><u>map</u></b> </span><br>
+                                forEach mutates the original array whilst .map creates a new one. <br><br>
+
+                                <b>Pass a function to Array.map</b><br>
+                                _generateMarkUp() {<br>
+                                return this._data.map(this._generateMarkUpPreview).join('');<br>
+                                }<br><br>
+
+                                <span>Use Functions to generate HTML markup when possible!</span><br>
+                                _generateMarkUpPreview() {<br>
+                                return `<br>
+                                &emsp; &lt;li class="preview"><br>
+                                &emsp; &emsp; &lt; a class="preview__link" href="#23456"><br>
+                                &emsp; &emsp;&emsp; &lt;figure class="preview__fig"><br>
+                                &emsp; &emsp;&emsp;&emsp; &lt; img src="src/img/test-1.jpg" alt="Test" /><br>
+                                &emsp; &emsp;&emsp; &lt;/figure><br>
+                                &emsp; &emsp; &lt;/a><br>
+                                &emsp; &lt;/li>`;<br>
+                                }
+
+                                <br><br>
+
+                                <span><b><u>reduce</u></b> </span><br>
+                                The initial value is the value of the total parameter when the reduction starts. <br>
+                                You set the initial value by adding a comma followed by your initial value inside the parentheses but after the curly braces. <br><br>
+
+                                const average = euros.reduce((total, amount, index, array) => {<br>
+                                &emsp; total += amount<br>
+                                &emsp; return total/array.length<br>
+                                }, 0);<br><br>
+                                <br> By omitting the initial value ",0 )", the total will default to the first amount in the array. <br><br>
+
+                                <span><b><u>.find / .filter</u></b> </span><br>
+                                array.filter and array.find are pretty similar but the key difference is that
+                                <ul>
+                                    <li>.filter returns all elements that meet the specified condition and returns a new array </li>
+                                    <li> .find method only returns the first one and returns the element itself (not a new array).</li>
+                                </ul>
+                                <br>
+                                <b>We can use the .find method to find a object in an array of objects when the object meets a certain condition.</b><br>
+
+                                const accountJess = accounts.find(acc => acc.owner === 'Jessica Davis'); <br>
+                                console.log(accountJess);
+
+                                <br>
+
+                            </td>
+                            <td>
+                                Data Transformations: map, filter, reduce (Arrays)
+                            </td>
+                        </tr>
                         <tr>
                             <td>
                                 <b>Objects that can be used in for..of are called iterable.</b><br>
@@ -559,7 +674,6 @@
                                 [name1, name2, name3 ] = getPeople(); <br> <br>
 
                                 console.log(name1, name2, name3); <br> <br>
-
 
                                 <b><u> Object Destructuring </u> </b> <br>
                                 const person = { <br>
@@ -933,9 +1047,30 @@
                                 } <br>
 
                                 greet('Good morning');<br>
-                                greet('Sup', 'CSS');
+                                greet('Sup', 'CSS'); <br> <br>
+                                it's always best to pass data into a function rather that have it in the global scope <br> <br>
+
+                                const displayMovements = function(movements){} <br> <br>
+
+                                displayMovements(account1.movements) <br>
 
                             <td>Default parameters in functions ES5 & ES6 way</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Arrow functions allow you to have an implicit return: values are returned without having to use the return keyword. <br> <br>
+
+                                It works when there is a on-line statement in the function body: <br> <br>
+
+                                Otherwise you will still need to add return if the code includes curly brackets {a block}<br> <br>
+
+                                Implicit return, but only if there is no block.
+                                <ul>
+                                    <li>This will result in errors when a one-liner expands to multiple lines and the programmer forgets to add a return.</li>
+                                    <li> Implicit return is syntactically ambiguous. (name) => {id: name}returns the object {id: name}... right? Wrong. It returns undefined. Those braces are an explicit block. id: is a label.</li>
+                                </ul>
+                            </td>
+                            <td>Arrow functions</td>
                         </tr>
                         <tr>
                             <td> <b><u> ITERATOR EXAMPLE </u> </b> <br><br>
@@ -1040,9 +1175,7 @@
                         </tr>
                         <tr>
                             <td>
-
                                 They all attach this into function (or object) and the difference is in the function invocation <br>
-
                                 <ul>
                                     <li>Call invokes the function and allows you to pass in arguments one by one.</li>
                                     <li>Apply invokes the function and allows you to pass in arguments as an array.</li>
@@ -1152,6 +1285,38 @@
                         </tr>
                         <tr>
                             <td>
+                                Scope: the 4 types
+                                <ol>
+                                    <li>Global scope - > goes to the window (accessible everywhere).</li>
+                                    <li>Function scope (accessible only inside the function Not Outside)</li>
+                                    <li>Block scope. (only starts with es6 and only works with let and const variables, functions are also block scoped in strict mode).</li>
+                                    <li>Lexical - looks to the outer function.</li>
+                                </ol>
+                                <ul>
+                                    <li>One scope can only look up the scope chain, but can Never look down.</li>
+                                    <li>scope has access to variable from all outer scopes. </li>
+                                    <li>let and const are block scoped.</li>
+                                    <li>var is scoped to the surrounding function</li>
+                                </ul>
+                            </td>
+                            <td>Scope and The Scope Chain</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>The "this" keyword/variable. Points to the owner of the function. </li>
+                                    <li>This is NOT static. It depends on how the function is called and its value is only assigned when the function is actually called.</li>
+                                    <li>Methods - this = object that is calling the method.</li>
+                                    <li>Function - this = undefined. (Only in strict mode, Otherwise this = window)</li>
+                                    <li>Arrow functions = this = this of the surrounding function (lexical this) arrows have no this.</li>
+                                    <li>Event listener this = DOM element that the handler is attached to.</li>
+                                </ul>
+                                <h3>'this' does NOT point to the function itself or the variable environment.</h3>
+                            </td>
+                            <td>The this Keyword</td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <span>First class functions</span> is just a feature that a programming language either has or does not have. (There is no such thing in practice) <br>
                                 This concept is true for JavaScript as functions return a value and are objects. <br>
                                 They are treated as first class citizens. <br><br>
@@ -1159,6 +1324,27 @@
                                 <span>Higher Order functions</span> is an actual thing that there is in practice. <br>
                                 They are a function that either takes in another function (clickhandler, callback) or one that returns a function (recursive).</td>
                             <td>First-Class function and Higher-Order Functions - What are they?</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span><u><b>Closure = Variable environment attached to the function, exactly as it is and was at the time of creation.</b></u></span> <br><br>
+                                <ul>
+                                    <li>A closure gives a function access to all of the variables of its parent function, even after that function has returned. The function keeps reference to its outer scope, which preserves the scope chain throughout time.</li>
+                                    <li>A function has access to the variable environment of the execution content in which it was created.</li>
+                                    <li>closure has priority over the scope chain! .. Closure has priority over all, it is like a rucksack that carrys round its the variables that were with it when it was born, even after they have moved on.</li>
+                                    <li>reassigning functions creates a closure</li>
+                                    <li>SetTimeout is a good example of closure. It gets access to the outer Variable environment long after it has gone from the stack.</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <b>Closures</b> <br>
+                                What is a closure?
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>IFFE - are used when we want to execute a function once, <br>
+                                they used to be used for encapsulation but no so much anymore since es6 and the introduction of let, const and block scope.</td>
+                            <td>IFFEs (Immediately Invoked Function Expressions)</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1826,38 +2012,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                Scope: the 4 types
-                                <ol>
-                                    <li>Global scope - > goes to the window (accessible everywhere).</li>
-                                    <li>Function scope (accessible only inside the function Not Outside)</li>
-                                    <li>Block scope. (only starts with es6 and only works with let and const variables, functions are also block scoped in strict mode).</li>
-                                    <li>Lexical - looks to the outer function.</li>
-                                </ol>
-                                <ul>
-                                    <li>One scope can only look up the scope chain, but can Never look down.</li>
-                                    <li>scope has access to variable from all outer scopes. </li>
-                                    <li>let and const are block scoped.</li>
-                                    <li>var is scoped to the surrounding function</li>
-                                </ul>
-                            </td>
-                            <td>Scope and The Scope Chain</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <ul>
-                                    <li>The "this" keyword/variable. Points to the owner of the function. </li>
-                                    <li>This is NOT static. It depends on how the function is called and its value is only assigned when the function is actually called.</li>
-                                    <li>Methods - this = object that is calling the method.</li>
-                                    <li>Function - this = undefined. (Only in strict mode, Otherwise this = window)</li>
-                                    <li>Arrow functions = this = this of the surrounding function (lexical this) arrows have no this.</li>
-                                    <li>Event listener this = DOM element that the handler is attached to.</li>
-                                </ul>
-                                <h3>'this' does NOT point to the function itself or the variable environment.</h3>
-                            </td>
-                            <td>The this Keyword</td>
-                        </tr>
+
                         <tr>
                             <td>
                                 <span>'use strict'</span>
@@ -1873,10 +2028,6 @@
                                         Fixes mistakes that make it difficult for JavaScript engines to perform optimizations: strict mode code can sometimes be made to run faster than identical code that's not strict mode.</li>
                                     <li>Prohibits some syntax likely to be defined in future versions of ECMAScript.</li>
                                 </ol>
-
-
-
-
                             </td>
                             <td>Activating Strict Mode </td>
                         </tr>
@@ -1910,10 +2061,11 @@
 
                                 console.log(restaurant.orderRissoto?.(0, 2) ?? 'Method does not exist.'); <br>
 
-                                console.log(users[0]?.name ?? 'User array empty');
-                            </td>
-                            <td>
-                                Nullish assignment operator and when to use for short circuiting
+                                console.log(users[0]?.name ?? 'User array empty'); <br><br>
+                                <u>Another Example</u> <br>
+                                // register answer (&& keeps going till a condition is false) <br>
+                                typeof answer === 'number' && answer < this.options.length && this.answers[answer]++; </td> <td>
+                                    Short circuiting && Nullish assignment operator ??
                             </td>
                         </tr>
                         <tr>
