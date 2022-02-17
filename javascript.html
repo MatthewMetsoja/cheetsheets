@@ -395,8 +395,11 @@
                                 keyboard/press events are global and are added to document.addEventListener('keydown', function) <br><br>
 
                                 keypress, &emsp; - fires continuously when we press the button, so we usually use either <span>keydown</span> or keyup but mostly keydown
+
+                                <br><br>
+                                Listening to 'submit' on a form will handle click and enter although enter also counts as a click.
                             </td>
-                            <td>Handling an "Esc" Keypress Event <br>
+                            <td>Handling an "Esc" Keypress Event<br>
                                 We should add an escape keydown to close a modal as well as a click</td>
                         </tr>
                         <tr>
@@ -426,6 +429,8 @@
                 <table class="section">
                     <caption>
                         <h3 id="DS">Data Structures</h3>
+                        <br>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener noreferrer">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array</a>
                     </caption>
                     <thead>
                         <tr>
@@ -436,28 +441,42 @@
                     <tbody>
                         <tr>
                             <td>
-                                slice -> slices a chunk from an array, but does NOT mutate the original. <br>
+                                <b> <span> slice</span> -> slices a chunk from an array, but does NOT mutate the original.</b> <br>
+                                <u>slice example</u><br><br>
+                                const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];<br>
 
-                                splice -> is mainly used for deleting elements from an array as it mutate the original array when we use it.
+                                console.log(animals.slice(2));<br>
+                                // expected output: Array ["camel", "duck", "elephant"]<br><br>
+
+                                console.log(animals.slice(2, 4));<br>
+                                // expected output: Array ["camel", "duck"]<br><br>
+
+                                console.log(animals.slice(-2));<br>
+                                // expected output: Array ["duck", "elephant"]<br><br>
+
+                                console.log(animals.slice(2, -1));<br>
+                                // expected output: Array ["camel", "duck"]<br><br>
+
+                                <b><span> splice</span> -> is mainly used for deleting elements from an array as it mutate the original array when we use it.</b>
+                                <br><br>
+                                <u>splice example</u><br>
+                                const months = ['Jan', 'March', 'April', 'June'];<br>
+                                months.splice(1, 0, 'Feb');<br>
+                                // inserts at index 1<br>
+                                console.log(months);<br>
+                                // expected output: Array ["Jan", "Feb", "March", "April", "June"]<br><br>
+
+                                months.splice(4, 1, 'May');<br>
+                                // replaces 1 element at index 4<br>
+                                console.log(months);<br>
+                                // expected output: Array ["Jan", "Feb", "March", "April", "May"]<br>
                             </td>
                             <td>
                                 Slice vs Splice (Arrays)
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-                                arr.at is a new es2022 method that makes it easier to get the last element of an array <br><br>
 
-                                arr[arr.length - 1]; // old way <br>
-                                arr.slice(-1)[0]; // 2nd old way <br>
-                                arr.at(-1); // new way! <br> <br>
 
-                                The new at method also works on strings!
-                            </td>
-                            <td>
-                                The new at Method(Arrays)
-                            </td>
-                        </tr>
                         <tr>
                             <td>
                                 The concat() method is used to merge two or more arrays. <br> This method does not change the existing arrays, but instead returns a new array. <br><br>
@@ -529,10 +548,122 @@
                                 console.log(accountJess);
 
                                 <br>
+                                do NOT chain methods that mutate the original array. eg splice, reverse. <br>
+                                Also try to minimize the amount of chaining at any possible opportunity especially on big arrays.
+                                <br>
 
                             </td>
                             <td>
-                                Data Transformations: map, filter, reduce (Arrays)
+                                Data Transformations: map, filter, reduce (Arrays) <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>Array.flat()</span><br>
+                                Using Flat() method in Javascript<br>
+                                It concatenates all the elements of the given multidimensional array, and flats upto the specified depth. <br>
+                                By default, the depth limit is 1. It can be 1 to Infinity. <br>
+
+                                array.flat() only goes one layer deep when flattening the array. <br>
+
+                                array.flat(2 will go 2 layers deep. <br>
+                                <br>
+                                <span>flatMap()</span> <br>
+                                flatMap() truly does only go 1 layer deep and if we do need to go any deeper then we will need to use the flat method. <br>
+                                Flat map first runs the map function then flatten the array after. <br><br>
+
+                                //// Flat map (maps first and then flattens after) <br>
+                                let arr1 = [1, 2, 3, 4]; <br> <br>
+
+                                arr1.map(x => [x * 2]); <br>
+                                // [[2], [4], [6], [8]] <br> <br>
+
+                                arr1.flatMap(x => [x * 2]); <br>
+                                // [2, 4, 6, 8] <br> <br>
+
+                                // only one level is flattened <br>
+                                arr1.flatMap(x => [[x * 2]]); <br>
+                                // [[2], [4], [6], [8]] <br> <br>
+
+
+                                Array.from also takes a .map as the second argument. <br> <br>
+
+                                labelBalance.addEventListener('click', function () { <br>
+                                &emsp; const movementsUI = Array.from( <br>
+                                &emsp; &emsp; document.querySelectorAll('.movements__value'), <br>
+                                &emsp; el => el.textContent.replace('£', '') <br>
+                                ); <br>
+
+                                console.log(movementsUI);
+                                });
+
+                                <br> <br>
+                                Another way we could have done this is with the spread operator but then we would have had to use the map method separately.
+                                <br>
+                                const movementsUI = [...document.querySelectorAll('.movements__value')]
+
+
+                            </td>
+                            <td>flat / flatMap / Array.from (Arrays)</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li>array.findIndex returns the index</li>
+                                    <li>array.find will return just the element itself.</li>
+                                </ul>
+                                <b>
+                                    They are quite similar to the <span>array.indexOf and array.index methods</span> but the only difference being <br>
+                                    that we enter complex conditions for the call back function to search for and It will return the <br>
+                                    element that meets the specified condition that we set. <br><br>
+                                </b>
+                                const index = accounts.findIndex(function (acc) { <br>
+                                &emsp; return acc.username === currentAccount.username; <br>
+                                });<br>
+
+                                console.log(accounts[index]); <br><br>
+
+                                const receiverAccount = accounts.find(<br>
+                                &emsp; acc => acc.username === inputTransferTo.value<br>
+                                );<br>
+                            </td>
+                            <td>array.findIndex & array.find Methods</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                /// <span>INCLUDES</span> (returns boolean) <br>
+                                console.log(test.includes(450));<br><br>
+
+                                // <span>SOME</span> true if any/some elements in the array meet our CONDITION<br>
+                                console.log(test.some(el => el === 70));<br><br>
+
+                                // <span>EVERY</span> true if all elements in the array meet our CONDITION<br>
+                                console.log(test.every(el => el > 0));<br><br>
+
+                                // <span>EVERY</span> with a separate callback<br>
+                                const deposit = mov => mov > 0;<br>
+                                console.log(test.every(deposit));<br>
+
+                                More array methods and also passing a separate callback function rather than writing it inside the method. <br>
+                                (Good for the DRY principle) if we keep writing the same code.
+
+                            </td>
+                            <td>
+                                .includes / .some / .every (Arrays)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                arr.at is a new es2022 method that makes it easier to get the last element of an array <br><br>
+
+                                arr[arr.length - 1]; // old way <br>
+                                arr.slice(-1)[0]; // 2nd old way <br>
+                                arr.at(-1); // new way! <br> <br>
+
+                                The new at method also works on strings!
+                            </td>
+                            <td>
+                                The new at Method(Arrays)
                             </td>
                         </tr>
                         <tr>
@@ -2064,9 +2195,43 @@
                                 console.log(users[0]?.name ?? 'User array empty'); <br><br>
                                 <u>Another Example</u> <br>
                                 // register answer (&& keeps going till a condition is false) <br>
-                                typeof answer === 'number' && answer < this.options.length && this.answers[answer]++; </td> <td>
-                                    Short circuiting && Nullish assignment operator ??
+                                typeof answer === 'number' && answer < this.options.length && this.answers[answer]++; <br><br><br>
+                                    <b>The assignment operator works from <span>right to left</span> so we are able to clear 2 fields at the same time <br>
+                                        or set multiple values when we want the to be the same instead of writing multiple lines of code. </b><br> <br>
+                                    Here is an example inputLoginUsername.value = inputLoginPin.value = ' '; <br><br>
+
+                                    It will start by assigning the empty string to inputLoginPin.value to ' '/ the empty string. next it will assign inputLoginPin.value which now = ''/empty string to inputLoginUsername.value.
                             </td>
+                            <td>
+                                Short circuiting && Nullish assignment operator ??
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>switch (true) {
+                                case liCount == 0:
+                                setLayoutState('start');
+                                var api = $('#UploadList').data('jsp');
+                                api.reinitialise();
+                                break;
+                                case liCount<=5 && liCount>0:
+                                    setLayoutState('upload1Row');
+                                    var api = $('#UploadList').data('jsp');
+                                    api.reinitialise();
+                                    break;
+                                    case liCount<=10 && liCount>5:
+                                        setLayoutState('upload2Rows');
+                                        var api = $('#UploadList').data('jsp');
+                                        api.reinitialise();
+                                        break;
+                                        case liCount>10:
+                                        var api = $('#UploadList').data('jsp');
+                                        api.reinitialise();
+                                        break;
+                                        }
+                                        The only thing necessary is switch(true){...} and for your case expressions to evaluate to booleans.</td>
+                            <td>Using switch over if else to evaluate to booleans. <br>
+                                Use with caution, because it is a non-standard pattern, despite being valid code.</td>
                         </tr>
                         <tr>
                             <td>
