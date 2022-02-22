@@ -131,7 +131,8 @@
     <nav id="top">
         <ul class="nav-links">
             <li><a href="#DOM">DOM</a></li>
-            <li><a href="#DS">Data Structures</a></li>
+            <li><a href="#DS">Data Structures, Modern Operators and Strings</a></li>
+            <li><a href="#numbers">Numbers, Dates, Intl and Timers </a></li>
             <li><a href="#functions">Functions</a></li>
             <li><a href="#OOP">Object Orientated Programming (OOP)</a></li>
             <li><a href="#async">Asynchronous JavaScript</a></li>
@@ -229,8 +230,11 @@
                             <td>li.getAttribute('href'); &emsp; // returns the value of the href <br>
                                 li.setAttribute('href', &emsp; 'https://google.com'); // sets the href (adds attributes)
                                 <br>
-                                li.hasAttribute('name') &emsp;// returns boolean <br>
-                                li.removeAttribute('src'); <br>
+                                li.hasAttribute('name') &emsp;// returns bool<br>
+                                <br><br>
+                                In JavaScript, you can use the setAttribute() method to define attributes to an element. <br>
+                                <b>Using the same method, you can override the !important property of an element.</b> <br>
+                                <span> ele.setAttribute ('style', 'display: block !important;');</span>
                             </td>
                             <td>Get,set, remove attributes</td>
                         </tr>
@@ -535,6 +539,22 @@
                                 }, 0);<br><br>
                                 <br> By omitting the initial value ",0 )", the total will default to the first amount in the array. <br><br>
 
+                                <b><u>(advanced reduce methodology w destructuring)</u></b><br>
+                                const { deposits, withdrawals } = accounts<br>
+                                .flatMap(account => account.movements)<br>
+                                .reduce(<br>
+                                (accu, cur) => {<br>
+                                // cur > 0 ? (accu.deposits += cur) : (accu.withdrawals += cur);<br>
+                                // return accu;<br>
+
+                                accu[cur > 0 ? 'deposits' : 'withdrawals'] += cur; // dynamic conditional object call<br>
+                                return accu;<br>
+                                },<br>
+                                { deposits: 0, withdrawals: 0 }<br>
+                                );<br><br>
+
+                                console.log(deposits, withdrawals);<br><br>
+
                                 <span><b><u>.find / .filter</u></b> </span><br>
                                 array.filter and array.find are pretty similar but the key difference is that
                                 <ul>
@@ -653,6 +673,30 @@
                             </td>
                         </tr>
                         <tr>
+                            <td> <b>array.Sort method</b> <br>
+
+                                <ul>
+                                    <li>The default sort order is ascending, built upon converting the elements into strings, then comparing their sequences of UTF-16 code units values.</li>
+                                    <li>Converts everything to strings then sorts after.</li>
+                                    <li>mutates the original array. and is good for sorting an array of numbers. Takes a callback function.</li>
+                                </ul>
+
+                                movements.sort((a, b) => a - b); <br>
+
+                                //return < 0, A, B (keep order) <br>
+                                    //return > 0, B, B (switch order)<br><br>
+
+                                    //// 2 ways to sort ascending movements.sort((a, b) => { <br>
+                                    &emsp; if (a > b) return 1;<br>
+                                    &emsp; if (a < b) return -1; <br>
+                                        }); <br><br>
+
+                                        movements.sort((a, b) => a - b); // a will always return 1 same as above but optimized and works for number. <br>
+
+                            </td>
+                            <td>array.Sort</td>
+                        </tr>
+                        <tr>
                             <td>
                                 arr.at is a new es2022 method that makes it easier to get the last element of an array <br><br>
 
@@ -664,6 +708,66 @@
                             </td>
                             <td>
                                 The new at Method(Arrays)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                const x = new Array(7); // creates a blank array with 7 elements. <br>
+
+                                x.fill(1, 3, 5); // adds 1,s in position 3 and 4 <br>
+                                console.log(x); <br>
+
+                                <ul>
+                                    <li>We can the call the new .fill method to fill it all with this one element.</li>
+                                    <li>(.fill is similar to slice) as we can also specify where the fill starts from and where it ends.</li>
+                                    <li></li>
+                                </ul>
+
+                                Array.from gives us the same result as when we use the new Array(7) <br><br>
+                                In this one-liner, the first argument of the from method is the object we want to create an array from. <br>
+                                In this case, we are creating an empty object with a length property set to 10. <br>
+                                The second argument is a function that fills the array with whatever the result of our function is.<br>
+
+                                const x = Array.from({ length: 7 }, () => 1); <br>
+                                console.log(y)<br> <br>
+
+                                const y = Array.from({ length: 7 }, (cur, i) => i + 1); <br>
+                                console.log(y)<br>
+                                <br><br>
+
+                                const z = Array.from({ length: 7 }, (_, i) => i + 1);<br>
+                                console.log(z)<br><br>
+                                use the underscore to show other programmers the current is not needed.
+                            </td>
+                            <td>
+                                More Ways of Creating and Filling Arrays <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Keep this technique of creating an array of exceptions in mind. <br><br>
+
+                                // this is a nice title -> This Is a Nice Title <br><br>
+
+                                const convertTitleCase = function (title) { <br>
+                                &emsp; const capitilize = str => str[0].toUpperCase() + str.slice(1); // check out the missing ( brackets )<br>
+                                &emsp; const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with']; <br><br>
+
+                                &emsp; const titleCase = title <br>
+                                &emsp; .toLowerCase() <br>
+                                &emsp; .split(' ') <br>
+                                &emsp; .map(word => (exceptions.includes(word) ? word : capitilize(word))) <br>
+                                &emsp; .join(' '); <br><br>
+                                return capitilize(titleCase); <br>
+                                };
+                                <br><br>
+                                console.log(convertTitleCase('this is a nice title'));
+
+                            </td>
+                            <td>
+                                Keep the technique of creating an array of exceptions in mind. <br>
+                                Here we use it to create a function that converts all items in the Array to 'Proper case' if they are not included in the exception array.
                             </td>
                         </tr>
                         <tr>
@@ -688,7 +792,7 @@
 
                                 </p>
                                 <p>
-                                    If we look inside the specification – we’ll see that most built-in methods assume that they work with iterables or array-likes instead of “real” arrays, because that’s more abstract.
+                                    If we look inside the specification - we’ll see that most built-in methods assume that they work with iterables or array-likes instead of “real” arrays, because that’s more abstract.
                                 </p>
                                 <p>
                                     Array.from(obj[, mapFn, thisArg]) makes a real Array from an iterable or array-like obj, and we can then use array methods on it. The optional arguments mapFn and thisArg allow us to apply a function to each item.
@@ -770,6 +874,37 @@
                                 &emsp; &emsp; console.log(`m ${i}: You withdrew ${Math.abs(m)}`) <br>
                                 &emsp; } <br>
                                 });
+
+                                <br><br><br>
+                                <span><b><u>The difference between for...of and for...in</span></u></b> <br>
+                                <b> Both for...in and for...of statements iterate over something. The main difference between them is in what they iterate over. </b><br>
+
+                                <ul>
+                                    <li>The for...in statement iterates over the enumerable properties of an object. (keys)</li>
+                                    <li>The for...of statement iterates over values that the iterable object defines to be iterated over. (values)</li>
+                                </ul>
+                                <u>The following example shows the difference between a for...of loop and a for...in loop when used with an Array.</u>
+
+                                <br><br>
+                                Object.prototype.objCustom = function() {};<br>
+                                Array.prototype.arrCustom = function() {};<br><br>
+
+                                const iterable = [3, 5, 7];<br>
+                                iterable.foo = 'hello';<br>
+
+                                for (const i in iterable) {<br>
+                                &emsp; console.log(i); // logs "0", "1", "2", "foo", "arrCustom", "objCustom"<br>
+                                }<br><br>
+
+                                for (const i in iterable) {<br>
+                                &emsp; if (iterable.hasOwnProperty(i)) {<br>
+                                &emsp; &emsp; console.log(i); // logs "0", "1", "2", "foo"<br>
+                                &emsp; }<br>
+                                }<br><br>
+
+                                for (const i of iterable) {<br>
+                                &emsp; console.log(i); // logs 3, 5, 7<br>
+                                }<br>
                             </td>
                             <td>which loop to use</td>
                         </tr>
@@ -1090,6 +1225,176 @@
             </td>
         </tr>
 
+        <!-- Numbers, Dates, Intl and Timers -->
+        <tr>
+            <td>
+                <table class="section">
+                    <caption>
+                        <h3 id="numbers">Numbers, Dates, Intl and Timers</h3>
+                    </caption>
+                    <thead>
+                        <tr>
+                            <td>Code</td>
+                            <td>Description</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>const now = new Date(); <br>
+
+                                <ol>
+                                    <li>The Date object has lots a built in functions.</li>
+                                    <li>Always use getFullYear(); Do not ever use getYear()</li>
+                                    <li>but for other getters we do not inlude 'full eg. 'getMonth()</li>
+                                    <li>Dates also have setters, setMonth() etc.</li>
+                                    <li>We can get the timestamp / number of miliseconds passed since 1970 by using Date.now();</li>
+                                </ol>
+
+                                <b><span><u>display Date example/u></span></b>
+                                const date = new Date(acc.movementsDates[i]); <br>
+
+                                // const now = new Date();<br>
+                                const day = `${date.getDate()}`.padStart(2, 0); // adds 0 to 1 digit months<br>
+                                const month = `${date.getMonth() + 1}`.padStart(2, 0);<br>
+                                const year = date.getFullYear();<br>
+                                const hours = date.getHours();<br>
+                                const minutes = date.getMinutes();<br><br>
+
+                                const displayDate = `${day}/${month}/${year}`;<br> <br><br>
+
+                                <a href="https://momentjs.com/" target="_blank" rel="noopener noreferrer">moment.js</a> is a popular free JavaScript library for calculating complex date equations <br><br>
+
+                                <b><span>Calculate days passed</span></b> <br>
+                                const formatMovementDate = function (date) {<br>
+                                const calcDaysPassed = (date1, date2) => Math.round(Math.abs(date2 - date1) / (1000 * 60 * 60 * 24));<br><br>
+
+                                const daysPassed = calcDaysPassed(new Date(), date);<br>
+
+                                console.log(daysPassed);<br><br>
+
+                                if (daysPassed === 0) return 'Today';<br>
+                                if (daysPassed === 1) return 'Yesterday';<br>
+                                if (daysPassed <= 7) return `${daysPassed} days ago`;<br>
+                                    else {<br>
+                                    &emsp; &emsp; const day = `${date.getDate()}`.padStart(2, 0); // adds 0 to 1 digit months<br>
+                                    &emsp; &emsp; const month = `${date.getMonth() + 1}`.padStart(2, 0);<br>
+                                    &emsp; &emsp; const year = date.getFullYear();<br><br>
+
+                                    &emsp; &emsp; return `${day}/${month}/${year}`;<br>
+                                    &emsp; }<br>
+                                    };<br> <br><br>
+
+                                    <b><u><span>Int API (internationalization)</span></u></b> <br><br>
+
+                                    labelDate.textContent = new Intl.DateTimeFormat('en-US').format(now);<br>
+
+                                    returns the format in any language that we set it to<br><br>
+
+                                    const now = new Date();<br><br>
+
+                                    const options = {<br>
+                                    &emsp; day: 'long',<br>
+                                    &emsp; month: 'short',<br>
+                                    &emsp; year: 'numeric',<br>
+                                    &emsp; hour: 'numeric',<br>
+                                    &emsp; minute: 'numeric',<br>
+                                    };<br><br>
+
+                                    const locale = navigator.language;<br>
+
+                                    labelDate.textContent = new Intl.DateTimeFormat('en-US', options).format(now);<br><br>
+
+                                    // or to set to local<br>
+                                    labelDate.textContent = new Intl.DateTimeFormat(locale, options).format(now);<br><br>
+
+                                    <b>We can do the same with numbers</b> <br><br>
+
+                                    const number = 3445349.34;<br>
+
+                                    const options = {<br>
+                                    &emsp; style: 'percent',<br>
+                                    &emsp; unit: 'mph',<br>
+                                    };<br><br>
+
+                                    console.log(new Intl.NumberFormat('en-US', options));
+
+                            </td>
+                            <td>Creating Dates <br><br>
+                                <a rel="noopener noreferrer" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">MDN</a> </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><span>Always use isFinite</span> rather than isNAN to check if something is or is not a number, this is because isNaN produces some strange results</b> <br><br>
+
+                                console.log(Number.isNaN(20)); // false<br>
+                                console.log(Number.isNaN('20')); // false<br>
+                                console.log(Number.isNaN(+'20X')); // true<br>
+                                console.log(Number.isNaN(23 / 0)); // false (infinity)<br>
+                                console.log(Number.isFinite(20)); true<br>
+                                console.log(Number.isFinite('20')); false<br>
+                                console.log(Number.isFinite(+'20X')); false<br>
+                                console.log(Number.isFinite(23 / 0)); false<br><br>
+
+
+                                // for ints with no float<br><br>
+
+                                console.log(Number.isInteger('44'));<br>
+                                console.log(Number.isInteger(44));<br><br>
+
+
+
+                                <ul>
+                                    <li> You can NOT do really precise scientific or financial calculation in JavaScript due to it using binary base 2. eg. 0.1 + 0.2 = 0.30000000000004</li>
+                                    <li> All numbers convert to floats, using the + sign on a string will convert it to a number</li>
+                                </ul>
+                                <br>
+                                make something run every nth time <br>
+
+                                <br> if(i % 3 === 0) {<br>
+                                } <br><br>
+                                Math.trunc rounds down a number to an integer towards 0 <br>
+                                while Math.floor rounds down a number to an integer towards -Infinity. <br>
+                                As illustrated with the following number line, the direction will be the same for a positive number while for a negative number, the directions will be the opposite.
+                                <br>
+                                <img src="./resources/trunc-vs-floor.jpg" height="200" width="660">
+                                <br><br>
+                                <b>When rounding decimals</b> .toFixed will always return a string not a decimal, <br>
+                                use the + sign if we want to convert it back to a number <br>
+                                console.log(+(2.5).toFixed(0));
+
+                                <br><br>
+                                Number provides a name space for parseFloat and parseInt. <br>
+                                Although they are global functions it is recommended that we call the on the Number object.<br><br>
+
+                                console.log(Number.parseInt('30px', 10)); // <span> always use the 10 for base 10 standard numbers to avoid bugs.</span><br>
+                                console.log(Number.parseInt('010100001px', 2)); // </span> use 2 if we are working with binary.</span><br><br>
+
+                                console.log(Number.parseFloat('2.5rem')); // 2.5<br>
+                                console.log(Number.parseInt('2.5rem')); // 2<br><br>
+                                <span>Number.ParseFloat</span> // should be the go to when getting values from CSS that include px, rem and wanting to strip it out. <br><br>
+
+                            </td>
+                            <td>Converting and Checking Numbers</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li> Any number that is bigger than Number.MAX_SAFE_INTEGER; needs a big int else we will lose precision. These are unsafe numbers.</li>
+                                    <li>BigInt is used by either adding a n onto the end of the number like this 3143104308929048243242n</li>
+                                    <li>or by using the BigInt(90843043) constructor function.
+                                    </li>
+                                    <li>We can NOT add a bigInt to a normal number</li>
+                                    <li>We can NOT use math functions on a BigInt</li>
+                                    <li>BigInt was added in es2020</li>
+                                </ul>
+                            </td>
+                            <td>Working with BigInt</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
         <!-- Functions -->
         <tr>
             <td>
@@ -1189,14 +1494,12 @@
                         </tr>
                         <tr>
                             <td>
-                                Arrow functions allow you to have an implicit return: values are returned without having to use the return keyword. <br> <br>
-
-                                It works when there is a on-line statement in the function body: <br> <br>
-
-                                Otherwise you will still need to add return if the code includes curly brackets {a block}<br> <br>
-
-                                Implicit return, but only if there is no block.
                                 <ul>
+                                    <li>Arrow functions allow you to have an implicit return: values are returned without having to use the return keyword.</li>
+                                    <li>It works when there is a on-line statement in the function body: </li>
+                                    <li> In a arrow function the body is only automatically returns when we do NOT have the curly brackets.</li>
+                                    <li> If we have included the curly brackets then we also need to include the return statement.</li>
+                                    <li>Implicit return, but only if there is no block.</li>
                                     <li>This will result in errors when a one-liner expands to multiple lines and the programmer forgets to add a return.</li>
                                     <li> Implicit return is syntactically ambiguous. (name) => {id: name}returns the object {id: name}... right? Wrong. It returns undefined. Those braces are an explicit block. id: is a label.</li>
                                 </ul>
@@ -1804,29 +2107,29 @@
                                     <u> The returned object contains the following properties: </u>
                                 </b> <br><br>
 
-                                valid – Is true when the field passes validation. <br> <br>
-                                valueMissing – Is true when the field is empty but required. <br><br>
-                                typeMismatch – Is true when the field type is email or url but the entered value is not the
+                                valid - Is true when the field passes validation. <br> <br>
+                                valueMissing - Is true when the field is empty but required. <br><br>
+                                typeMismatch - Is true when the field type is email or url but the entered value is not the
                                 correct type. <br><br>
-                                tooShort – Is true when the field contains a minLength attribute and the entered value is
+                                tooShort - Is true when the field contains a minLength attribute and the entered value is
                                 shorter than that length. <br><br>
-                                tooLong – Is true when the field contains a maxLength attribute and the entered value is
+                                tooLong - Is true when the field contains a maxLength attribute and the entered value is
                                 longer than that length. <br><br>
-                                patternMismatch – Is true when the field contains a pattern attribute and the entered value
+                                patternMismatch - Is true when the field contains a pattern attribute and the entered value
                                 does not match the pattern. <br><br>
-                                badInput – Is true when the input type is number and the entered value is not a number.
+                                badInput - Is true when the input type is number and the entered value is not a number.
                                 <br><br>
-                                stepMismatch – Is true when the field has a step attribute and the entered value does not
+                                stepMismatch - Is true when the field has a step attribute and the entered value does not
                                 adhere to the step values. <br><br>
-                                rangeOverflow – Is true when the field has a max attribute and the entered number value is
+                                rangeOverflow - Is true when the field has a max attribute and the entered number value is
                                 greater than the max. <br><br>
-                                rangeUnderflow – Is true when the field has a min attribute and the entered number value is
+                                rangeUnderflow - Is true when the field has a min attribute and the entered number value is
                                 lower than the min. <br>
 
 
                             </td>
                             <td>
-                                <br> <u> <b> Validity State</b> </u> <br>
+                                <br> <u><b>Validity State</b></u> <br>
                                 The validity property provides a set of information about a form field, in the form of
                                 boolean (true/false) values.<br>
                                 We can use it to customize our form validation behavior. <br>
@@ -2066,6 +2369,7 @@
             </td>
         </tr>
 
+
         <!-- Error Handling -->
         <tr>
             <td>
@@ -2234,12 +2538,15 @@
                                 Use with caution, because it is a non-standard pattern, despite being valid code.</td>
                         </tr>
                         <tr>
+                            <td>dont forget which side to put the index++ or ++index when working inside functions/ callbacks/ for / loops / </td>
+                            <td>index++ or ++index</td>
+                        </tr>
+                        <tr>
                             <td>
                                 Whenever we call a method on a string, JavaScript will behind the scenes convert the string primitive into a string object so that we can use methods on it. This is process called boxing. <br>
                                 As it takes our string and puts it into the box which is the object. it calls the new String('string'); function <br><br>
                                 strings can NOT be mutated as they are primitive! we must store the data into a new variable.
-
-                                <br> <br><br>
+                                <br><br><br>
                                 We can not use splice on a string as it is destructive, we must use slice instead as it does not manipulate the original string.
                                 <br> <br><br>
                             </td>
@@ -2281,7 +2588,6 @@
                                 Consider <span>undefined</span> to represent a system level <span>unexpected absence of value</span> <br> <br>
                                 Consider <span>null</span> to represent a system level <span>normal expected absence of value</span> <br>
                             </td>
-
                             <td>The difference between null and undefined</td>
                         </tr>
                         <tr>
