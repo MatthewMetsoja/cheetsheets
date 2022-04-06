@@ -160,22 +160,85 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>The DOM is not part of Javascript, It is part of the JavaScript Web APIs, web APIs are librarys we can access from our JavaScript code <br>
+                            <td>The DOM is not part of Javascript, It is part of the JavaScript Web APIs, web APIs are libraries we can access from our JavaScript code <br>
                                 JavaScript uses inline css, on the html page rather than manipulate the css document </td>
                             <td>What's the DOM and DOM Manipulation</td>
                         </tr>
                         <tr>
-                            <td> window.pageYOffset | window.pageYOffset <span>How far top of the window is / how far we
-                                    have scrolled from the top</span> <br><br>
+                            <td> window.pageYOffset | window.pageYOffset <span>Old way to find How far top of the window is / how far we
+                                    have scrolled from the top</span> <br>
+
+                                window.scrollX, window.scrollY are the new ways that replaced window.pageYOffset and window.pageXOffset <br>
+                                console.log('Current Scroll (X/Y)', window.scrollX, window.scrollY);
+                                <br>
                                 element.offsetTop, <span> How far the element is from the top</span> <br><br>
                                 let find_All_dimensions = <b> element.getBoundingClientRect(); </b> <span>find out all
                                     dimensions</span> <br> <br>
 
                                 let width = window.innerWidth; <br> <br>
-                                let height = window.innerHeight;
+                                let height = window.innerHeight; <br><br>
+                                document.documentElement.clientHeight,<br>
+                                document.documentElement.clientWidth<br>
 
                             </td>
                             <td> Find out dimensions in relation to window and elements / top of page</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                We can think of .closest as the opposite to the querySelector, as the querySelector with go down the tree searching children till <br>
+                                it finds the element we select .closest will go up the tree till it finds a match on the parents. <br><br>
+
+                                h1.closest('.header').style.background = 'var(--gradient-secondary)'; // selects the closest element to the class reference
+                                <br><br>
+                                h1.closest('h1').style.background = 'var(--gradient-primary)'; will also select itself <br><br>
+
+                                <span><b> .closest in action, for eventDelegation.</b></span><br>
+
+                                tabsContainer.addEventListener('click', function (e) {<br>
+                                &emsp;const clicked = e.target.closest('.operations__tab');<br>
+                                &emsp;console.log(clicked);<br> <br>
+
+                                &emsp; // Guard clause<br>
+                                &emsp; if (!clicked) return;<br>
+
+                                &emsp; clicked.classList.add('operations__tab--active');<br>
+                                });<br><br>
+
+                                <span>the guard clause is a newer way of writing</span><br>
+
+                                if(clicked){<br>
+                                &emsp; // run this code<br>
+                                }<br><br>
+                                This prevents errors in the console when the element doesn't exist etc.
+                            </td>
+                            <td>The '.closest' method</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br> 1. Add the event listener to a common parent element
+                                <br> 2. Determine what element originated the event <br><br>
+
+                                <br>document.querySelector('.nav__links').addEventListener('click', function (e) {
+                                <br>&emsp;console.log(e.target);
+                                <br>&emsp;if (e.target.classList.contains('nav__link')) {
+                                <br>&emsp;&emsp; e.preventDefault();
+                                <br>&emsp;&emsp;const id = e.target.getAttribute('href');
+                                <br>&emsp;&emsp;document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+                                <br>&emsp;}
+                                <br>});
+
+                                <br><br>
+                                This is a lot more efficient than adding the same function / event handler to multiple elements. <br>
+                                We add the event listener on the parent and then select the children based on a condition that the target meets. <br><br>
+                                This is called the "matching strategy".
+
+                                <br><br>
+
+                                This is needed for elements that are not yet included on the page when it loads (ones added with Javascript). <br>
+                                And this how we would addEventListeners to them
+                            </td>
+                            <td>Event delegation <br>
+                                The strategy for EventListener.</td>
                         </tr>
                         <tr>
                             <td>window.addEventListener('scroll', navScroll); &emsp; It is just scroll for the event
@@ -222,7 +285,8 @@
                                 I would normally <strong> use the "classList" methods exclusively. </strong>
 
                                 <br><br>
-                                When we need to change multiple styles on the page for one element, it is best to add a class then import the styles from this class and add/remove when its needed, Rather than writing lots of code.
+                                When we need to change multiple styles on the page for one element, it is best to add a class then import the styles from this class
+                                <br> and add/remove when its needed, Rather than writing lots of code.
                             </td>
                         </tr>
 
@@ -269,7 +333,31 @@
                                     submenu!</span>
 
                             </td>
-                            <td>Sibling Selection</td>
+                            <td>Sibling Selection / DOM traversal</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span><b>Going downwards: child</b></span> <br>
+                                console.log(h1.querySelectorAll('.highlight'));<br>
+                                console.log(h1.childNodes); // gets everything<br>
+                                console.log(h1.children); // only direct children elements<br>
+                                console.log((h1.firstElementChild.style.color = 'red'));<br>
+                                console.log((h1.lastElementChild.style.color = 'yellow'));<br><br>
+
+                                <span><b>Going upwards: parents</b></span> <br>
+                                console.log(h1.parentNode);<br>
+                                console.log(h1.parentElement);<br><br>
+
+                                <span><b>Going sideways: siblings</b></span> <br>
+
+                                console.log(h1.previousElementSibling);<br>
+                                console.log(h1.nextElementSibling);<br>
+                                console.log(h1.previousSibling);<br>
+                                console.log(h1.nextSibling);<br><br>
+
+                                <span><b>Get all siblings (select the parent element then all children)</b></span> <br>
+                                console.log(h1.parentElement.children);</td>
+                            <td>Sibling Selection / DOM traversal</td>
                         </tr>
                         <tr>
                             <td>targetElement.insertAdjacentElement(position, element); <br> <br>
@@ -330,6 +418,10 @@
                             <td>
                                 textContent VS innerHTML
                             </td>
+                        </tr>
+                        <tr>
+                            <td>In an eventHandler the 'this' element always points to the element which the handler was attached to</td>
+                            <td>The 'this' keyword</td>
                         </tr>
                         <tr>
                             <td>The <span>mouseover / mouseout </span> event triggers when the mouse pointer enters the
@@ -407,12 +499,41 @@
                                 We should add an escape keydown to close a modal as well as a click</td>
                         </tr>
                         <tr>
-                            <td> <span> We call them like this in JavaScript</span><br>
+                            <td>console.log(getComputedStyle(message).width);</td>
+                            <td>
+                                Get computed style of any element
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b><span>Old way For removing one element:</span></b> <br><br>
+
+                                var elem = document.getElementById("yourid");<br>
+                                elem.parentElement.removeChild(elem);<br><br>
+
+                                <b><span>For removing all the elements with for example a certain class name:</span> </b><br><br>
+
+                                var list = document.getElementsByClassName("yourclassname");<br>
+                                for(var i = list.length - 1; 0 <= i; i--)<br>
+                                    &emsp; if(list[i] && list[i].parentElement)<br>
+                                    &emsp;&emsp; list[i].parentElement.removeChild(list[i]);
+
+                                    <br><br>
+
+                                    <b><span>New way that replaces having to select parents. (not IE compatible)</span></b><br>
+                                    document.querySelector('.btn--close-cookie').remove();
+                                    });
+                            </td>
+                            <td>Removing elements</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span>We call them like this in JavaScript</span><br>
                                 icon.style.fill =
                                 window.getComputedStyle(document.documentElement).getPropertyValue('--colorBlue');
                                 <br><br>
 
-                                <span> here is how we reset them</span> <br>
+                                <span> here is how we can change their value</span> <br>
                                 document.documentElement.style.setProperty('--color-font-general', '#000');
                                 <br> <br>
                                 Note that the value returned has the leading space, so you would get " #336699" instead
@@ -421,6 +542,88 @@
                                 because of that leading space, so consider trimming it before checking).
                             </td>
                             <td> <strong>Calling Custom CSS variables</strong> </td>
+                        </tr>
+                        <tr>
+                            <td>getComputedStyle can pull style info from pseudo-elements (such as ::after, ::before, ::marker, <br><br>
+
+                                var h3 = document.querySelector('h3');<br>
+                                var result = getComputedStyle(h3, ':after').content;<br><br>
+
+                            </td>
+                            <td>Using Window.getComputedStyle() to get the value of a pseudoElement</td>
+                        </tr>
+                        <tr>
+                            <td>links with a href of "#" will automatically make the page jump to the top when clicked. <br><br>
+
+                                We can prevent this default behavior with javascript, click handler, e.preventDefault();</td>
+                            <td>Custom links with a href of "#" or just custom links</td>
+                        </tr>
+                        <tr>
+                            <td>document.getElementsByTagName, & document.getElementsByClassName return a HTMLCollection. <br>
+                                This is different to a nodelist as it updates itself automatically when if we delete one its nodes from the DOM <br><br>
+
+                                <b>Live vs. Static NodeLists</b><br>
+                                Although they are both considered NodeLists, there are 2 varieties of NodeList: live and static.<br><br>
+
+                                <u>Live NodeLists</u> <br>
+                                In some cases, the NodeList is live, which means that changes in the DOM automatically update the collection.<br><br>
+                                <br>
+                                For example, Node.childNodes is live:<br>
+
+                                const parent = document.getElementById('parent'); <br>
+                                let child_nodes = parent.childNodes;<br><br>
+
+                                <u>Static NodeLists</u> <br>
+                                In other cases, the NodeList is static, where any changes in the DOM does not affect the content of the collection. <br>
+                                The ubiquitous document.querySelectorAll() method returns a static NodeList. <br>
+                                It's good to keep this distinction in mind when you choose how to iterate over the items in the NodeList, <br>
+                                and whether you should cache the list's length.
+                            </td>
+                            <td>Live vs. Static NodeLists
+                                <br><br>
+                                document.getElementsByTagName / document.getElementsByClassName VS querySelector
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                console.log(logo.src); &emsp; // http://localhost/myProject/images/abc.jpg <br><br>
+                                console.log(logo.getAttribute('src')); &emsp; // "images/abc.jpg"
+                            </td>
+                            <td>get relative version of image/link vs get full path </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                                <b><span>Window.scrollTo()</span></b><br>
+                                Window.scrollTo() method scrolls to a particular set of coordinates in the document.<br>
+
+                                notice how we need to selected the whole page (document.documentElement) to do the scroll to on.<br>
+                                We need to specify left, top and behavior, and if we pass an object with options (required for smooth scroll) we should use polyfill as this is not ie10 or safari compatible <br>
+
+                                window.scrollTo({ <br>
+                                &emsp; left: s1coords.left + window.scrollX, <br>
+                                &emsp; top: s1coords.top + window.scrollY,<br>
+                                &emsp; behavior: 'smooth',<br>
+                                });<br><br>
+
+                                <b><span>Element.scrollIntoView()</span></b><br>
+                                Element.scrollIntoView() method scrolls the element on which it's called into the Viewport of the browser window. <br>
+                                This will jump to the area with specify, <br>
+                                use pollyfill if we are passing the object settings into the method. (which is required for smooth scrolling). <br> <br>
+
+                                section1.scrollIntoView({ behavior: 'smooth' }); <br>
+
+                                other options <br>
+                                // block: "start" / "center" / "nearest" <br>
+                                // inline:"nearest" / "center" / "nearest" <br>
+                            </td>
+                            <td>Implementing smooth scrolling</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                we need to use dataset for the data part and camelCase for the bit after, data-version-number="" <br>
+                                console.log(logo.dataset.versionNumber);</td>
+                            <td>How to get the value from the HTML "data-" attribute. </td>
                         </tr>
                     </tbody>
                 </table>
@@ -905,6 +1108,16 @@
                                 for (const i of iterable) {<br>
                                 &emsp; console.log(i); // logs 3, 5, 7<br>
                                 }<br>
+                                <br><br><br>
+                                <b>Iterating over a DOM collection</b> <br>
+                                Iterating over DOM collections like NodeList: <br>
+
+                                // Note: This will only work in platforms that have implemented NodeList.prototype[Symbol.iterator] <br><br>
+                                const articleParagraphs = document.querySelectorAll('article > p');<br><br>
+
+                                for (const paragraph of articleParagraphs) {<br>
+                                &emsp; paragraph.classList.add('read');<br>
+                                }<br>
                             </td>
                             <td>which loop to use</td>
                         </tr>
@@ -1250,7 +1463,7 @@
                                     <li>We can get the timestamp / number of miliseconds passed since 1970 by using Date.now();</li>
                                 </ol>
 
-                                <b><span><u>display Date example/u></span></b>
+                                <b><span><u>Display formatted Date example/u></span></b>
                                 const date = new Date(acc.movementsDates[i]); <br>
 
                                 // const now = new Date();<br>
@@ -1389,6 +1602,28 @@
                                 </ul>
                             </td>
                             <td>Working with BigInt</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>Pass parameters</b><br>
+                                setTimeout( (ing1, ing2) => console.log(`here is your pizza with ${ing1} and ${ing2}`),<br>
+                                3000,<br>
+                                'olives',<br>
+                                'spinach'<br>
+                                );<br><br>
+
+                                <b>We can cancel as timer or interval before it has happened, but we will need to name it.</b>
+                                <br>
+                                const cancelMe = setTimeout((ing1, ing2) => console.log(`here is your pizza with ${ing1} and ${ing2}`),
+                                3000,<br>
+                                ...ingredients<br>
+                                );<br><br>
+
+                                if (ingredients.includes('bacon')) clearTimeout(cancelMe);<br> <br>
+
+
+                                <span>We don't need to call the variable, it still runs automatically.</span> </td>
+                            <td>Pass parameters to setTimeout and also how to cancel a timeout or interval</td>
                         </tr>
                     </tbody>
                 </table>
