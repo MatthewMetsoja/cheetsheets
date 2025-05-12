@@ -1617,7 +1617,7 @@
                 <td>
                     <table class="section">
                         <caption>
-                            <h3>SCSS</h3>
+                            <h3>SCSS (Sass)</h3>
                         </caption>
                         <thead>
                             <tr>
@@ -1626,6 +1626,11 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <strong>Modern SCSS Setup</strong>
+                                </td>
+                            </tr>
                             <tr>
                                 <td>
                                     // Modern SCSS setup<br />
@@ -1643,1153 +1648,569 @@
                                 </td>
                                 <td>
                                     <strong>Modern SCSS Setup:</strong> The
-                                    <code>node-sass</code> package is now
-                                    deprecated. Use the Dart Sass implementation
-                                    instead (<code>sass</code> package) for
-                                    better performance and updated features. The
-                                    <code>--watch</code> flag automatically
+                                    node-sass package is now deprecated. Use the
+                                    Dart Sass implementation instead (sass
+                                    package) for better performance and updated
+                                    features. The --watch flag automatically
                                     recompiles when source files change.
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    // Variables<br />
-                                    $primary-color: #3498db;<br />
-                                    $secondary-color: #2ecc71;<br />
-                                    $font-heading: 'Montserrat', sans-serif;<br />
-                                    $font-body: 'Open Sans', sans-serif;<br />
-                                    $border-radius: 4px;<br /><br />
-
-                                    // Maps for organized values<br />
-                                    $spacing: (<br />
-                                    &emsp;"xs": 0.25rem,<br />
-                                    &emsp;"sm": 0.5rem,<br />
-                                    &emsp;"md": 1rem,<br />
-                                    &emsp;"lg": 1.5rem,<br />
-                                    &emsp;"xl": 2.5rem<br />
-                                    );
-                                </td>
-                                <td>
-                                    <strong>SCSS Variables:</strong> Define
-                                    reusable values like colors, fonts, and
-                                    spacing. Unlike CSS variables, SCSS
-                                    variables are processed at compile time and
-                                    can be used in more complex operations. Maps
-                                    provide structured collections of related
-                                    values that can be accessed with functions.
+                                <td colspan="2">
+                                    <strong>Modern Imports with @use</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    // Function to access map values<br />
-                                    @function spacing($key) {<br />
-                                    &emsp;@return map-get($spacing, $key);<br />
-                                    }<br /><br />
+                                    // In _variables.scss<br />
+                                    $primary-color: #3982e4;<br />
+                                    $spacing: 1rem;<br /><br />
 
-                                    // Better color manipulation<br />
-                                    @function tint($color, $percentage) {<br />
-                                    &emsp;@return mix(white, $color,
-                                    $percentage);<br />
-                                    }<br /><br />
-
-                                    @function shade($color, $percentage) {<br />
-                                    &emsp;@return mix(black, $color,
-                                    $percentage);<br />
-                                    }<br /><br />
-
-                                    // Usage<br />
-                                    .element {<br />
-                                    &emsp;margin: spacing('md');<br />
-                                    &emsp;background-color: tint($primary-color,
-                                    80%);<br />
-                                    &emsp;border-color: shade($primary-color,
-                                    20%);<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>SCSS Functions:</strong> Create
-                                    reusable operations that return values.
-                                    Functions are ideal for calculations or
-                                    accessing values from maps. The
-                                    <code>tint</code> and
-                                    <code>shade</code> functions offer more
-                                    natural color modifications than
-                                    <code>lighten</code> and
-                                    <code>darken</code> by mixing with white or
-                                    black.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Flexbox mixin with defaults<br />
-                                    @mixin flex($direction: row, $justify:
-                                    center, $align: center) {<br />
+                                    // In _mixins.scss<br />
+                                    @mixin flex-center {<br />
                                     &emsp;display: flex;<br />
-                                    &emsp;flex-direction: $direction;<br />
-                                    &emsp;justify-content: $justify;<br />
-                                    &emsp;align-items: $align;<br />
+                                    &emsp;align-items: center;<br />
+                                    &emsp;justify-content: center;<br />
                                     }<br /><br />
 
-                                    // Responsive mixin<br />
-                                    @mixin responsive($breakpoint) {<br />
-                                    &emsp;@if $breakpoint == mobile {<br />
-                                    &emsp;&emsp;@media (max-width: 576px) {
-                                    @content; }<br />
-                                    &emsp;} @else if $breakpoint == tablet {<br />
-                                    &emsp;&emsp;@media (max-width: 768px) {
-                                    @content; }<br />
-                                    &emsp;} @else if $breakpoint == laptop {<br />
-                                    &emsp;&emsp;@media (max-width: 992px) {
-                                    @content; }<br />
-                                    &emsp;} @else if $breakpoint == desktop {<br />
-                                    &emsp;&emsp;@media (max-width: 1200px) {
-                                    @content; }<br />
-                                    &emsp;}<br />
-                                    }<br /><br />
-
-                                    // Usage<br />
-                                    .card {<br />
-                                    &emsp;@include flex(column, flex-start,
-                                    stretch);<br />
-                                    &emsp;padding: spacing('md');<br /><br />
-
-                                    &emsp;@include responsive(mobile) {<br />
-                                    &emsp;&emsp;padding: spacing('sm');<br />
-                                    &emsp;}<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>SCSS Mixins:</strong> Reusable
-                                    blocks of styles that can accept parameters.
-                                    They're excellent for complex, repetitive
-                                    patterns like flexbox layouts, grids, and
-                                    media queries. The
-                                    <code>@content</code> directive allows you
-                                    to pass custom styles into the mixin, making
-                                    them highly flexible.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // BEM with nesting<br />
-                                    .btn {<br />
-                                    &emsp;padding: 0.75rem 1.5rem;<br />
-                                    &emsp;border-radius: $border-radius;<br />
-                                    &emsp;transition: all 0.3s;<br /><br />
-
-                                    &emsp;&--primary {<br />
-                                    &emsp;&emsp;background-color:
-                                    $primary-color;<br />
-                                    &emsp;&emsp;color: white;<br /><br />
-
-                                    &emsp;&emsp;&:hover {<br />
-                                    &emsp;&emsp;&emsp;background-color:
-                                    darken($primary-color, 10%);<br />
-                                    &emsp;&emsp;}<br />
-                                    &emsp;}<br /><br />
-
-                                    &emsp;&__icon {<br />
-                                    &emsp;&emsp;margin-right: 0.5rem;<br />
-                                    &emsp;}<br /><br />
-
-                                    &emsp;&:focus {<br />
-                                    &emsp;&emsp;outline: 2px solid
-                                    rgba($primary-color, 0.5);<br />
-                                    &emsp;}<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>BEM with SCSS:</strong> SCSS nesting
-                                    makes it easy to implement the BEM (Block
-                                    Element Modifier) methodology. The
-                                    <code>&</code> refers to the parent
-                                    selector, allowing you to create modifiers
-                                    <code>&--primary</code> and elements
-                                    <code>&__icon</code> while keeping your code
-                                    organized and readable. This maintains the
-                                    relationship between components visually in
-                                    your code.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Modern module system<br />
-                                    // _colors.scss<br />
-                                    $primary: #3498db;<br />
-                                    $secondary: #2ecc71;<br /><br />
-
-                                    // _variables.scss<br />
-                                    @forward 'colors';<br />
-                                    $spacing-unit: 8px;<br />
-                                    $border-radius: 4px;<br /><br />
-
-                                    // component.scss<br />
-                                    @use 'abstracts/variables' as vars;<br /><br />
+                                    // In main.scss (modern approach)<br />
+                                    @use 'variables';<br />
+                                    @use 'mixins';<br /><br />
 
                                     .button {<br />
-                                    &emsp;background-color: vars.$primary;<br />
-                                    &emsp;padding: vars.$spacing-unit * 2;<br />
-                                    &emsp;border-radius: vars.$border-radius;<br />
+                                    &emsp;background:
+                                    variables.$primary-color;<br />
+                                    &emsp;padding: variables.$spacing;<br />
+                                    &emsp;@include mixins.flex-center;<br />
                                     }
                                 </td>
                                 <td>
-                                    <strong>Modern Module System:</strong>
-                                    <code>@use</code> and
-                                    <code>@forward</code> are the modern
-                                    replacements for <code>@import</code>. They
-                                    offer better encapsulation and namespace
-                                    control:<br /><br />
-
-                                    - <code>@use</code> loads variables,
-                                    functions, and mixins from another file with
-                                    namespace<br />
-                                    - <code>@forward</code> exposes loaded
-                                    members from one file in another<br /><br />
-
-                                    This approach prevents variable name
-                                    collisions and makes dependencies explicit.
+                                    <strong>@use for Imports:</strong> Modern
+                                    Sass uses @use instead of @import.
+                                    Benefits:<br />
+                                    - Variables and mixins are namespaced<br />
+                                    - Files are only imported once<br />
+                                    - Better encapsulation<br />
+                                    - Access variables with namespace:
+                                    <code>namespace.$variable</code><br />
+                                    - Access mixins with namespace:
+                                    <code>@include namespace.mixin()</code>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    // Control flow with @each<br />
-                                    $colors: (<br />
-                                    &emsp;"primary": #3498db,<br />
-                                    &emsp;"secondary": #2ecc71,<br />
-                                    &emsp;"warning": #f1c40f,<br />
-                                    &emsp;"danger": #e74c3c<br />
-                                    );<br /><br />
+                                    // In _colors.scss<br />
+                                    $blue: #3982e4;<br />
+                                    $red: #e43939;<br /><br />
 
-                                    @each $name, $color in $colors {<br />
-                                    &emsp;.bg-#{$name} {<br />
-                                    &emsp;&emsp;background-color: $color;<br />
-                                    &emsp;}<br /><br />
+                                    // In main.scss<br />
+                                    @use 'colors' as c;<br />
+                                    // Now use c.$blue instead of
+                                    colors.$blue<br /><br />
 
-                                    &emsp;.text-#{$name} {<br />
-                                    &emsp;&emsp;color: $color;<br />
-                                    &emsp;}<br />
-                                    }
+                                    @use 'colors' as *;<br />
+                                    // Now use $blue directly without namespace
                                 </td>
                                 <td>
-                                    <strong>Control Flow with @each:</strong>
-                                    Generate similar styles efficiently using
-                                    loops. This example creates background and
-                                    text color classes for each color in the
-                                    map. The <code>#{$name}</code> syntax is
-                                    string interpolation, inserting the variable
-                                    value into the class name. Excellent for
-                                    generating utility classes from design
-                                    tokens.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Architecture: 7-1 Pattern<br />
-                                    sass/<br />
-                                    &emsp;|– abstracts/ # Variables, functions,
-                                    mixins<br />
-                                    &emsp;|– base/ # Base styles, typography,
-                                    reset<br />
-                                    &emsp;|– components/ # UI components<br />
-                                    &emsp;|– layout/ # Layout sections<br />
-                                    &emsp;|– pages/ # Page-specific styles<br />
-                                    &emsp;|– themes/ # Theme variations<br />
-                                    &emsp;|– vendors/ # External libraries<br />
-                                    &emsp;|– main.scss # Main file that imports
-                                    all partials
-                                </td>
-                                <td>
-                                    <strong>7-1 Architecture Pattern:</strong> A
-                                    popular way to organize SCSS files in large
-                                    projects. Files are grouped by function,
-                                    with the main file importing all partials.
-                                    This structure helps with maintainability
-                                    and separation of concerns. Partials (files
-                                    starting with _) don't get compiled on their
-                                    own.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Placeholder selectors<br />
-                                    %button-base {<br />
-                                    &emsp;display: inline-block;<br />
-                                    &emsp;padding: 0.5rem 1rem;<br />
-                                    &emsp;border: none;<br />
-                                    &emsp;border-radius: 4px;<br />
-                                    &emsp;cursor: pointer;<br />
-                                    }<br /><br />
-
-                                    .btn-primary {<br />
-                                    &emsp;@extend %button-base;<br />
-                                    &emsp;background-color: $primary-color;<br />
-                                    &emsp;color: white;<br />
-                                    }<br /><br />
-
-                                    .btn-secondary {<br />
-                                    &emsp;@extend %button-base;<br />
-                                    &emsp;background-color: $secondary-color;<br />
-                                    &emsp;color: white;<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>Placeholder Selectors:</strong> Use
-                                    <code>%placeholder</code> and
-                                    <code>@extend</code> to share styles between
-                                    selectors without duplicating CSS. Unlike
-                                    mixins, placeholders don't generate code
-                                    unless extended, resulting in smaller CSS
-                                    output. Best for simple shared styles with
-                                    no parameters.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Conditional styles<br />
-                                    $theme: 'light';<br />
-                                    $enable-shadows: true;<br /><br />
-
-                                    .card {<br />
-                                    &emsp;padding: 1rem;<br />
-                                    &emsp;border-radius: 4px;<br /><br />
-
-                                    &emsp;@if $theme == 'dark' {<br />
-                                    &emsp;&emsp;background-color: #333;<br />
-                                    &emsp;&emsp;color: white;<br />
-                                    &emsp;} @else {<br />
-                                    &emsp;&emsp;background-color: white;<br />
-                                    &emsp;&emsp;color: #333;<br />
-                                    &emsp;}<br /><br />
-
-                                    &emsp;@if $enable-shadows {<br />
-                                    &emsp;&emsp;box-shadow: 0 2px 5px
-                                    rgba(0,0,0,0.1);<br />
-                                    &emsp;}<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>Conditional Styling:</strong> Use
-                                    <code>@if</code> and
-                                    <code>@else</code> directives to apply
-                                    different styles based on variables. This is
-                                    great for theme switching, feature flags,
-                                    and conditional rendering of certain styles.
-                                    Allows for logic at compile time to generate
-                                    different CSS based on conditions.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Utility function for z-index
-                                    management<br />
-                                    $z-layers: (<br />
-                                    &emsp;"modal": 1000,<br />
-                                    &emsp;"dropdown": 500,<br />
-                                    &emsp;"header": 100,<br />
-                                    &emsp;"default": 1<br />
-                                    );<br /><br />
-
-                                    @function z($layer) {<br />
-                                    &emsp;@if not map-has-key($z-layers, $layer)
-                                    {<br />
-                                    &emsp;&emsp;@error "No z-index found for:
-                                    #{$layer}";<br />
-                                    &emsp;}<br />
-                                    &emsp;@return map-get($z-layers, $layer);<br />
-                                    }<br /><br />
-
-                                    .header { z-index: z('header'); }<br />
-                                    .modal { z-index: z('modal'); }
-                                </td>
-                                <td>
-                                    <strong>Z-index Management:</strong> Use
-                                    maps and functions to manage z-index values
-                                    centrally. This prevents "z-index wars"
-                                    where elements compete with increasingly
-                                    large values. By defining a hierarchy of
-                                    layers, you maintain control over stacking
-                                    contexts throughout your application.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // SCSS and CSS variables together<br />
-                                    $colors: (<br />
-                                    &emsp;"primary": #3498db,<br />
-                                    &emsp;"secondary": #2ecc71<br />
-                                    );<br /><br />
-
-                                    :root {<br />
-                                    &emsp;@each $name, $color in $colors {<br />
-                                    &emsp;&emsp;--color-#{$name}: #{$color};<br />
-                                    &emsp;&emsp;--color-#{$name}-light:
-                                    #{tint($color, 80%)};<br />
-                                    &emsp;&emsp;--color-#{$name}-dark:
-                                    #{shade($color, 20%)};<br />
-                                    &emsp;}<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>SCSS with CSS Variables:</strong>
-                                    Use SCSS to generate CSS custom properties.
-                                    This approach combines the power of
-                                    compile-time SCSS (loops, functions) with
-                                    the runtime benefits of CSS variables
-                                    (dynamic updates, theme switching). Perfect
-                                    for generating color variants or theming
-                                    systems.
+                                    <strong>@use Namespace Options:</strong
+                                    ><br />
+                                    - <code>@use 'file' as namespace;</code>:
+                                    Creates custom namespace<br />
+                                    - <code>@use 'file' as *;</code>: No
+                                    namespace (like old @import)<br />
+                                    - Default namespace is the filename
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <strong>Color Functions</strong>
+                                    <strong>@forward for Module Systems</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    $brand-color: #3982e4;<br /><br />
+                                    // In abstracts/_index.scss<br />
+                                    @forward 'variables';<br />
+                                    @forward 'functions';<br />
+                                    @forward 'mixins';<br /><br />
 
-                                    .light-variant {<br />
-                                    &emsp;background: lighten($brand-color,
-                                    20%);<br />
-                                    }<br /><br />
+                                    // In main.scss<br />
+                                    @use 'abstracts';<br /><br />
 
-                                    .dark-variant {<br />
-                                    &emsp;background: darken($brand-color,
-                                    15%);<br />
+                                    .element {<br />
+                                    &emsp;color: abstracts.$primary-color;<br />
+                                    &emsp;@include abstracts.flex-center;<br />
                                     }
                                 </td>
                                 <td>
-                                    <strong>Lighten/Darken:</strong><br />
-                                    - <code>lighten($color, $amount)</code>:
-                                    Makes a color lighter by the percentage
-                                    specified<br />
-                                    - <code>darken($color, $amount)</code>:
-                                    Makes a color darker by the percentage
-                                    specified<br />
-                                    The $amount parameter is a percentage
-                                    (0-100%)
+                                    <strong>@forward for Module Systems:</strong
+                                    ><br />
+                                    - <code>@forward</code> re-exports all
+                                    members from another module<br />
+                                    - Great for creating an API of related
+                                    modules<br />
+                                    - Allows grouping related files in one
+                                    namespace<br />
+                                    - Can selectively hide/show members with
+                                    <code>@forward 'module' hide $var</code> or
+                                    <code>@forward 'module' show $var</code>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <strong>Modern Color Functions</strong>
                                 </td>
                             </tr>
                             <tr>
                                 <td>
+                                    @use 'sass:color';<br /><br />
+
+                                    $brand-color: #3982e4;<br /><br />
+
+                                    .light-variant {<br />
+                                    &emsp;// Modern approach<br />
+                                    &emsp;background: color.scale($brand-color,
+                                    $lightness: 20%);<br />
+                                    }<br /><br />
+
+                                    .dark-variant {<br />
+                                    &emsp;// Modern approach<br />
+                                    &emsp;background: color.scale($brand-color,
+                                    $lightness: -15%);<br />
+                                    }
+                                </td>
+                                <td>
+                                    <strong>Modern Lighten/Darken:</strong
+                                    ><br />
+                                    -
+                                    <code
+                                        >color.scale($color, $lightness:
+                                        20%)</code
+                                    >: Modern replacement for lighten()<br />
+                                    -
+                                    <code
+                                        >color.scale($color, $lightness:
+                                        -20%)</code
+                                    >: Modern replacement for darken()<br />
+                                    - More intuitive scaling with percentage
+                                    values<br />
+                                    - Positive values lighten, negative values
+                                    darken
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @use 'sass:color';<br /><br />
+
                                     $brand-color: #3982e4;<br /><br />
 
                                     .overlay {<br />
-                                    &emsp;background:
-                                    transparentize($brand-color, 0.3);<br />
+                                    &emsp;// Modern approach<br />
+                                    &emsp;background: color.adjust($brand-color,
+                                    $alpha: -0.3);<br />
                                     &emsp;// Same as: rgba(57, 130, 228, 0.7)<br />
                                     }<br /><br />
 
                                     .solid {<br />
-                                    &emsp;background: opacify($brand-color,
-                                    0.3);<br />
+                                    &emsp;// Modern approach<br />
+                                    &emsp;background: color.adjust($brand-color,
+                                    $alpha: 0.3);<br />
                                     }
                                 </td>
                                 <td>
-                                    <strong>Opacity Functions:</strong><br />
+                                    <strong>Modern Opacity Functions:</strong
+                                    ><br />
                                     -
-                                    <code>transparentize($color, $amount)</code
-                                    >: Reduces opacity by the amount specified
-                                    (makes more transparent)<br />
-                                    - <code>opacify($color, $amount)</code>:
-                                    Increases opacity by the amount specified
-                                    (makes less transparent)<br />
-                                    - Also available:
-                                    <code>rgba($color, $alpha)</code> to set
+                                    <code
+                                        >color.adjust($color, $alpha:
+                                        -0.3)</code
+                                    >: Modern replacement for
+                                    transparentize()<br />
+                                    -
+                                    <code
+                                        >color.adjust($color, $alpha: 0.3)</code
+                                    >: Modern replacement for opacify()<br />
+                                    - <code>color.rgba($color, 0.7)</code>: Sets
                                     specific alpha value<br />
-                                    The $amount parameter is between 0 and 1
+                                    - More consistent interface for all color
+                                    adjustments
                                 </td>
                             </tr>
                             <tr>
                                 <td>
+                                    @use 'sass:color';<br /><br />
+
                                     $brand-color: #3982e4;<br /><br />
 
                                     .saturated {<br />
-                                    &emsp;color: saturate($brand-color, 20%);<br />
+                                    &emsp;// Modern approach<br />
+                                    &emsp;color: color.adjust($brand-color,
+                                    $saturation: 20%);<br />
                                     }<br /><br />
 
                                     .desaturated {<br />
-                                    &emsp;color: desaturate($brand-color,
-                                    20%);<br />
+                                    &emsp;// Modern approach<br />
+                                    &emsp;color: color.adjust($brand-color,
+                                    $saturation: -20%);<br />
                                     }<br /><br />
 
                                     .grayscale {<br />
-                                    &emsp;color: grayscale($brand-color);<br />
+                                    &emsp;// Modern approach<br />
+                                    &emsp;color: color.adjust($brand-color,
+                                    $saturation: -100%);<br />
                                     }
                                 </td>
                                 <td>
-                                    <strong>Saturation Functions:</strong><br />
-                                    - <code>saturate($color, $amount)</code>:
-                                    Increases the saturation of a color<br />
-                                    - <code>desaturate($color, $amount)</code>:
-                                    Decreases the saturation of a color<br />
-                                    - <code>grayscale($color)</code>: Converts a
-                                    color to grayscale (fully desaturated)
+                                    <strong>Modern Saturation Functions:</strong
+                                    ><br />
+                                    -
+                                    <code
+                                        >color.adjust($color, $saturation:
+                                        20%)</code
+                                    >: Modern replacement for saturate()<br />
+                                    -
+                                    <code
+                                        >color.adjust($color, $saturation:
+                                        -20%)</code
+                                    >: Modern replacement for desaturate()<br />
+                                    -
+                                    <code
+                                        >color.adjust($color, $saturation:
+                                        -100%)</code
+                                    >: Modern replacement for grayscale()<br />
+                                    - Consistent interface across all color
+                                    adjustments
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    $brand-color: #3982e4;<br />
-                                    $complement: complement($brand-color); //
-                                    #e49a39<br /><br />
+                                    @use 'sass:color';<br /><br />
 
-                                    $color-mix: mix($brand-color, #ff0000,
+                                    $brand-color: #3982e4;<br />
+                                    $complement: color.complement($brand-color);
+                                    // #e49a39<br /><br />
+
+                                    $color-mix: color.mix($brand-color, #ff0000,
                                     30%);<br /><br />
 
-                                    $invert: invert($brand-color);
+                                    // Modern invert<br />
+                                    $invert: color.adjust(<br />
+                                    &emsp;$brand-color,<br />
+                                    &emsp;$hue: 180deg,<br />
+                                    &emsp;$saturation: -100%,<br />
+                                    &emsp;$lightness: -100%<br />
+                                    );
                                 </td>
                                 <td>
-                                    <strong>Color Transformation:</strong><br />
-                                    - <code>complement($color)</code>: Returns
-                                    the complementary color<br />
-                                    - <code>invert($color)</code>: Returns the
-                                    inverse of a color<br />
+                                    <strong
+                                        >Modern Color Transformations:</strong
+                                    ><br />
+                                    - <code>color.complement($color)</code>:
+                                    Still available in modern Sass<br />
                                     -
-                                    <code>mix($color1, $color2, $weight)</code>:
-                                    Mixes two colors together<br />
-                                    &nbsp;&nbsp;The $weight parameter (0-100%)
-                                    controls how much of $color1 to use
+                                    <code
+                                        >color.mix($color1, $color2,
+                                        $weight)</code
+                                    >: Still available<br />
+                                    - Complex transformations use
+                                    <code>color.adjust()</code> with multiple
+                                    parameters<br />
+                                    - All color functions are now in the
+                                    <code>sass:color</code> module
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    // Extract color components<br />
-                                    $brand-color: #3982e4;<br />
-                                    $hue: hue($brand-color); // 212deg<br />
-                                    $saturation: saturation($brand-color); //
-                                    75%<br />
-                                    $lightness: lightness($brand-color); //
-                                    56%<br /><br />
+                                    @use 'sass:color';<br /><br />
 
-                                    // Create new color with adjusted hue<br />
-                                    $new-color: adjust-hue($brand-color, 15deg);
+                                    $brand-color: #3982e4;<br /><br />
+
+                                    // Extract color components<br />
+                                    $hue: color.hue($brand-color); // 212deg<br />
+                                    $saturation: color.saturation($brand-color);
+                                    // 75%<br />
+                                    $lightness: color.lightness($brand-color);
+                                    // 56%<br /><br />
+
+                                    // Adjust hue<br />
+                                    $new-color: color.adjust($brand-color, $hue:
+                                    15deg);
                                 </td>
                                 <td>
-                                    <strong>Color Component Functions:</strong
+                                    <strong
+                                        >Modern Color Component
+                                        Functions:</strong
                                     ><br />
-                                    - <code>hue($color)</code>: Returns the hue
-                                    component<br />
-                                    - <code>saturation($color)</code>: Returns
-                                    the saturation component<br />
-                                    - <code>lightness($color)</code>: Returns
-                                    the lightness component<br />
-                                    - <code>adjust-hue($color, $degrees)</code>:
-                                    Adjusts the hue of a color
+                                    - <code>color.hue($color)</code>: Gets the
+                                    hue component<br />
+                                    - <code>color.saturation($color)</code>:
+                                    Gets the saturation<br />
+                                    - <code>color.lightness($color)</code>: Gets
+                                    the lightness<br />
+                                    -
+                                    <code
+                                        >color.adjust($color, $hue: 15deg)</code
+                                    >: Modern replacement for adjust-hue()
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @use 'sass:color';<br /><br />
+
+                                    $brand-color: #3982e4;<br /><br />
+
+                                    // Create color palette with
+                                    color.scale()<br />
+                                    $palette: (<br />
+                                    &emsp;100: color.scale($brand-color,
+                                    $lightness: 80%),<br />
+                                    &emsp;200: color.scale($brand-color,
+                                    $lightness: 60%),<br />
+                                    &emsp;300: color.scale($brand-color,
+                                    $lightness: 40%),<br />
+                                    &emsp;400: color.scale($brand-color,
+                                    $lightness: 20%),<br />
+                                    &emsp;500: $brand-color,<br />
+                                    &emsp;600: color.scale($brand-color,
+                                    $lightness: -10%),<br />
+                                    &emsp;700: color.scale($brand-color,
+                                    $lightness: -20%),<br />
+                                    &emsp;800: color.scale($brand-color,
+                                    $lightness: -30%),<br />
+                                    &emsp;900: color.scale($brand-color,
+                                    $lightness: -40%)<br />
+                                    );
+                                </td>
+                                <td>
+                                    <strong>Creating Color Systems:</strong
+                                    ><br />
+                                    - <code>color.scale()</code> is ideal for
+                                    creating color palettes<br />
+                                    - More predictable than lighten/darken<br />
+                                    - Percentage values are more intuitive<br />
+                                    - Can create comprehensive color systems
+                                    from a base color
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <strong>7-1 Architecture Pattern</strong>
+                                    <strong>Math Functions</strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @use 'sass:math';<br /><br />
+
+                                    .element {<br />
+                                    &emsp;// Modern division<br />
+                                    &emsp;width: math.div(100px, 4); // 25px<br /><br />
+
+                                    &emsp;// Other math functions<br />
+                                    &emsp;height: math.round(45.6px); // 46px<br />
+                                    &emsp;margin: math.max(10px, 20px, 5px); //
+                                    20px<br />
+                                    &emsp;padding: math.min(30px, 20px, 25px);
+                                    // 20px<br />
+                                    &emsp;font-size: math.clamp(16px, 2vw,
+                                    24px);<br />
+                                    }
+                                </td>
+                                <td>
+                                    <strong>Modern Math Operations:</strong
+                                    ><br />
+                                    - <code>math.div(100px, 4)</code>: Modern
+                                    replacement for division with /<br />
+                                    - <code>math.round(45.6px)</code>: Rounds to
+                                    nearest integer<br />
+                                    - <code>math.floor(45.6px)</code>: Rounds
+                                    down<br />
+                                    - <code>math.ceil(45.6px)</code>: Rounds
+                                    up<br />
+                                    - <code>math.max(...)</code>: Returns
+                                    largest value<br />
+                                    - <code>math.min(...)</code>: Returns
+                                    smallest value<br />
+                                    - <code>math.clamp(min, val, max)</code>:
+                                    Constrains value between min/max
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    <strong
+                                        >7-1 Architecture with Modern
+                                        Imports</strong
+                                    >
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     /sass/<br />
-                                    |– abstracts/ (or utilities/)<br />
+                                    |– abstracts/<br />
                                     |&emsp;&emsp;|– _variables.scss<br />
                                     |&emsp;&emsp;|– _functions.scss<br />
                                     |&emsp;&emsp;|– _mixins.scss<br />
-                                    |&emsp;&emsp;|– _placeholders.scss<br />
+                                    |&emsp;&emsp;|– _index.scss (forwards all
+                                    abstracts)<br />
                                     |<br />
                                     |– base/<br />
                                     |&emsp;&emsp;|– _reset.scss<br />
                                     |&emsp;&emsp;|– _typography.scss<br />
+                                    |&emsp;&emsp;|– _index.scss (forwards all
+                                    base)<br />
                                     |<br />
                                     |– components/<br />
                                     |&emsp;&emsp;|– _buttons.scss<br />
                                     |&emsp;&emsp;|– _carousel.scss<br />
-                                    |&emsp;&emsp;|– _dropdown.scss<br />
+                                    |&emsp;&emsp;|– _index.scss<br />
                                     |<br />
                                     |– layout/<br />
                                     |&emsp;&emsp;|– _header.scss<br />
                                     |&emsp;&emsp;|– _footer.scss<br />
-                                    |&emsp;&emsp;|– _navigation.scss<br />
-                                    |&emsp;&emsp;|– _grid.scss<br />
+                                    |&emsp;&emsp;|– _index.scss<br />
                                     |<br />
                                     |– pages/<br />
                                     |&emsp;&emsp;|– _home.scss<br />
-                                    |&emsp;&emsp;|– _about.scss<br />
+                                    |&emsp;&emsp;|– _index.scss<br />
                                     |<br />
                                     |– themes/<br />
                                     |&emsp;&emsp;|– _default.scss<br />
-                                    |&emsp;&emsp;|– _dark.scss<br />
+                                    |&emsp;&emsp;|– _index.scss<br />
                                     |<br />
                                     |– vendors/<br />
-                                    |&emsp;&emsp;|– _bootstrap.scss<br />
-                                    |&emsp;&emsp;|– _jquery-ui.scss<br />
+                                    |&emsp;&emsp;|– _normalize.scss<br />
+                                    |&emsp;&emsp;|– _index.scss<br />
                                     |<br />
                                     `– main.scss
                                 </td>
                                 <td>
-                                    <strong>7-1 Architecture:</strong> A pattern
-                                    for organizing Sass files into 7 different
-                                    folders and a single main file:<br /><br />
-
-                                    1. <strong>abstracts/</strong>: Variables,
-                                    functions, mixins, and placeholders<br />
-                                    2. <strong>base/</strong>: Reset,
-                                    typography, and other base styles<br />
-                                    3. <strong>components/</strong>: UI
-                                    components (buttons, forms, cards, etc.)<br />
-                                    4. <strong>layout/</strong>: Layout sections
-                                    (header, footer, grid, etc.)<br />
-                                    5. <strong>pages/</strong>: Page-specific
-                                    styles<br />
-                                    6. <strong>themes/</strong>: Visual themes
-                                    (dark mode, etc.)<br />
-                                    7. <strong>vendors/</strong>: External
-                                    libraries and frameworks
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // main.scss<br /><br />
-
-                                    // Abstracts<br />
-                                    @import 'abstracts/variables';<br />
-                                    @import 'abstracts/functions';<br />
-                                    @import 'abstracts/mixins';<br /><br />
-
-                                    // Vendors<br />
-                                    @import 'vendors/bootstrap';<br /><br />
-
-                                    // Base<br />
-                                    @import 'base/reset';<br />
-                                    @import 'base/typography';<br /><br />
-
-                                    // Layout<br />
-                                    @import 'layout/header';<br />
-                                    @import 'layout/footer';<br />
-                                    @import 'layout/grid';<br /><br />
-
-                                    // Components<br />
-                                    @import 'components/buttons';<br />
-                                    @import 'components/carousel';<br /><br />
-
-                                    // Pages<br />
-                                    @import 'pages/home';<br />
-                                    @import 'pages/about';<br /><br />
-
-                                    // Themes<br />
-                                    @import 'themes/default';
-                                </td>
-                                <td>
-                                    <strong>Main File in 7-1 Pattern:</strong>
-                                    The main.scss file imports all other files
-                                    in the correct order:<br /><br />
-
-                                    <strong>Import Order:</strong><br />
-                                    1. First abstracts (variables, functions,
-                                    mixins)<br />
-                                    2. Then vendors (3rd party code)<br />
-                                    3. Base styles<br />
-                                    4. Layout components<br />
-                                    5. UI components<br />
-                                    6. Page-specific styles<br />
-                                    7. Themes<br /><br />
-
-                                    <strong>Note:</strong> With Dart Sass, use
-                                    <code>@use</code> instead of
-                                    <code>@import</code> for better namespacing.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Modern approach with @use<br /><br />
-
-                                    // abstracts/_variables.scss<br />
-                                    $primary-color: #3982e4;<br />
-                                    $spacing-unit: 16px;<br /><br />
-
-                                    // components/_button.scss<br />
-                                    @use '../abstracts/variables' as vars;<br /><br />
-
-                                    .button {<br />
-                                    &emsp;background: vars.$primary-color;<br />
-                                    &emsp;padding: vars.$spacing-unit / 2
-                                    vars.$spacing-unit;<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>Modern Imports with @use:</strong
+                                    <strong
+                                        >7-1 Architecture with
+                                        @use/@forward:</strong
                                     ><br />
-
-                                    - <code>@use</code> loads mixins, functions,
-                                    and variables from other Sass files<br />
-                                    - Adds namespacing automatically to prevent
-                                    conflicts<br />
-                                    - More efficient than
-                                    <code>@import</code> (loads each file only
-                                    once)<br />
-                                    - Access variables via namespace:
-                                    <code>namespace.$variable</code><br />
-                                    - Can customize namespace:
-                                    <code>@use 'path' as custom;</code>
+                                    - Each folder has an _index.scss that
+                                    forwards all files<br />
+                                    - In _index.scss:
+                                    <code>@forward 'variables';</code><br />
+                                    - This creates clean imports and
+                                    namespacing<br />
+                                    - Promotes organization while reducing
+                                    import clutter
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     // abstracts/_index.scss<br />
                                     @forward 'variables';<br />
-                                    @forward 'mixins';<br />
-                                    @forward 'functions';<br /><br />
+                                    @forward 'functions';<br />
+                                    @forward 'mixins';<br /><br />
 
-                                    // In component file<br />
-                                    @use '../abstracts' as *; // * removes
-                                    namespace<br /><br />
+                                    // main.scss<br />
+                                    @use 'abstracts';<br />
+                                    @use 'vendors';<br />
+                                    @use 'base';<br />
+                                    @use 'layout';<br />
+                                    @use 'components';<br />
+                                    @use 'pages';<br />
+                                    @use 'themes';<br /><br />
+
+                                    // Inside components/_buttons.scss<br />
+                                    @use '../abstracts' as *; // No namespace<br /><br />
 
                                     .button {<br />
-                                    &emsp;background: $primary-color; // no
-                                    namespace needed<br />
+                                    &emsp;background: $primary-color;<br />
+                                    &emsp;@include flex-center;<br />
                                     }
                                 </td>
                                 <td>
-                                    <strong>@forward and Module Index:</strong
-                                    ><br />
-
-                                    - <code>@forward</code> loads a Sass file
-                                    but makes its mixins, functions, and
-                                    variables available through the forwarding
-                                    file<br />
-                                    - Great for creating "index" files that
-                                    aggregate multiple modules<br />
-                                    - Combine with <code>@use ... as *</code> to
-                                    avoid namespaces<br />
-                                    - Helps organize related files while
-                                    maintaining clean imports
+                                    <strong>Modern Main File:</strong><br />
+                                    - Each module is imported once with @use<br />
+                                    - Components can access abstracts with
+                                    relative paths<br />
+                                    - Use <code>@use '../path' as *</code> to
+                                    avoid namespacing<br />
+                                    - More modular and maintainable than old
+                                    @import system
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2">
-                                    <strong>Advanced SCSS Features</strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Map of breakpoints<br />
-                                    $breakpoints: (<br />
-                                    &emsp;'small': 576px,<br />
-                                    &emsp;'medium': 768px,<br />
-                                    &emsp;'large': 992px,<br />
-                                    &emsp;'xlarge': 1200px<br />
-                                    );<br /><br />
-
-                                    // Mixin using map<br />
-                                    @mixin breakpoint($size) {<br />
-                                    &emsp;@if map-has-key($breakpoints, $size)
-                                    {<br />
-                                    &emsp;&emsp;$value: map-get($breakpoints,
-                                    $size);<br />
-                                    &emsp;&emsp;@media screen and (min-width:
-                                    $value) {<br />
-                                    &emsp;&emsp;&emsp;@content;<br />
-                                    &emsp;&emsp;}<br />
-                                    &emsp;} @else {<br />
-                                    &emsp;&emsp;@warn "Unknown breakpoint
-                                    `#{$size}`.";<br />
-                                    &emsp;}<br />
-                                    }<br /><br />
-
-                                    // Usage<br />
-                                    .container {<br />
-                                    &emsp;width: 100%;<br />
-                                    &emsp;@include breakpoint('medium') {<br />
-                                    &emsp;&emsp;width: 740px;<br />
-                                    &emsp;}<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>Maps and Advanced Mixins:</strong
-                                    ><br />
-
-                                    - <code>map-get($map, $key)</code>: Gets a
-                                    value from a map<br />
-                                    - <code>map-has-key($map, $key)</code>:
-                                    Checks if a key exists<br />
-                                    - <code>map-merge($map1, $map2)</code>:
-                                    Merges two maps<br />
-                                    - <code>map-values($map)</code>: Gets all
-                                    values from a map<br /><br />
-
-                                    <strong>Map Functions:</strong><br />
-                                    Example shows creating a responsive
-                                    breakpoint system with maps and a custom
-                                    mixin that accepts content through
-                                    <code>@content</code>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Define color palette with nested maps<br />
-                                    $colors: (<br />
-                                    &emsp;'primary': (<br />
-                                    &emsp;&emsp;'base': #3982e4,<br />
-                                    &emsp;&emsp;'light': #6ba2eb,<br />
-                                    &emsp;&emsp;'dark': #2363be<br />
-                                    &emsp;),<br />
-                                    &emsp;'neutral': (<br />
-                                    &emsp;&emsp;'base': #808080,<br />
-                                    &emsp;&emsp;'light': #e0e0e0,<br />
-                                    &emsp;&emsp;'dark': #333333<br />
-                                    &emsp;)<br />
-                                    );<br /><br />
-
-                                    // Function to access colors<br />
-                                    @function color($collection, $variant:
-                                    'base') {<br />
-                                    &emsp;@if map-has-key($colors, $collection)
-                                    {<br />
-                                    &emsp;&emsp;$collection-map:
-                                    map-get($colors, $collection);<br />
-                                    &emsp;&emsp;@if map-has-key($collection-map,
-                                    $variant) {<br />
-                                    &emsp;&emsp;&emsp;@return
-                                    map-get($collection-map, $variant);<br />
-                                    &emsp;&emsp;} @else {<br />
-                                    &emsp;&emsp;&emsp;@error "Unknown variant
-                                    `#{$variant}` in color collection.";<br />
-                                    &emsp;&emsp;}<br />
-                                    &emsp;} @else {<br />
-                                    &emsp;&emsp;@error "Unknown color collection
-                                    `#{$collection}`.";<br />
-                                    &emsp;}<br />
-                                    }<br /><br />
-
-                                    // Usage<br />
-                                    .button {<br />
-                                    &emsp;background: color('primary');<br />
-                                    &emsp;border: 1px solid color('primary',
-                                    'dark');<br />
-                                    &emsp;color: color('neutral', 'light');<br />
-                                    }
-                                </td>
-                                <td>
                                     <strong
-                                        >Nested Maps and Custom
-                                        Functions:</strong
-                                    ><br />
-
-                                    - Create organized data structures with
-                                    nested maps<br />
-                                    - Build custom functions to access nested
-                                    values easily<br />
-                                    - Error handling with
-                                    <code>@error</code> directive<br />
-                                    - Makes complex design systems more
-                                    manageable<br />
-                                    - Encourages consistent use of design tokens
+                                        >Modern CSS Custom Properties
+                                        Integration</strong
+                                    >
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    // Loop through colors<br />
-                                    $themes: 'primary', 'secondary', 'success',
-                                    'danger';<br /><br />
+                                    // _variables.scss<br />
+                                    @use 'sass:color';<br /><br />
 
-                                    @each $theme in $themes {<br />
-                                    &emsp;.badge--#{$theme} {<br />
-                                    &emsp;&emsp;background-color:
-                                    var(--color-#{$theme});<br />
-                                    &emsp;}<br />
-                                    }<br /><br />
+                                    $primary: #3982e4;<br />
+                                    $spacing-unit: 8px;<br /><br />
 
-                                    // Counter with @for<br />
-                                    @for $i from 1 through 6 {<br />
-                                    &emsp;.h#{$i} {<br />
-                                    &emsp;&emsp;font-size: calc(3rem - #{$i *
-                                    0.5}rem);<br />
-                                    &emsp;}<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong
-                                        >SCSS Loops and Control
-                                        Directives:</strong
-                                    ><br />
-
-                                    - <code>@each</code>: Loop through lists or
-                                    maps<br />
-                                    - <code>@for</code>: Create counted loops<br />
-                                    - <code>#{$variable}</code>: Variable
-                                    interpolation in selectors/property names<br />
-                                    - <code>@while</code>: Loop while a
-                                    condition is true<br />
-                                    - Great for generating utility classes or
-                                    variations
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Placeholder selector<br />
-                                    %button-base {<br />
-                                    &emsp;display: inline-block;<br />
-                                    &emsp;padding: 0.75rem 1.5rem;<br />
-                                    &emsp;border-radius: 4px;<br />
-                                    &emsp;transition: all 0.3s ease;<br />
-                                    &emsp;font-weight: 600;<br />
-                                    }<br /><br />
-
-                                    // Extending the placeholder<br />
-                                    .button-primary {<br />
-                                    &emsp;@extend %button-base;<br />
-                                    &emsp;background-color: $primary-color;<br />
-                                    &emsp;color: white;<br />
-                                    }<br /><br />
-
-                                    .button-outline {<br />
-                                    &emsp;@extend %button-base;<br />
-                                    &emsp;background-color: transparent;<br />
-                                    &emsp;border: 2px solid $primary-color;<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong
-                                        >Placeholder Selectors and
-                                        Extend:</strong
-                                    ><br />
-
-                                    - Placeholder selectors start with
-                                    <code>%</code><br />
-                                    - Don't generate CSS until extended<br />
-                                    - <code>@extend</code> shares styles between
-                                    selectors<br />
-                                    - More optimized than mixins when you don't
-                                    need parameters<br />
-                                    - Reduces repetition in compiled CSS
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Built-in modules<br />
-                                    @use 'sass:color';<br />
-                                    @use 'sass:list';<br />
-                                    @use 'sass:map';<br />
-                                    @use 'sass:math';<br />
-                                    @use 'sass:meta';<br />
-                                    @use 'sass:selector';<br />
-                                    @use 'sass:string';<br /><br />
-
-                                    // Example with math module<br />
-                                    .element {<br />
-                                    &emsp;width: math.percentage(1/3); //
-                                    33.333%<br />
-                                    &emsp;margin: math.div(30px, 2); // 15px<br />
-                                    &emsp;padding: math.floor(4.6px); // 4px<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>Built-in Modules:</strong><br />
-
-                                    - <code>sass:color</code>: Color
-                                    manipulation functions<br />
-                                    - <code>sass:list</code>: List operations<br />
-                                    - <code>sass:map</code>: Map operations<br />
-                                    - <code>sass:math</code>: Mathematical
-                                    functions<br />
-                                    - <code>sass:meta</code>: Introspection
-                                    functions<br />
-                                    - <code>sass:selector</code>: Selector
-                                    operations<br />
-                                    - <code>sass:string</code>: String
-                                    manipulation<br /><br />
-
-                                    These modules replaced the global functions
-                                    in Dart Sass
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Design tokens<br />
-                                    // abstracts/_tokens.scss<br />
-                                    $border-radius: (<br />
-                                    &emsp;'sm': 2px,<br />
-                                    &emsp;'md': 4px,<br />
-                                    &emsp;'lg': 8px,<br />
-                                    &emsp;'pill': 9999px<br />
-                                    );<br /><br />
-
-                                    $spacing: (<br />
-                                    &emsp;'xs': 4px,<br />
-                                    &emsp;'sm': 8px,<br />
-                                    &emsp;'md': 16px,<br />
-                                    &emsp;'lg': 24px,<br />
-                                    &emsp;'xl': 32px,<br />
-                                    );<br /><br />
-
-                                    // CSS Custom Properties Generation<br />
+                                    // Generate CSS variables from Sass
+                                    variables<br />
                                     :root {<br />
-                                    &emsp;@each $name, $value in $spacing {<br />
-                                    &emsp;&emsp;--spacing-#{$name}:
-                                    #{$value};<br />
-                                    &emsp;}<br /><br />
+                                    &emsp;--color-primary: #{$primary};<br />
+                                    &emsp;--color-primary-light:
+                                    #{color.scale($primary, $lightness:
+                                    30%)};<br />
+                                    &emsp;--color-primary-dark:
+                                    #{color.scale($primary, $lightness:
+                                    -20%)};<br /><br />
 
-                                    &emsp;@each $name, $value in $border-radius
-                                    {<br />
-                                    &emsp;&emsp;--radius-#{$name}: #{$value};<br />
-                                    &emsp;}<br />
+                                    &emsp;// Spacing variables<br />
+                                    &emsp;--spacing-sm: #{$spacing-unit};<br />
+                                    &emsp;--spacing-md: #{$spacing-unit * 2};<br />
+                                    &emsp;--spacing-lg: #{$spacing-unit * 3};<br />
                                     }
                                 </td>
                                 <td>
-                                    <strong
-                                        >Design Tokens and CSS Custom
-                                        Properties:</strong
+                                    <strong>Sass to CSS Variables:</strong
                                     ><br />
-
-                                    - Define design tokens as Sass maps<br />
-                                    - Generate CSS custom properties from
-                                    tokens<br />
-                                    - Create a single source of truth for design
-                                    values<br />
-                                    - Makes theming easier as CSS vars can be
-                                    updated at runtime<br />
-                                    - Bridges the gap between Sass compile-time
-                                    values and runtime CSS vars
+                                    - Modern approach: Use Sass to generate CSS
+                                    custom properties<br />
+                                    - Sass handles pre-processing
+                                    calculations<br />
+                                    - CSS variables enable runtime changes
+                                    (theming, dark mode)<br />
+                                    - Best of both worlds: Sass for compilation,
+                                    CSS vars for runtime
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    // Convert px to rem<br />
-                                    @use 'sass:math';<br /><br />
+                                    @use 'sass:map';<br />
+                                    @use 'sass:color';<br /><br />
 
-                                    @function rem($pixels, $context: 16) {<br />
-                                    &emsp;@return math.div($pixels, $context) *
-                                    1rem;<br />
-                                    }<br /><br />
+                                    // Modern color system<br />
+                                    $colors: (<br />
+                                    &emsp;'primary': #3982e4,<br />
+                                    &emsp;'secondary': #6c757d,<br />
+                                    &emsp;'success': #28a745,<br />
+                                    &emsp;'danger': #dc3545<br />
+                                    );<br /><br />
 
-                                    // Fluid scaling<br />
-                                    @function fluid-size($min-size, $max-size,
-                                    $min-width: 320px, $max-width: 1200px) {<br />
-                                    &emsp;$slope: math.div($max-size -
-                                    $min-size, $max-width - $min-width);<br />
-                                    &emsp;$y-intercept: $min-size - $slope *
-                                    $min-width;<br />
-                                    &emsp;$min: $min-size * 1px;<br />
-                                    &emsp;$max: $max-size * 1px;<br /><br />
-
-                                    &emsp;@return clamp(#{$min}, #{$slope *
-                                    100}vw + #{$y-intercept * 1px}, #{$max});<br />
-                                    }<br /><br />
-
-                                    // Usage<br />
-                                    h1 {<br />
-                                    &emsp;font-size: rem(24px);<br />
-                                    &emsp;font-size: fluid-size(24, 48);<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>Utility Functions:</strong><br />
-
-                                    - <code>rem()</code>: Converts px to rem for
-                                    better accessibility<br />
-                                    - <code>fluid-size()</code>: Creates
-                                    responsive sizes that scale smoothly<br />
-                                    - Uses CSS <code>clamp()</code> function for
-                                    fluid typography<br />
-                                    - Ensures text is never too small on mobile
-                                    or too large on desktop<br />
-                                    - Reduces need for media queries for font
-                                    sizing
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Custom property fallback<br />
-                                    $theme-dark: true;<br /><br />
-
-                                    @mixin theme-aware($property, $light-value,
-                                    $dark-value) {<br />
-                                    &emsp;#{$property}: $light-value;<br />
-
-                                    &emsp;@if $theme-dark {<br />
-                                    &emsp;&emsp;@media (prefers-color-scheme:
-                                    dark) {<br />
-                                    &emsp;&emsp;&emsp;#{$property}:
-                                    $dark-value;<br />
-                                    &emsp;&emsp;}<br />
-                                    &emsp;}<br />
-
-                                    &emsp;// Custom property fallback<br />
-                                    &emsp;#{$property}:
-                                    var(--#{$property}-custom, $light-value);<br />
-                                    }<br /><br />
-
-                                    // Usage<br />
-                                    .card {<br />
-                                    &emsp;@include
-                                    theme-aware('background-color', #fff,
-                                    #121212);<br />
-                                    &emsp;@include theme-aware('color', #333,
-                                    #eaeaea);<br />
-                                    }
-                                </td>
-                                <td>
-                                    <strong>Theme-aware Mixins:</strong><br />
-
-                                    - Create theming systems with conditional
-                                    logic<br />
-                                    - Support both CSS variables and media
-                                    queries<br />
-                                    - Provide fallback values for older
-                                    browsers<br />
-                                    - Layer multiple theming approaches<br />
-                                    - Allow users to override theme values with
-                                    custom properties
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    // Grid generation mixin<br />
-                                    @mixin generate-grid($columns: 12,
-                                    $breakpoint-prefix: '') {<br />
-                                    &emsp;$prefix: if($breakpoint-prefix == '',
-                                    '', '#{$breakpoint-prefix}-');<br /><br />
-
-                                    &emsp;@for $i from 1 through $columns {<br />
-                                    &emsp;&emsp;.col-#{$prefix}#{$i} {<br />
-                                    &emsp;&emsp;&emsp;flex: 0 0
-                                    math.percentage(math.div($i, $columns));<br />
-                                    &emsp;&emsp;&emsp;max-width:
-                                    math.percentage(math.div($i, $columns));<br />
-                                    &emsp;&emsp;}<br />
-                                    &emsp;}<br /><br />
-
-                                    &emsp;// Offset classes<br />
-                                    &emsp;@for $i from 0 through ($columns - 1)
-                                    {<br />
-                                    &emsp;&emsp;.offset-#{$prefix}#{$i} {<br />
-                                    &emsp;&emsp;&emsp;margin-left:
-                                    math.percentage(math.div($i, $columns));<br />
-                                    &emsp;&emsp;}<br />
-                                    &emsp;}<br />
-                                    }<br /><br />
-
-                                    // Generate base grid<br />
-                                    @include generate-grid();<br /><br />
-
-                                    // Generate responsive grid<br />
-                                    @each $breakpoint, $width in $breakpoints
-                                    {<br />
-                                    &emsp;@media (min-width: $width) {<br />
-                                    &emsp;&emsp;@include generate-grid(12,
-                                    $breakpoint);<br />
+                                    // Generate color shades and CSS
+                                    variables<br />
+                                    :root {<br />
+                                    &emsp;@each $name, $color in $colors {<br />
+                                    &emsp;&emsp;--color-#{$name}: #{$color};<br />
+                                    &emsp;&emsp;--color-#{$name}-light:
+                                    #{color.scale($color, $lightness: 30%)};<br />
+                                    &emsp;&emsp;--color-#{$name}-dark:
+                                    #{color.scale($color, $lightness: -20%)};<br />
                                     &emsp;}<br />
                                     }
                                 </td>
                                 <td>
-                                    <strong>Dynamic Grid Generation:</strong
-                                    ><br />
-
-                                    - Create flexible grid systems
-                                    programmatically<br />
-                                    - Generate responsive variants with
-                                    breakpoints<br />
-                                    - Use loops to create column and offset
-                                    classes<br />
-                                    - Similar to how Bootstrap generates its
-                                    grid system<br />
-                                    - Reduces repetitive code and makes
-                                    maintenance easier
+                                    <strong>Modern Color Systems:</strong><br />
+                                    - Use maps to store colors<br />
+                                    - Generate variations with modern color
+                                    functions<br />
+                                    - Create CSS variables with loops<br />
+                                    - Access in CSS with
+                                    <code>var(--color-primary)</code><br />
+                                    - Consistent system for both Sass and CSS
                                 </td>
                             </tr>
                         </tbody>
